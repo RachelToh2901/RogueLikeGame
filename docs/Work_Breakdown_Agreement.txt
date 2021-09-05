@@ -9,9 +9,10 @@ Task Division:
 * Deeksha - Design Rationale
 3. Each deliverable needs to be completed by 7th September, 10am 
 4. Reviewing and Testing of the Design Artefacts
-   1. UML Class Diagrams - Deekha and Rachel
+   1. UML Class Diagrams - Deeksha and Rachel
    2. Sequence Diagram - Stanley and Deeksha
    3. Design Rationale - Stanley and Rachel
 
 
 Agreements :
+I accept this WBA - Deeksha
