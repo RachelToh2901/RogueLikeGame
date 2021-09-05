@@ -16,6 +16,7 @@ import game.interfaces.Soul;
 public class Player extends Actor implements Soul {
 
 	private final Menu menu = new Menu();
+	// int souls
 
 	/**
 	 * Constructor.
@@ -37,7 +38,13 @@ public class Player extends Actor implements Soul {
 			return lastAction.getNextAction();
 
 		// return/print the console menu
+		// print health points using display
 		return menu.showMenu(this, actions, display);
+
+		// insert actions
+		// action = menu.showmenu
+		// action.execute
+		// return result
 	}
 
 	@Override

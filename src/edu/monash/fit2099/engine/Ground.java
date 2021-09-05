@@ -50,6 +50,7 @@ public abstract class Ground implements Capable, Printable, DesignOSoulsAddOn {
 	 * @param location The location of the Ground 
 	 */
 	public void tick(Location location) {
+
 	}
 	
 	/**
