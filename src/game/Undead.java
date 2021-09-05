@@ -55,6 +55,11 @@ public class Undead extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		// if attack in action {
+		// behaviors.add(followbehavior)
+		// return attack action
+		// }
+
 		// loop through all behaviours
 		for(Behaviour Behaviour : behaviours) {
 			Action action = Behaviour.getAction(this, map);

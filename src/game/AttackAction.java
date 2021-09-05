@@ -52,6 +52,14 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 		if (!target.isConscious()) {
+			/** if actor is player
+			 * 		reward =  rewardsystem ( target)
+			 * 		player.addSouls(reward)
+			 *
+			 * 	Action action = new ResetAction
+			 * 	action.execute;
+			 * 	result = "You died haha"
+			 */
 			Actions dropActions = new Actions();
 			// drop all items
 			for (Item item : target.getInventory())
@@ -71,4 +79,6 @@ public class AttackAction extends Action {
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;
 	}
+
+
 }
