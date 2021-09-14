@@ -13,6 +13,6 @@ public class TokenOfSouls extends Item {
      * @param portable true if and only if the Item can be picked up
      */
     public TokenOfSouls(String name, char displayChar, boolean portable) {
-        super(name, '$', false);
+        super(name, '$', true);
     }
 }
