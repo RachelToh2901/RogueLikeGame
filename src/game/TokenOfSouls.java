@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.Item;
 
 public class TokenOfSouls extends Item {
 
+    private int numberOfSouls;
+
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -11,6 +13,6 @@ public class TokenOfSouls extends Item {
      * @param portable true if and only if the Item can be picked up
      */
     public TokenOfSouls(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+        super(name, '$', false);
     }
 }
