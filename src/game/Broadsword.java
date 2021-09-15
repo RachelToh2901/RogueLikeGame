@@ -11,6 +11,6 @@ public class Broadsword extends MeleeWeapon{
      * @param hitRate     the probability/chance to hit the target.
      */
     public Broadsword(String name, char displayChar, int damage, String verb, int hitRate) {
-        super(name, displayChar, damage, verb, hitRate);
+        super("Broadsword", '1', 30, "strikes", 80);
     }
 }

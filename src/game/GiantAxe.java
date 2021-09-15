@@ -11,6 +11,6 @@ public class GiantAxe extends MeleeWeapon{
      * @param hitRate     the probability/chance to hit the target.
      */
     public GiantAxe(String name, char displayChar, int damage, String verb, int hitRate) {
-        super(name, displayChar, damage, verb, hitRate);
+        super("Giant Axe", 'I', 50, "attacks", 80);
     }
 }

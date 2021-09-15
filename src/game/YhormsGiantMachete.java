@@ -12,6 +12,6 @@ public class YhormsGiantMachete extends MeleeWeapon{
      * @param hitRate     the probability/chance to hit the target.
      */
     public YhormsGiantMachete(String name, char displayChar, int damage, String verb, int hitRate) {
-        super(name, displayChar, damage, verb, hitRate);
+        super("Yhorm's Giant Machete", 'M', 95, "burns", 60);
     }
 }
