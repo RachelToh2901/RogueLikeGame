@@ -20,7 +20,7 @@ public class Skeleton extends Actor {
      * @param hitPoints   the Actor's starting hit points
      */
     public Skeleton(String name, char displayChar, int hitPoints) {
-        super(name, 's', 100);
+        super("Skeleton", 's', 100);
     }
 
     @Override

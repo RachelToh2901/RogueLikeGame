@@ -12,7 +12,7 @@ public class LordOfCinder extends Actor {
      * Constructor.
      */
     public LordOfCinder(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints );
+        super("Lord of Cinder", 'Y', 500 );
     }
 
     /**
