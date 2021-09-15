@@ -15,7 +15,7 @@ public class EstusFlask extends Item {
      * @param portable true if and only if the Item can be picked up
      */
     public EstusFlask(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+        super(name, 'E', true);
     }
 
     @Override

@@ -11,6 +11,6 @@ public class CindersOfALord extends Item {
      * @param portable true if and only if the Item can be picked up
      */
     public CindersOfALord(String name, char displayChar, boolean portable) {
-        super(name, 'C', true);
+        super(name, 'L', true);
     }
 }
