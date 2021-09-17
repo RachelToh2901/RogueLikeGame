@@ -12,6 +12,6 @@ public class StormRuler extends MeleeWeapon{
      * @param hitRate     the probability/chance to hit the target.
      */
     public StormRuler(String name, char displayChar, int damage, String verb, int hitRate) {
-        super(name, displayChar, damage, verb, hitRate);
+        super("Storm Ruler", '7', 70, "strikes", 60);
     }
 }
