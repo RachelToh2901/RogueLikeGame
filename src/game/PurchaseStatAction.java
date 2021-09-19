@@ -4,10 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
-public class ResetAction extends Action {
-
-    private ResetManager resetManager;
-
+public class PurchaseStatAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         return null;
