@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.enums.Abilities;
 
 /**
  * Special Action for attacking other Actors.
@@ -60,16 +61,20 @@ public class AttackAction extends Action {
 			 * 	action.execute;
 			 * 	result = "You died haha"
 			 */
-			Actions dropActions = new Actions();
-			// drop all items
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			// remove actor
-			//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-			map.removeActor(target);
-			result += System.lineSeparator() + target + " is killed.";
+//			if (target.hasCapability(Abilities.REST)){
+//				Actions resetAction = new ResetAction();
+//			}else {
+				Actions dropActions = new Actions();
+				// drop all items
+				for (Item item : target.getInventory())
+					dropActions.add(item.getDropAction(actor));
+				for (Action drop : dropActions)
+					drop.execute(target, map);
+				// remove actor
+				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
+				map.removeActor(target);
+				result += System.lineSeparator() + target + " is killed.";
+//			}
 		}
 
 		return result;

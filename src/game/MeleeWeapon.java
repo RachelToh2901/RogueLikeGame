@@ -1,6 +1,10 @@
 package game;
 
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.WeaponItem;
+
+import java.util.Random;
 
 public class MeleeWeapon extends WeaponItem {
     /**
@@ -17,4 +21,22 @@ public class MeleeWeapon extends WeaponItem {
     }
 
     //TODO: please figure out how to disable dropping item action.
+
+    @Override
+    public DropItemAction getDropAction(Actor actor) {
+        return null;
+    }
+
+//    public void setChanceToHit(int newChanceToHit){hitRate = newChanceToHit;}
+
+    //should we implement here?
+//    public int criticalStrike(int successRate){
+//        Random rand = new Random();
+//        int randomNumber = rand.nextInt(100);
+//        if (randomNumber>=0 && randomNumber<= successRate){
+//            return damage *= 2;
+//        }else{
+//            return damage;
+//        }
+//    }
 }
