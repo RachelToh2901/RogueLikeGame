@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class BroadSword extends MeleeWeapon {
 
-    public BroadSword(String name, char displayChar, int damage, String verb, int hitRate) {
+    public BroadSword() {
         //TODO: update displayChar of Broad Sword
-        super("Broad Sword", displayChar, 30, "hits", 80);
+        super("Broad Sword", '?', 30, "hits", 80);
     }
 
     @Override

@@ -13,6 +13,7 @@ public class DrinkEstusFlaskAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
+        //Player or actor.getHitPoints()
         int maxHitPoints = Player.getHitPoints();
         int chargesLeft = estusFlask.getChargesLeft();
         if(chargesLeft >= 1){

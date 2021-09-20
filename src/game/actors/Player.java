@@ -15,8 +15,10 @@ import game.interfaces.Soul;
  */
 public class Player extends Actor implements Soul {
 
+	// Question : We already have hitPoints in Actor class?
 	private static int hitPoints;
 	private final Menu menu = new Menu();
+	//	private Soul numOfSouls;
 	// int souls
 
 	/**
@@ -32,6 +34,7 @@ public class Player extends Actor implements Soul {
 		this.addCapability(Abilities.REST);
 	}
 
+	// Question : static?
 	public static int getHitPoints() {
 		return hitPoints;
 	}
@@ -52,6 +55,11 @@ public class Player extends Actor implements Soul {
 		// action.execute
 		// return result
 	}
+
+//	@Override
+//	public boolean subtractSouls(int souls) {
+//		numOfSouls -= souls;
+//	}
 
 	@Override
 	public void transferSouls(Soul soulObject) {

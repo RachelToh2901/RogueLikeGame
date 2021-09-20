@@ -1,6 +1,15 @@
 package game.grounds;
 
+import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Location;
+import game.shopActions.PurchaseBroadswordAction;
+import game.shopActions.PurchaseGiantAxeAction;
+import game.shopActions.PurchaseStatAction;
+import game.shopActions.PurchaseWeaponAction;
+import game.weapons.BroadSword;
+import game.weapons.GiantAxe;
 
 public class Vendor extends Ground {
     /**
@@ -10,5 +19,14 @@ public class Vendor extends Ground {
      */
     public Vendor(char displayChar) {
         super('F');
+    }
+
+    @Override
+    public Actions allowableActions(Actor actor, Location location, String direction) {
+        Actions actions = new Actions();
+        actions.add(new PurchaseBroadswordAction(new BroadSword()));
+        actions.add(new PurchaseGiantAxeAction(new GiantAxe()));
+        actions.add(new PurchaseStatAction());
+        return actions;
     }
 }

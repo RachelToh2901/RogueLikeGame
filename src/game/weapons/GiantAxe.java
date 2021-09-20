@@ -6,9 +6,9 @@ import game.activeSkills.SpinAttackAction;
 
 public class GiantAxe extends MeleeWeapon {
 
-    public GiantAxe (String name, char displayChar, int damage, String verb, int hitRate) {
+    public GiantAxe () {
         //TODO: update displayChar
-        super("Giant Axe", displayChar, 50, "smash", 80);
+        super("Giant Axe", '?', 50, "smash", 80);
     }
 
     @Override

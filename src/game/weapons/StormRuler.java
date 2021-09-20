@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class StormRuler extends MeleeWeapon {
 
-    public StormRuler (String name, char displayChar, int damage, String verb, int hitRate) {
+    public StormRuler () {
         super("Storm Ruler", '7', 70, " attacks ", 60);
     }
 
