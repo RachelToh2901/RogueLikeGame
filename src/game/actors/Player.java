@@ -15,6 +15,7 @@ import game.interfaces.Soul;
  */
 public class Player extends Actor implements Soul {
 
+	private static int hitPoints;
 	private final Menu menu = new Menu();
 	// int souls
 
@@ -30,6 +31,11 @@ public class Player extends Actor implements Soul {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 	}
+
+	public static int getHitPoints() {
+		return hitPoints;
+	}
+
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
