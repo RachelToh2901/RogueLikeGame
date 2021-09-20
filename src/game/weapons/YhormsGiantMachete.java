@@ -3,7 +3,8 @@ package game.weapons;
 public class YhormsGiantMachete extends MeleeWeapon {
 
     public YhormsGiantMachete (String name, char displayChar, int damage, String verb, int hitRate) {
-        super(name, displayChar, damage, verb, hitRate);
+        //TODO: update displayChar
+        super("Yhorm Giant Machete", displayChar, 95, verb, 60);
     }
 
     public void ActivateEmberForm (){
