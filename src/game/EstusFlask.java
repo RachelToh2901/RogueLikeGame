@@ -1,12 +1,13 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.DropItemAction;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
+
+import java.util.List;
 
 public class EstusFlask extends Item {
 
-    private int quantity;
+    private int totalCharges;
+    private int chargesLeft;
 
     /***
      * Constructor.
@@ -16,6 +17,8 @@ public class EstusFlask extends Item {
      */
     public EstusFlask(String name, char displayChar, boolean portable) {
         super("Estus Flask", 'E', true);
+        this.totalCharges = 3;
+        this.chargesLeft = 3;
     }
 
     @Override
@@ -24,21 +27,46 @@ public class EstusFlask extends Item {
     }
 
     /**
-     * Set value of quantity
+     * Set value of totalCharges
      *
-     * @param quantity - id of the bid
+     * @param totalCharges- total number of charges of the estus flask
      */
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setTotalCharges(int totalCharges) {
+        this.totalCharges = totalCharges;
     }
 
     /**
-     * Get value of quantity
+     * Get value of totalCharges
      *
-     * @return value of quantity
+     * @return value of totalCharges
      */
 
-    public int getQuantity() {
-        return quantity;
+    public int getTotalCharges() {
+        return totalCharges;
+    }
+
+    /**
+     * Set value of chargesLeft
+     *
+     * @param chargesLeft- number of charges of the estus flask that the player has left
+     */
+    public void setChargesLeft(int chargesLeft) {
+        this.chargesLeft = chargesLeft;
+    }
+
+    /**
+     * Get value of chargesLeft
+     *
+     * @return value of chargesLeft
+     */
+
+    public int getChargesLeft() {
+        return chargesLeft;
+    }
+
+    @Override
+    public List<Action> getAllowableActions() {
+        allowableActions.add(new DrinkEstusFlaskAction());
+        return allowableActions.getUnmodifiableActionList();
     }
 }
