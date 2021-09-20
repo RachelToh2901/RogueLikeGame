@@ -1,6 +1,7 @@
 package game.items;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.DrinkEstusFlaskAction;
 
 import java.util.List;
 
