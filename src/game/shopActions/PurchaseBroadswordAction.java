@@ -26,6 +26,21 @@ public class PurchaseBroadswordAction extends PurchaseWeaponAction {
 //        }else{
 //          return actor " does not have enough souls. Purchase FAILED.";
 //      }
-        return actor + " purchase " + actor.getWeapon() + " with " + soulsCost + " souls";
+       //return actor + " purchase " + actor.getWeapon() + " with " + soulsCost + " souls";
+
+        // EDIT
+        return menuDescription(actor);
+    }
+
+
+    // EDIT
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + " buys " + "Broadsword" +  "(" + soulsCost + " souls" + ")";
+    }
+
+    @Override
+    public java.lang.String hotkey() {
+        return "c";
     }
 }
