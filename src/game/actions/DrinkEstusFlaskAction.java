@@ -8,17 +8,23 @@ import game.actors.Player;
 
 public class DrinkEstusFlaskAction extends Action {
 
-    private EstusFlask estusFlask;
+    private EstusFlask estusFlask = new EstusFlask("Estus Flask",'E',true);
+    private int chargesLeft = estusFlask.getChargesLeft();
 
-
+    /**
+     * Perform the Action.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
-        //Player or actor.getHitPoints()
+        //player or actor.getHitPoints
         int maxHitPoints = Player.getHitPoints();
-        int chargesLeft = estusFlask.getChargesLeft();
         if(chargesLeft >= 1){
             actor.heal((40/100)*maxHitPoints);
-            chargesLeft =- 1;
+            estusFlask.setChargesLeft(chargesLeft -=1);
         }
         else{
             System.out.println("Estus Flask doesn't have any charges left");
@@ -26,9 +32,14 @@ public class DrinkEstusFlaskAction extends Action {
         return menuDescription(actor);
     }
 
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + "drinks" + estusFlask + "(" + estusFlask.getChargesLeft() + "/" + estusFlask.getTotalCharges() + ")";
+        return actor + " drinks " + estusFlask + "(" + estusFlask.getChargesLeft() + "/3" + ")";
     }
 
     /**
@@ -40,5 +51,6 @@ public class DrinkEstusFlaskAction extends Action {
         return "a";
     }
 }
+
 
 
