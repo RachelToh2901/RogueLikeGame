@@ -1,5 +1,9 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.Action;
+import game.shopActions.PurchaseBroadswordAction;
+
+import java.util.List;
 import java.util.Random;
 
 public class BroadSword extends MeleeWeapon {
@@ -18,6 +22,22 @@ public class BroadSword extends MeleeWeapon {
         }else{
             return damage;
         }
+    }
+
+    // EDIT
+    @Override
+    public List<Action> getAllowableActions() {
+        boolean present = false;
+        for(Action action: allowableActions) {
+            if (action instanceof PurchaseBroadswordAction) {
+                present = true;
+                break;
+            }
+        }
+        if(!present){
+            allowableActions.add(new PurchaseBroadswordAction(new BroadSword()));
+        }
+        return allowableActions.getUnmodifiableActionList();
     }
 
 }
