@@ -7,6 +7,8 @@ import game.enums.Status;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
 import game.items.EstusFlask;
+import game.weapons.BroadSword;
+import game.items.EstusFlask;
 
 /**
  * Class representing the Player.
@@ -29,7 +31,16 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
+		this.addItemToInventory(new EstusFlask());
+		this.addItemToInventory(new BroadSword());
+		this.maxHitPoints = 100;
+
 		this.souls = 0;
+	}
+
+
+	public int getMaxHitPoints() {
+		return maxHitPoints;
 	}
 
 	@Override
@@ -43,6 +54,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 		// return/print the console menu
 		// print health points using display
+		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding BroadSword, " + souls + " Souls");
 		return menu.showMenu(this, actions, display);
 
 	}
