@@ -9,16 +9,22 @@ import edu.monash.fit2099.engine.Menu;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Soul;
+import game.items.EstusFlask;
+import game.weapons.BroadSword;
+import game.weapons.GiantAxe;
+import game.weapons.StormRuler;
 
 /**
  * Class representing the Player.
  */
 public class Player extends Actor implements Soul {
 
-	// Question : We already have hitPoints in Actor class?
-	private static int hitPoints;
+	// Question: we already have hitPoints in actor class ?
 	private final Menu menu = new Menu();
-	//	private Soul numOfSouls;
+	//private EstusFlask estusFlask = new EstusFlask("Estus Flask",'E',true);
+	//private BroadSword broadSword = new BroadSword();
+	//private GiantAxe giantAxe = new GiantAxe();
+	//private StormRuler stormRuler = new StormRuler();
 	// int souls
 
 	/**
@@ -32,13 +38,19 @@ public class Player extends Actor implements Soul {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
+		this.addItemToInventory(new EstusFlask());
+		this.addItemToInventory(new BroadSword());
+		this.maxHitPoints = 100;
+
+		// Question: Do we need to add giantAxe and stormRuler to inventory
+		//this.addItemToInventory(giantAxe);
+		//this.addItemToInventory(stormRuler);
 	}
 
-	// Question : static?
-	public static int getHitPoints() {
-		return hitPoints;
-	}
 
+	public int getMaxHitPoints() {
+		return maxHitPoints;
+	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -54,21 +66,13 @@ public class Player extends Actor implements Soul {
 
 		// return/print the console menu
 		// print health points using display
+		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding BroadSword, " + "souls" + " Souls");
 		return menu.showMenu(this, actions, display);
-
-		// insert actions
-		// action = menu.showmenu
-		// action.execute
-		// return result
 	}
-
-//	@Override
-//	public boolean subtractSouls(int souls) {
-//		numOfSouls -= souls;
-//	}
 
 	@Override
 	public void transferSouls(Soul soulObject) {
 		//TODO: transfer Player's souls to another Soul's instance.
 	}
+
 }

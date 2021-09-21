@@ -8,6 +8,10 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.actors.Player;
+import game.actors.Undead;
+import game.actors.Skeleton;
+import game.actors.LordOfCinder;
 import game.enums.Abilities;
 
 /**
@@ -53,14 +57,17 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			/** if actor is player
-			 * 		reward =  rewardsystem ( target)
-			 * 		player.addSouls(reward)
-			 *
-			 * 	Action action = new ResetAction
-			 * 	action.execute;
-			 * 	result = "You died haha"
-			 */
+			int reward;
+			if(actor instanceof Player){
+				reward = rewardSystem(actor);
+				((Player) actor).addSouls(reward);
+			}
+			if(target instanceof Player){
+				Action action = new ResetAction();
+				action.execute(actor,map);
+				result = "YOU DIED HAHA !";
+			}
+
 //			if (target.hasCapability(Abilities.REST)){
 //				Actions resetAction = new ResetAction();
 //			}else {
@@ -84,6 +91,19 @@ public class AttackAction extends Action {
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;
 	}
+	
+	public int rewardSystem(Actor actor){
+		int reward = 0;
 
-
+		if(actor instanceof Undead){
+			reward = 50;
+		}
+		if(actor instanceof Skeleton){
+			reward = 250;
+		}
+		if(actor instanceof LordOfCinder){
+			reward = 5000;
+		}
+		return reward;
+	}
 }
