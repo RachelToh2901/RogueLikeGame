@@ -7,8 +7,7 @@ import java.util.List;
 
 public class EstusFlask extends Item {
 
-    private int totalCharges;
-    private int chargesLeft;
+    private int chargesLeft = 3;
 
     /***
      * Constructor.
@@ -18,41 +17,17 @@ public class EstusFlask extends Item {
      */
     public EstusFlask(String name, char displayChar, boolean portable) {
         super("Estus Flask", 'E', true);
-        this.totalCharges = 3;
-        this.chargesLeft = 3;
     }
 
+    /**
+     * Create and return an action to drop this Item.
+     * If this Item is not portable, returns null.
+     * @param actor an actor that will interact with this item
+     * @return a new DropItemAction if this Item is portable, null otherwise.
+     */
     @Override
     public DropItemAction getDropAction(Actor actor) {
         return null;
-    }
-
-    /**
-     * Set value of totalCharges
-     *
-     * @param totalCharges- total number of charges of the estus flask
-     */
-    public void setTotalCharges(int totalCharges) {
-        this.totalCharges = totalCharges;
-    }
-
-    /**
-     * Get value of totalCharges
-     *
-     * @return value of totalCharges
-     */
-
-    public int getTotalCharges() {
-        return totalCharges;
-    }
-
-    /**
-     * Set value of chargesLeft
-     *
-     * @param chargesLeft- number of charges of the estus flask that the player has left
-     */
-    public void setChargesLeft(int chargesLeft) {
-        this.chargesLeft = chargesLeft;
     }
 
     /**
@@ -65,9 +40,42 @@ public class EstusFlask extends Item {
         return chargesLeft;
     }
 
+    /**
+     * Get value of totalCharges
+     *
+     * @return value of totalCharges
+     */
+
+
+    /**
+     * Set value of chargesLeft
+     *
+     * @param chargesLeft-number of charges left in the estus flask
+     */
+    public void setChargesLeft(int chargesLeft) {
+        this.chargesLeft = chargesLeft;
+    }
+
+    /**
+     * Getter.
+     *
+     * Returns an unmodifiable copy of the actions list so that calling methods won't
+     * be able to change what this Item can do without the Item checking.
+     * @return an unmodifiable list of Actions
+     */
     @Override
     public List<Action> getAllowableActions() {
-        allowableActions.add(new DrinkEstusFlaskAction());
+        boolean present = false;
+        for(Action action: allowableActions) {
+            if (action instanceof DrinkEstusFlaskAction) {
+                present = true;
+                break;
+            }
+        }
+        if(!present){
+            allowableActions.add(new DrinkEstusFlaskAction());
+        }
         return allowableActions.getUnmodifiableActionList();
     }
 }
+
