@@ -28,6 +28,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
+		this.souls = 0;
 	}
 
 	@Override

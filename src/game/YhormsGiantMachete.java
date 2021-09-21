@@ -1,6 +1,8 @@
 package game;
 
-public class YhormsGiantMachete extends MeleeWeapon{
+import game.weapons.MeleeWeapon;
+
+public class YhormsGiantMachete extends MeleeWeapon {
 
     /**
      * Constructor.
@@ -10,6 +12,7 @@ public class YhormsGiantMachete extends MeleeWeapon{
         super("Yhorm's Giant Machete", 'M', 95, "burns", 60);
     }
 
+    // changeable
     public void rageMode () {
         hitRate += 30;
     }

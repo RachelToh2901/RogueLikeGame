@@ -1,8 +1,8 @@
 package game.behaviors;
 
 import edu.monash.fit2099.engine.*;
-import game.ground.BurningGround;
-import game.ground.Dirt;
+import game.grounds.BurningGround;
+import game.grounds.Dirt;
 
 public class EnragedBossFollowBehavior extends FollowBehaviour{
     /**
