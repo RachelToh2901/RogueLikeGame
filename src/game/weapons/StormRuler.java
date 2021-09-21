@@ -3,9 +3,9 @@ package game.weapons;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponAction;
-import game.activeSkills.ChargeAction;
-import game.activeSkills.WindSlashAction;
-import game.shopActions.PurchaseStormRulerAction;
+import game.activeskills.ChargeAction;
+import game.activeskills.WindSlashAction;
+import game.shopactions.PurchaseStormRulerAction;
 
 import java.util.List;
 import java.util.Random;
@@ -20,7 +20,7 @@ public class StormRuler extends MeleeWeapon {
     public int damage() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(100);
-        if (randomNumber >= 0 && randomNumber <= 20) {
+        if (randomNumber <= 20) {
             return damage *= 2;
         }else{
             return damage;

@@ -6,6 +6,7 @@ import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
+import game.items.EstusFlask;
 
 /**
  * Class representing the Player.
@@ -54,7 +55,7 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public void resetInstance(GameMap map) {
 		this.hitPoints = maxHitPoints;
-		this.getEstusFlask().setQuantity(3);
+		this.getEstusFlask().setChargesLeft(3);
 		map.moveActor(this, lastSavedLocation);
 	}
 
@@ -70,7 +71,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	private EstusFlask getEstusFlask() {
 		for (  Item item : this.inventory ) {
-			if ( item.toString() == "Estus Flask" ) {
+			if ( item.toString().equals("Estus Flask")){
 				return (EstusFlask) item;
 			}
 		}

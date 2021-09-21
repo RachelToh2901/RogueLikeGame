@@ -1,12 +1,12 @@
 package game.enemies;
 
 import edu.monash.fit2099.engine.*;
-import game.YhormsGiantMachete;
 import game.actions.AttackAction;
 import game.behaviors.WanderBehaviour;
 import game.behaviors.EnragedBossFollowBehavior;
 import game.behaviors.FollowBehaviour;
 import game.interfaces.Behaviour;
+import game.weapons.YhormsGiantMachete;
 
 /**
  * The boss of Design o' Souls
@@ -78,7 +78,7 @@ public class LordOfCinder extends Enemies {
     }
 
     public void enraged() {
-        ((YhormsGiantMachete) getWeapon()).rageMode();
+        ((YhormsGiantMachete) getWeapon()).activateEmberForm();
         for ( Behaviour behaviour : behaviours ) {
             if ( behaviour instanceof FollowBehaviour) {
                 Actor target = ((FollowBehaviour) behaviour).getTarget();
