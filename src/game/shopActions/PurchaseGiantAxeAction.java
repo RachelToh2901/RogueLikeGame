@@ -7,6 +7,7 @@ import game.shopActions.PurchaseWeaponAction;
 
 public class PurchaseGiantAxeAction extends PurchaseWeaponAction {
     protected int soulsCost = 1000;
+
     /**
      * Constructor
      *
@@ -25,6 +26,19 @@ public class PurchaseGiantAxeAction extends PurchaseWeaponAction {
 //        }else{
 //          return actor " does not have enough souls. Purchase FAILED.";
 //      }
-        return actor + " purchase " + actor.getWeapon() + " with " + soulsCost + " souls";
+        // EDIT
+        return menuDescription(actor);
+    }
+
+
+    // EDIT
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + " buys Giant Axe (" + soulsCost + " souls" + ")";
+    }
+
+    @Override
+    public java.lang.String hotkey() {
+        return "d";
     }
 }
