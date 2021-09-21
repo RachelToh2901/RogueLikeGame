@@ -8,11 +8,10 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
-import game.actors.Player;
-import game.actors.Undead;
-import game.actors.Skeleton;
-import game.actors.LordOfCinder;
-import game.enums.Abilities;
+import game.Player;
+import game.ResetManager;
+import game.enemies.Enemies;
+import game.interfaces.Soul;
 
 /**
  * Special Action for attacking other Actors.
@@ -57,31 +56,25 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			int reward;
-			if(actor instanceof Player){
-				reward = rewardSystem(actor);
-				((Player) actor).addSouls(reward);
-			}
-			if(target instanceof Player){
-				Action action = new ResetAction();
-				action.execute(actor,map);
-				result = "YOU DIED HAHA !";
-			}
 
-//			if (target.hasCapability(Abilities.REST)){
-//				Actions resetAction = new ResetAction();
-//			}else {
-				Actions dropActions = new Actions();
-				// drop all items
-				for (Item item : target.getInventory())
-					dropActions.add(item.getDropAction(actor));
-				for (Action drop : dropActions)
-					drop.execute(target, map);
-				// remove actor
-				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-				map.removeActor(target);
-				result += System.lineSeparator() + target + " is killed.";
-//			}
+			Actions dropActions = new Actions();
+			// drop all items
+			for (Item item : target.getInventory())
+				dropActions.add(item.getDropAction(actor));
+			for (Action drop : dropActions)
+				drop.execute(target, map);
+
+			// remove actor
+			// TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
+			// map.removeActor(target);
+			// result += System.lineSeparator() + target + " is killed.";
+
+			if ( target instanceof Player) {
+				// TODO : COMPLETE IT
+				ResetManager.getInstance().run(map);
+			} else {
+				((Enemies) target).die(map, (Soul) actor);
+			}
 		}
 
 		return result;
@@ -91,19 +84,9 @@ public class AttackAction extends Action {
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;
 	}
-	
-	public int rewardSystem(Actor actor){
-		int reward = 0;
 
-		if(actor instanceof Undead){
-			reward = 50;
-		}
-		if(actor instanceof Skeleton){
-			reward = 250;
-		}
-		if(actor instanceof LordOfCinder){
-			reward = 5000;
-		}
-		return reward;
+	public Actor getTarget() {
+		return target;
 	}
+
 }

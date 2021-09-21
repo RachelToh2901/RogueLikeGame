@@ -1,4 +1,4 @@
-package game.behaviours;
+package game.behaviors;
 
 import edu.monash.fit2099.engine.*;
 import game.interfaces.Behaviour;
@@ -9,7 +9,7 @@ import game.interfaces.Behaviour;
  */
 public class FollowBehaviour implements Behaviour {
 
-	private Actor target;
+	protected Actor target;
 
 	/**
 	 * Constructor.
@@ -49,7 +49,12 @@ public class FollowBehaviour implements Behaviour {
 	 * @param b the first location
 	 * @return the number of steps between a and b if you only move in the four cardinal directions.
 	 */
-	private int distance(Location a, Location b) {
+	protected int distance(Location a, Location b) {
 		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
+	}
+
+	// TODO : CHECK IF THIS IS ACCEPTABLE
+	public Actor getTarget() {
+		return target;
 	}
 }

@@ -8,9 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
-import game.actors.LordOfCinder;
-import game.actors.Player;
-import game.actors.Undead;
+import game.enemies.LordOfCinder;
 import game.grounds.Dirt;
 import game.grounds.Floor;
 import game.grounds.Valley;
@@ -62,11 +60,11 @@ public class Application {
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
-			gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500) 	);
+			gameMap.at(6, 25).addActor(new LordOfCinder());
 
 			// Place a Hollow in the the map
 			// FIXME: the Undead should be generated from the Cemetery
-			gameMap.at(32, 7).addActor(new Undead("Undead"));
+			// gameMap.at(32, 7).addActor(new Undead("Undead"));
 			world.run();
 
 	}

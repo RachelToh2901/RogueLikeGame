@@ -1,21 +1,28 @@
 package game.actions;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
 import game.ResetManager;
+import game.interfaces.Resettable;
+
+import java.util.List;
 
 public class ResetAction extends Action {
 
-    private ResetManager resetManager;
-
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        // Reset all Actor
+        ResetManager.getInstance().run(map);
+
+        // Refill Maximum Hit Points
+        if ( actor.isConscious() ) {
+            return "Rested";
+        } else {
+            return "You Died!";
+        }
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Rest at Firelink Shrine bonfire";
     }
 }

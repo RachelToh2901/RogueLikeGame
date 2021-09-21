@@ -7,7 +7,8 @@ import edu.monash.fit2099.engine.GameMap;
 public class DieByChanceAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        map.removeActor(actor);
+        return actor + " is dead.";
     }
 
     @Override

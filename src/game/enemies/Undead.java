@@ -1,25 +1,22 @@
-package game.actors;
+package game.enemies;
 
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
-import game.behaviours.WanderBehaviour;
+import game.actions.DieByChanceAction;
+import game.behaviors.FollowBehaviour;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 
-import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * An undead minion.
  */
-public class Undead extends Actor {
+public class Undead extends Enemies {
+	// OLD CODE
 	// Will need to change this to a collection if Undeads gets additional Behaviours.
-	private ArrayList<Behaviour> behaviours = new ArrayList<>();
+	// private ArrayList<Behaviour> behaviours = new ArrayList<>();
 
 	/** 
 	 * Constructor.
@@ -27,8 +24,9 @@ public class Undead extends Actor {
 	 * @param name the name of this Undead
 	 */
 	public Undead(String name) {
-		super(name, 'u', 50);
-		behaviours.add(new WanderBehaviour());
+		super(name, 'u', 50, 50);
+		// OLD CODE
+		// behaviours.add(new WanderBehaviour());
 	}
 
 	/**
@@ -57,18 +55,39 @@ public class Undead extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// if attack in action {
-		// behaviors.add(followbehavior)
-		// return attack action
-		// }
+		// Attacks player whenever possible
+		if ( attackPlayer(actions) != null ) {
+			return attackPlayer(actions);
+		}
 
 		// loop through all behaviours
 		for(Behaviour Behaviour : behaviours) {
+
+			// Feature : 10% to die every turn
+			if ( !(Behaviour instanceof FollowBehaviour) ) {
+				Random rand = new Random();
+				if ( rand.nextInt(100) < 10 ) {
+					return new DieByChanceAction();
+				}
+			}
+
+			// Executing all behavior actions
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
 				return action;
 		}
+
+
 		return new DoNothingAction();
 	}
 
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(20, "thwacks");
+	}
+
+	@Override
+	public boolean isExist() {
+		return false;
+	}
 }
