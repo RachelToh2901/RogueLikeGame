@@ -46,6 +46,12 @@ public class Player extends Actor implements Soul {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+		// Game over when Player is defeated
+		if (!this.isConscious()) {
+			System.out.print("GAME OVER !");
+			System.exit(0);
+		}
+
 		// return/print the console menu
 		// print health points using display
 		return menu.showMenu(this, actions, display);
