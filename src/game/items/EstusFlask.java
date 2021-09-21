@@ -38,6 +38,11 @@ public class EstusFlask extends Item {
         return chargesLeft;
     }
 
+    public int setTotalCharges(int totalCharges) {
+        return totalCharges;
+    }
+
+
     /**
      * Get value of totalCharges
      *

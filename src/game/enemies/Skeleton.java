@@ -1,10 +1,11 @@
 package game.enemies;
 
 import edu.monash.fit2099.engine.*;
-import game.Broadsword;
-import game.GiantAxe;
+
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;
+import game.weapons.BroadSword;
+import game.weapons.GiantAxe;
 
 import java.util.Random;
 
@@ -24,7 +25,7 @@ public class Skeleton extends Enemies {
         // Equipping Weapon
         Random rand = new Random();
         if ( rand.nextInt(100 ) > 50 ) {
-            addItemToInventory(new Broadsword());
+            addItemToInventory(new BroadSword());
         } else {
             addItemToInventory(new GiantAxe());
         }
