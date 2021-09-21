@@ -15,11 +15,21 @@ public class PurchaseStatAction extends Action {
 //        }else{
 //            return actor + " does not have enough of souls. Purchase Failed";
 //        }
-        return actor + " spent 200 souls and increased maximum hp by 25";
+
+        //return actor + " spent 200 souls and increased maximum hp by 25";
+        // EDIT
+        return menuDescription(actor);
+    }
+
+
+    // EDIT
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + "buys max HP modifier (+25HP): " + soulsCost;
     }
 
     @Override
-    public String menuDescription(Actor actor) {
-        return actor + "spend 200 souls to increase maximum hp by 25";
+    public java.lang.String hotkey() {
+        return "f";
     }
 }
