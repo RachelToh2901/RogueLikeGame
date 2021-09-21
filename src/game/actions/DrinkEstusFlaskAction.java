@@ -8,7 +8,7 @@ import game.actors.Player;
 
 public class DrinkEstusFlaskAction extends Action {
 
-    private EstusFlask estusFlask = new EstusFlask("Estus Flask",'E',true);
+    private EstusFlask estusFlask = new EstusFlask();
     private int chargesLeft = estusFlask.getChargesLeft();
 
     /**
@@ -21,7 +21,7 @@ public class DrinkEstusFlaskAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         //player or actor.getHitPoints
-        int maxHitPoints = Player.getHitPoints();
+        int maxHitPoints = ((Player) actor).getMaxHitPoints();
         if(chargesLeft >= 1){
             actor.heal((40/100)*maxHitPoints);
             estusFlask.setChargesLeft(chargesLeft -=1);
