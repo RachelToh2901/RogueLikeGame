@@ -1,22 +1,20 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.*;
+import game.actions.ResetAction;
 import game.enums.Abilities;
 import game.enums.Status;
+import game.interfaces.Resettable;
 import game.interfaces.Soul;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements Soul {
+public class Player extends Actor implements Soul, Resettable {
 
 	private final Menu menu = new Menu();
-	// int souls
+	private Location lastSavedLocation;
+	private int souls;
 
 	/**
 	 * Constructor.
@@ -29,10 +27,14 @@ public class Player extends Actor implements Soul {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
+		this.registerInstance();
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		if ( lastAction == null || lastAction instanceof ResetAction) {
+			setLastSavedLocation(map.locationOf(this));
+		}
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -41,14 +43,46 @@ public class Player extends Actor implements Soul {
 		// print health points using display
 		return menu.showMenu(this, actions, display);
 
-		// insert actions
-		// action = menu.showmenu
-		// action.execute
-		// return result
 	}
 
 	@Override
 	public void transferSouls(Soul soulObject) {
 		//TODO: transfer Player's souls to another Soul's instance.
+	}
+
+	@Override
+	public void resetInstance(GameMap map) {
+		this.hitPoints = maxHitPoints;
+		this.getEstusFlask().setQuantity(3);
+		map.moveActor(this, lastSavedLocation);
+	}
+
+	@Override
+	public boolean isExist() {
+		return true;
+	}
+
+	@Override
+	public void registerInstance() {
+		Resettable.super.registerInstance();
+	}
+
+	private EstusFlask getEstusFlask() {
+		for (  Item item : this.inventory ) {
+			if ( item.toString() == "Estus Flask" ) {
+				return (EstusFlask) item;
+			}
+		}
+		return null;
+	}
+
+	public void setLastSavedLocation(Location location) {
+		this.lastSavedLocation = location;
+	}
+
+	@Override
+	public boolean addSouls(int souls){
+		this.souls += souls;
+		return true;
 	}
 }

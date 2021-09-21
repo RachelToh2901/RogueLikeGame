@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Weapon;
 
 public class EstusFlask extends Item {
 
@@ -41,4 +42,6 @@ public class EstusFlask extends Item {
     public int getQuantity() {
         return quantity;
     }
+
+
 }

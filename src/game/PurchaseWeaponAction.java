@@ -1,8 +1,9 @@
 package game;
 
 import edu.monash.fit2099.engine.Item;
+import game.actions.SwapWeaponAction;
 
-public class PurchaseWeaponAction extends SwapWeaponAction{
+public class PurchaseWeaponAction extends SwapWeaponAction {
 
     /**
      * Constructor

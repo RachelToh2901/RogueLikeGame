@@ -1,4 +1,4 @@
-package game;
+package game.actions;
 
 import java.util.Random;
 
@@ -8,6 +8,10 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.Player;
+import game.ResetManager;
+import game.enemies.Enemies;
+import game.interfaces.Soul;
 
 /**
  * Special Action for attacking other Actors.
@@ -52,24 +56,25 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			/** if actor is player
-			 * 		reward =  rewardsystem ( target)
-			 * 		player.addSouls(reward)
-			 *
-			 * 	Action action = new ResetAction
-			 * 	action.execute;
-			 * 	result = "You died haha"
-			 */
+
 			Actions dropActions = new Actions();
 			// drop all items
 			for (Item item : target.getInventory())
 				dropActions.add(item.getDropAction(actor));
 			for (Action drop : dropActions)
 				drop.execute(target, map);
+
 			// remove actor
-			//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-			map.removeActor(target);
-			result += System.lineSeparator() + target + " is killed.";
+			// TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
+			// map.removeActor(target);
+			// result += System.lineSeparator() + target + " is killed.";
+
+			if ( target instanceof Player) {
+				// TODO : COMPLETE IT
+				ResetManager.getInstance().run(map);
+			} else {
+				((Enemies) target).die(map, (Soul) actor);
+			}
 		}
 
 		return result;
@@ -80,5 +85,8 @@ public class AttackAction extends Action {
 		return actor + " attacks " + target + " at " + direction;
 	}
 
+	public Actor getTarget() {
+		return target;
+	}
 
 }
