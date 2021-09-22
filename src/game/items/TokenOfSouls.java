@@ -11,19 +11,12 @@ public class TokenOfSouls extends Item {
     private int numberOfSouls;
     public Location itemLocation;
 
-    public TokenOfSouls(Player player) {
+    public TokenOfSouls(Actor actor) {
         super("Token of Souls", '$', true);
+        itemLocation = ((Player) actor).getLastSavedLocation();
+        numberOfSouls = ((Player) actor).getSouls();
     }
 
-    @Override
-    public DropItemAction getDropAction(Actor actor) {
-        if (!actor.isConscious()){
-            itemLocation = ((Player) actor).getLastSavedLocation();
-            numberOfSouls = ((Player) actor).getSouls();
-            return super.getDropAction(actor);
-        }
-        return null;
-    }
 
     @Override
     public List<Action> getAllowableActions() {
