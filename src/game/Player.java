@@ -7,6 +7,7 @@ import game.enums.Status;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
 import game.items.EstusFlask;
+import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
 import game.items.EstusFlask;
 
@@ -33,6 +34,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
+		this.addItemToInventory(new TokenOfSouls(this));
 		this.maxHitPoints = 100;
 
 		this.souls = 0;
@@ -94,9 +96,16 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastSavedLocation = location;
 	}
 
+	public Location getLastSavedLocation(){
+		return this.lastSavedLocation;
+	}
 	@Override
 	public boolean addSouls(int souls){
 		this.souls += souls;
 		return true;
+	}
+
+	public int getSouls(){
+		return this.souls;
 	}
 }
