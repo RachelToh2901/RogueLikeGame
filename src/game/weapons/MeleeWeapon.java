@@ -22,6 +22,12 @@ public class MeleeWeapon extends WeaponItem {
 
     //TODO: please figure out how to disable dropping item action.
 
+    /**
+     * Create and return an action to drop this Item.
+     * If this Item is not portable, returns null.
+     * @param actor an actor that will interact with this item
+     * @return a new DropItemAction if this Item is portable, null otherwise.
+     */
     @Override
     public DropItemAction getDropAction(Actor actor) {
         return null;

@@ -13,6 +13,10 @@ import game.actions.ResetAction;
  */
 public class Valley extends Ground {
 
+	/**
+	 * Constructor.
+	 *
+	 */
 	public Valley() {
 		super('+');
 	}
@@ -27,6 +31,10 @@ public class Valley extends Ground {
 		return false;
 	}
 
+	/**
+	 * Ground can also experience the joy of time.
+	 * @param location The location of the Ground
+	 */
 	@Override
 	public void tick(Location location) {
 		Actor actorStandingOn = location.getActor();

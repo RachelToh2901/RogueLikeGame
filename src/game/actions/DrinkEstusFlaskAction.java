@@ -6,9 +6,19 @@ import edu.monash.fit2099.engine.GameMap;
 import game.Player;
 import game.items.EstusFlask;
 
+/**
+ * Special Action for drinking Estus Flask
+ */
 public class DrinkEstusFlaskAction extends Action {
 
+    /**
+     * Creating new instance of Estus Flask
+     */
     private EstusFlask estusFlask = new EstusFlask();
+
+    /**
+     * Number of charges that the Estus Flask has left
+     */
     private int chargesLeft = estusFlask.getChargesLeft();
 
     /**

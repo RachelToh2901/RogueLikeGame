@@ -9,9 +9,17 @@ import game.weapons.GiantAxe;
 
 import java.util.Random;
 
+/**
+ * Skeleton which is an enemy of Design o' Souls
+ *
+ */
 public class Skeleton extends Enemies {
 
+    /**
+     * Checks if the skeleton has already been revived before
+     */
     private boolean revivedOnce = false;
+
     /**
      * Constructor.
      *
@@ -31,29 +39,37 @@ public class Skeleton extends Enemies {
         }
     }
 
+    /**
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return DoNothingAction
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         // Saves initial Location
         if (lastAction == null) {
             setInitialLocation(map.locationOf(this));
         }
-
         // Attacks player whenever possible
         if ( attackPlayer(actions) != null ) {
             return attackPlayer(actions);
         }
-
         // loop through all behaviours
         for(Behaviour Behaviour : behaviours) {
             Action action = Behaviour.getAction(this, map);
             if (action != null)
                 return action;
         }
-
-
         return new DoNothingAction();
     }
 
+    /**
+     * Method to remove enemy from map and add souls to player
+     * @return a description of what happened that can be displayed to the user.
+     *
+     */
     @Override
     public String die(GameMap map, Soul rewardedActor) {
         if ( !revivedOnce ) {
@@ -64,7 +80,6 @@ public class Skeleton extends Enemies {
                 return  this.name + "revived.";
             }
         }
-
         map.removeActor(this);
         this.transferSouls(rewardedActor);
         return this.name + " has been slain. Gained " + soulReward + " souls.";

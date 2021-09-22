@@ -9,6 +9,9 @@ import game.interfaces.Behaviour;
  */
 public class FollowBehaviour implements Behaviour {
 
+	/**
+	 * The Actor that is to be attacked
+	 */
 	protected Actor target;
 
 	/**
@@ -20,6 +23,15 @@ public class FollowBehaviour implements Behaviour {
 		this.target = subject;
 	}
 
+	/**
+	 *
+	 * An enemy's playTurn() method can use this method to help decide which Action to
+	 * perform next.
+	 *
+	 * @param actor the Actor acting
+	 * @param map the GameMap containing the Actor
+	 * @return an Action that actor can perform, or null if actor can't do this.
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))
