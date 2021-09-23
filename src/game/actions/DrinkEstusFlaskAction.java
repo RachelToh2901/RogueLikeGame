@@ -30,8 +30,8 @@ public class DrinkEstusFlaskAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        int maxHitPoints = ((Player) actor).getMaxHitPoints();
         if(chargesLeft >= 1){
+            int maxHitPoints = ((Player) actor).getMaxHitPoints();
             actor.heal((40/100)*maxHitPoints);
             estusFlask.setChargesLeft(chargesLeft -=1);
         }
