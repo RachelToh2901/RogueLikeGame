@@ -6,9 +6,19 @@ import edu.monash.fit2099.engine.GameMap;
 import game.Player;
 import game.items.EstusFlask;
 
+/**
+ * Special Action for drinking Estus Flask
+ */
 public class DrinkEstusFlaskAction extends Action {
 
+    /**
+     * Creating new instance of Estus Flask
+     */
     private EstusFlask estusFlask = new EstusFlask();
+
+    /**
+     * Number of charges that the Estus Flask has left
+     */
     private int chargesLeft = estusFlask.getChargesLeft();
 
     /**
@@ -20,8 +30,8 @@ public class DrinkEstusFlaskAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        int maxHitPoints = ((Player) actor).getMaxHitPoints();
         if(chargesLeft >= 1){
+            int maxHitPoints = ((Player) actor).getMaxHitPoints();
             actor.heal((40/100)*maxHitPoints);
             estusFlask.setChargesLeft(chargesLeft -=1);
         }

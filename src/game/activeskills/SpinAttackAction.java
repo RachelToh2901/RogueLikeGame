@@ -6,15 +6,26 @@ import game.ResetManager;
 import game.enemies.Enemies;
 import game.interfaces.Soul;
 
+/**
+ * Special Action for Giant Axe
+ */
 public class SpinAttackAction extends WeaponAction {
 
     /**
      * Constructor
+     * @param weaponItem the weapon item that has capabilities
      */
     public SpinAttackAction(WeaponItem weaponItem) {
         super(weaponItem);
     }
 
+    /**
+     * Perform the Action.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     public String execute(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
 //        int xCord = actorLocation.x();
@@ -72,6 +83,11 @@ public class SpinAttackAction extends WeaponAction {
         return result;
     }
 
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     public String menuDescription(Actor actor) {
         return actor + " uses spin attack with " + weapon;
     }

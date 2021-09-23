@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.WeaponItem;
 
 public class GameWeaponItem extends WeaponItem {
+
     /**
      * Constructor.
      *

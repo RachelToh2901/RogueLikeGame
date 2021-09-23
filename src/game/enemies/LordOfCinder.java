@@ -15,7 +15,11 @@ import game.weapons.YhormsGiantMachete;
  */
 public class LordOfCinder extends Enemies {
 
+    /**
+     * Variable to check if Lord of Cinder is in ember form or not
+     */
     private boolean emberForm;
+
     /**
      * Constructor.
      */
@@ -49,10 +53,13 @@ public class LordOfCinder extends Enemies {
         if ( attackPlayer(actions) != null ) {
             return attackPlayer(actions);
         }
-
         return new DoNothingAction();
     }
 
+    /**
+     * Method to reset abilities, items and attributes of Lord of Cinder
+     * @param map - the map containing Lord of Cinder
+     */
     @Override
     public void resetInstance(GameMap map) {
         this.hitPoints = maxHitPoints;
@@ -63,6 +70,10 @@ public class LordOfCinder extends Enemies {
         emberForm = false;
     }
 
+    /**
+     * Method for Lord of Cinder to attack player
+     * @param actions list of actions
+     */
     @Override
     public Action attackPlayer(Actions actions ) {
 
@@ -77,6 +88,10 @@ public class LordOfCinder extends Enemies {
         return null;
     }
 
+    /**
+     * Method for Lord of Cinder to attack player in ember form(enraged)
+     *
+     */
     public void enraged() {
         ((YhormsGiantMachete) getWeapon()).activateEmberForm();
         for ( Behaviour behaviour : behaviours ) {
@@ -86,7 +101,6 @@ public class LordOfCinder extends Enemies {
                 behaviours.remove(behaviour);
             }
         }
-
         emberForm = true;
     }
 }

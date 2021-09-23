@@ -20,6 +20,13 @@ public class SwapWeaponAction extends PickUpItemAction {
         super(weapon);
     }
 
+    /**
+     * Perform the Action.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Weapon currentWeapon = actor.getWeapon();

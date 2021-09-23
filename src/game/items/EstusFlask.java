@@ -7,6 +7,9 @@ import java.util.List;
 
 public class EstusFlask extends Item {
 
+    /**
+     * Number of charges that the Estus Flask has left
+     */
     private int chargesLeft = 3;
 
     /***
@@ -33,22 +36,24 @@ public class EstusFlask extends Item {
      *
      * @return value of chargesLeft
      */
-
     public int getChargesLeft() {
         return chargesLeft;
     }
 
+    /**
+     * Set value of totalCharges
+     *
+     * @param totalCharges - total number of charges of estus flask
+     */
     public int setTotalCharges(int totalCharges) {
         return totalCharges;
     }
-
 
     /**
      * Get value of totalCharges
      *
      * @return value of totalCharges
      */
-
 
     /**
      * Set value of chargesLeft
