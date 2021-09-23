@@ -1,9 +1,13 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.*;
+import game.Player;
 import game.ResetManager;
+import game.grounds.Valley;
 import game.interfaces.Resettable;
+import game.items.TokenOfSouls;
 
+import javax.management.ValueExp;
 import java.util.List;
 
 /**
@@ -23,10 +27,17 @@ public class ResetAction extends Action {
         // Reset all Actor
         ResetManager.getInstance().run(map);
 
-        // Refill Maximum Hit Points
         if ( actor.isConscious() ) {
             return "Rested";
         } else {
+            if ( map.locationOf(actor).getGround() instanceof Valley ) {
+                Location playerLastLocation = ((Player) actor).getLastLocation();
+                playerLastLocation.addItem(new TokenOfSouls(actor));
+            } else {
+                Location playerLastLocation = map.locationOf(actor);
+                playerLastLocation.addItem(new TokenOfSouls(actor));
+            }
+
             return "You Died!";
         }
     }

@@ -79,7 +79,9 @@ public class Player extends Actor implements Soul, Resettable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+		// Save Previous Location
 		lastLocation = map.locationOf(this);
+
 		// return/print the console menu
 		// print health points using display
 		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding BroadSword, " + souls + " Souls");

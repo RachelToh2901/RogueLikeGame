@@ -55,9 +55,9 @@ public class ResetManager {
         for ( Resettable actor : resettableList ) {
             if ( actor.isExist() ) {
                 actor.resetInstance(map);
-                if (actor instanceof Player){
-                    map.locationOf((Player) actor).addItem(new TokenOfSouls((Player)actor));
-                }
+//                if (actor instanceof Player){
+//                    map.locationOf((Player) actor).addItem(new TokenOfSouls((Player)actor));
+//                }
             } else  {
                 map.removeActor((Actor) actor);
             }

@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.Location;
 import game.Player;
 import game.ResetManager;
 import game.actions.ResetAction;
+import game.items.TokenOfSouls;
 
 /**
  * The gorge or endless gap that is dangerous for the Player.
@@ -40,7 +41,7 @@ public class Valley extends Ground {
 		Actor actorStandingOn = location.getActor();
 		if ( actorStandingOn instanceof Player ) {
 			Action action = new ResetAction();
-			actorStandingOn.hurt(9999);
+			actorStandingOn.hurt(((Player) actorStandingOn).getMaxHitPoints());
 			action.execute(actorStandingOn, location.map());
 		}
 
