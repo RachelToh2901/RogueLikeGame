@@ -23,14 +23,11 @@ public class EnragedBossFollowBehavior extends FollowBehaviour{
         Location there = map.locationOf(target);
 
         for ( Exit exit : there.getExits() ){
-            // TODO : The burned areas will stay on the map for the next three (3)
-            //  turns and hurt anyone (except the holder) that stands on it by 25 hit
-            //  points. The fire can only burn the Dirt ground.
             if ( exit.getDestination().getGround() instanceof Dirt ) {
                 exit.getDestination().setGround(new BurningGround());
             }
-
         }
+
         int currentDistance = distance(here, there);
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();

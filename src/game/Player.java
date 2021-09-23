@@ -41,14 +41,14 @@ public class Player extends Actor implements Soul, Resettable {
 			return lastAction.getNextAction();
 
 		// return/print the console menu
-		// print health points using display
+		display.println(this + "( " + + hitPoints + " / " + maxHitPoints + " ). Holding" + getWeapon().toString() + "." + souls + " souls.");
 		return menu.showMenu(this, actions, display);
 
 	}
 
 	@Override
 	public void transferSouls(Soul soulObject) {
-		//TODO: transfer Player's souls to another Soul's instance.
+		// TODO: transfer Player's souls to another Soul's instance.
 	}
 
 	@Override
