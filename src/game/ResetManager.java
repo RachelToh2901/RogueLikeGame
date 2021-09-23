@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.interfaces.Resettable;
+import game.items.TokenOfSouls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,9 @@ public class ResetManager {
         for ( Resettable actor : resettableList ) {
             if ( actor.isExist() ) {
                 actor.resetInstance(map);
+                if (actor instanceof Player){
+                    map.locationOf((Player) actor).addItem(new TokenOfSouls((Player)actor));
+                }
             } else  {
                 map.removeActor((Actor) actor);
             }

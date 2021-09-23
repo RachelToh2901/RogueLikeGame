@@ -4,10 +4,9 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import game.shopActions.PurchaseBroadswordAction;
-import game.shopActions.PurchaseGiantAxeAction;
-import game.shopActions.PurchaseStatAction;
-import game.shopActions.PurchaseWeaponAction;
+import game.shopactions.PurchaseBroadswordAction;
+import game.shopactions.PurchaseGiantAxeAction;
+import game.shopactions.PurchaseStatAction;
 import game.weapons.BroadSword;
 import game.weapons.GiantAxe;
 

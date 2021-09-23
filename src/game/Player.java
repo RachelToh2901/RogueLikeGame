@@ -6,6 +6,10 @@ import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
+import game.items.EstusFlask;
+import game.items.TokenOfSouls;
+import game.weapons.BroadSword;
+import game.items.EstusFlask;
 
 /**
  * Class representing the Player.
@@ -28,7 +32,16 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
+		this.addItemToInventory(new EstusFlask());
+		this.addItemToInventory(new BroadSword());
+		this.maxHitPoints = 100;
+
 		this.souls = 0;
+	}
+
+
+	public int getMaxHitPoints() {
+		return maxHitPoints;
 	}
 
 	@Override
@@ -41,20 +54,21 @@ public class Player extends Actor implements Soul, Resettable {
 			return lastAction.getNextAction();
 
 		// return/print the console menu
-		display.println(this + "( " + + hitPoints + " / " + maxHitPoints + " ). Holding" + getWeapon().toString() + "." + souls + " souls.");
+		// print health points using display
+		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding BroadSword, " + souls + " Souls");
 		return menu.showMenu(this, actions, display);
 
 	}
 
 	@Override
 	public void transferSouls(Soul soulObject) {
-		// TODO: transfer Player's souls to another Soul's instance.
+		//TODO: transfer Player's souls to another Soul's instance.
 	}
 
 	@Override
 	public void resetInstance(GameMap map) {
 		this.hitPoints = maxHitPoints;
-		this.getEstusFlask().setQuantity(3);
+		this.getEstusFlask().setChargesLeft(3);
 		map.moveActor(this, lastSavedLocation);
 	}
 
@@ -70,7 +84,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	private EstusFlask getEstusFlask() {
 		for (  Item item : this.inventory ) {
-			if ( item.toString() == "Estus Flask" ) {
+			if ( item.toString().equals("Estus Flask")){
 				return (EstusFlask) item;
 			}
 		}
@@ -81,9 +95,16 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastSavedLocation = location;
 	}
 
+	public Location getLastSavedLocation(){
+		return this.lastSavedLocation;
+	}
 	@Override
 	public boolean addSouls(int souls){
 		this.souls += souls;
 		return true;
+	}
+
+	public int getSouls(){
+		return this.souls;
 	}
 }

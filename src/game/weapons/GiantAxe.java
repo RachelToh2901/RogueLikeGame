@@ -3,8 +3,8 @@ package game.weapons;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponAction;
-import game.activeSkills.SpinAttackAction;
-import game.shopActions.PurchaseGiantAxeAction;
+import game.activeskills.SpinAttackAction;
+import game.shopactions.PurchaseGiantAxeAction;
 
 import java.util.List;
 

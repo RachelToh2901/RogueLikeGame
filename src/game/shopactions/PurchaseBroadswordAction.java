@@ -1,9 +1,8 @@
-package game.shopActions;
+package game.shopactions;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import game.shopActions.PurchaseWeaponAction;
 
 public class PurchaseBroadswordAction extends PurchaseWeaponAction {
     protected int soulsCost = 500;

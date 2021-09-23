@@ -2,7 +2,6 @@ package game.weapons;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponAction;
-import game.activeSkills.BurnGroundAction;
 
 public class YhormsGiantMachete extends MeleeWeapon {
 
@@ -15,8 +14,4 @@ public class YhormsGiantMachete extends MeleeWeapon {
         hitRate *= 30/100;
     }
 
-    @Override
-    public WeaponAction getActiveSkill(Actor target, String direction) {
-        return new BurnGroundAction(this);
-    }
 }

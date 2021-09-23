@@ -1,7 +1,7 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.Action;
-import game.shopActions.PurchaseBroadswordAction;
+import game.shopactions.PurchaseBroadswordAction;
 
 import java.util.List;
 import java.util.Random;
@@ -17,7 +17,7 @@ public class BroadSword extends MeleeWeapon {
     public int damage() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(100);
-        if (randomNumber >= 0 && randomNumber <= 20) {
+        if (randomNumber <= 20) {
             return damage *= 2;
         }else{
             return damage;
