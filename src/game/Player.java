@@ -72,7 +72,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		if ( lastAction == null || lastAction instanceof ResetAction) {
+		if (lastAction == null || lastAction instanceof ResetAction) {
 			setLastSavedLocation(map.locationOf(this));
 		}
 		// Handle multi-turn Actions
@@ -89,6 +89,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Transfer current instance's souls to another Soul instance.
+	 *
 	 * @param soulObject a target souls.
 	 */
 	@Override
@@ -98,6 +99,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Allows any classes that use this interface to reset abilities, attributes, and items.
+	 *
 	 * @param map the map containing the Player
 	 */
 	@Override
@@ -109,6 +111,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * A useful method to clean up the list of instances
+	 *
 	 * @return the existence of the instance in the game.
 	 */
 	@Override
@@ -131,8 +134,8 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @return EstusFlask - Estus Flask object
 	 */
 	private EstusFlask getEstusFlask() {
-		for (  Item item : this.inventory ) {
-			if ( item.toString().equals("Estus Flask")){
+		for (Item item : this.inventory) {
+			if (item.toString().equals("Estus Flask")) {
 				return (EstusFlask) item;
 			}
 		}
@@ -155,8 +158,11 @@ public class Player extends Actor implements Soul, Resettable {
 	 *
 	 * @return lastSaveLocation - last know location of player
 	 */
-	public Location getLastSavedLocation(){
+	public Location getLastSavedLocation() {
 		return this.lastSavedLocation;
+	}
+
+
 	public Location getLastLocation(){
 		return this.lastLocation;
 	}
