@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Cemetery extends Ground {
+
     /**
      * Constructor.
      *
@@ -18,6 +19,10 @@ public class Cemetery extends Ground {
         super('c');
     }
 
+    /**
+     * Ground can also experience the joy of time.
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         Random rand = new Random();

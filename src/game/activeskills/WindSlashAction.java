@@ -4,16 +4,38 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.Random;
 
+/**
+ * Special Action for Storm Ruler
+ */
 public class WindSlashAction extends WeaponAction{
+
+    /**
+     * The Actor that is to be attacked
+     */
     protected Actor target;
+
+    /**
+     * The direction of incoming attack.
+     */
     protected String direction;
 
+    /**
+     * Constructor
+     * @param weaponItem the weapon item that has capabilities
+     */
     public WindSlashAction(WeaponItem weaponItem, Actor target, String direction) {
         super(weaponItem);
         this.target = target;
         this.direction = direction;
     }
 
+    /**
+     * Perform the Action.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     public String execute(Actor actor, GameMap map) {
 
         String result = "";
@@ -50,6 +72,11 @@ public class WindSlashAction extends WeaponAction{
         return result;
     }
 
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     public String menuDescription(Actor actor) {
         return actor + " uses Wind Slash with " + weapon;
     }

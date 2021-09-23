@@ -15,12 +15,18 @@ public class PurchaseWeaponAction extends SwapWeaponAction {
      *
      * @param weapon the new item that will replace the weapon in the Actor's inventory.
      */
-
     // Question : Should I use Item or WeaponItem?
     public PurchaseWeaponAction(Item weapon) {
         super(weapon);
     }
 
+    /**
+     * Perform the Action.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         // Question : Should I use actor.getWeapon or this.weapon (initialised in constructor)
