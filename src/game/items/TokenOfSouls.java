@@ -13,7 +13,7 @@ public class TokenOfSouls extends Item {
 
     public TokenOfSouls(Actor actor) {
         super("Token of Souls", '$', true);
-        itemLocation = ((Player) actor).getLastSavedLocation();
+        itemLocation = ((Player) actor).getLastLocation();
         numberOfSouls = ((Player) actor).getSouls();
     }
 

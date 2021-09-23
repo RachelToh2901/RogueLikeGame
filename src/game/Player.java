@@ -19,6 +19,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private final Menu menu = new Menu();
 	private Location lastSavedLocation;
 	private int souls;
+	private Location lastLocation;
 
 	/**
 	 * Constructor.
@@ -53,6 +54,7 @@ public class Player extends Actor implements Soul, Resettable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+		lastLocation = map.locationOf(this);
 		// return/print the console menu
 		// print health points using display
 		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding BroadSword, " + souls + " Souls");
@@ -95,9 +97,10 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastSavedLocation = location;
 	}
 
-	public Location getLastSavedLocation(){
-		return this.lastSavedLocation;
+	public Location getLastLocation(){
+		return this.lastLocation;
 	}
+
 	@Override
 	public boolean addSouls(int souls){
 		this.souls += souls;
