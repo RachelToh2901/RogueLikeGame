@@ -71,9 +71,16 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		// Save spawn Location
 		if ( lastAction == null || lastAction instanceof ResetAction) {
 			setLastSavedLocation(map.locationOf(this));
 		}
+
+		// Save last move action
+		if ( lastAction instanceof MoveActorAction ) {
+
+		}
+
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
