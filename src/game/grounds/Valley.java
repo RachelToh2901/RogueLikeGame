@@ -38,12 +38,11 @@ public class Valley extends Ground {
 	@Override
 	public void tick(Location location) {
 		Actor actorStandingOn = location.getActor();
-		if ( actorStandingOn != null ) {
-			if ( actorStandingOn instanceof Player ) {
-				Action action = new ResetAction();
-				actorStandingOn.hurt(9999);
-				action.execute(actorStandingOn, location.map());
-			}
+		if ( actorStandingOn instanceof Player ) {
+			Action action = new ResetAction();
+			actorStandingOn.hurt(9999);
+			action.execute(actorStandingOn, location.map());
 		}
+
 	}
 }

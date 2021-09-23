@@ -30,6 +30,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 * Number of Souls that the Player has
 	 */
 	private int souls;
+	private Location lastLocation;
 
 	/**
 	 * Constructor.
@@ -71,20 +72,14 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// Save spawn Location
-		if ( lastAction == null || lastAction instanceof ResetAction) {
+		if (lastAction == null || lastAction instanceof ResetAction) {
 			setLastSavedLocation(map.locationOf(this));
 		}
-
-		// Save last move action
-		if ( lastAction instanceof MoveActorAction ) {
-
-		}
-
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+		lastLocation = map.locationOf(this);
 		// return/print the console menu
 		// print health points using display
 		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding BroadSword, " + souls + " Souls");
@@ -94,6 +89,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Transfer current instance's souls to another Soul instance.
+	 *
 	 * @param soulObject a target souls.
 	 */
 	@Override
@@ -103,6 +99,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Allows any classes that use this interface to reset abilities, attributes, and items.
+	 *
 	 * @param map the map containing the Player
 	 */
 	@Override
@@ -114,6 +111,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * A useful method to clean up the list of instances
+	 *
 	 * @return the existence of the instance in the game.
 	 */
 	@Override
@@ -136,8 +134,8 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @return EstusFlask - Estus Flask object
 	 */
 	private EstusFlask getEstusFlask() {
-		for (  Item item : this.inventory ) {
-			if ( item.toString().equals("Estus Flask")){
+		for (Item item : this.inventory) {
+			if (item.toString().equals("Estus Flask")) {
 				return (EstusFlask) item;
 			}
 		}
@@ -160,8 +158,13 @@ public class Player extends Actor implements Soul, Resettable {
 	 *
 	 * @return lastSaveLocation - last know location of player
 	 */
-	public Location getLastSavedLocation(){
+	public Location getLastSavedLocation() {
 		return this.lastSavedLocation;
+	}
+
+
+	public Location getLastLocation(){
+		return this.lastLocation;
 	}
 
 	@Override
