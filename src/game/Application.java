@@ -4,11 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.FancyGroundFactory;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.World;
+import edu.monash.fit2099.engine.*;
 import game.enemies.LordOfCinder;
 import game.enemies.Skeleton;
 import game.grounds.*;
@@ -57,8 +53,8 @@ public class Application {
 			world.addGameMap(gameMap);
 
 			Actor player = new Player("Unkindled (Player)", '@', 100);
-//			world.addPlayer(player, gameMap.at(38, 12));
-			world.addPlayer(player, gameMap.at(7, 25));
+			world.addPlayer(player, gameMap.at(38, 12));
+//			world.addPlayer(player, gameMap.at(7, 25));
 
 			// Place Yhorm the Giant/boss in the map
 			gameMap.at(6, 25).addActor(new LordOfCinder());

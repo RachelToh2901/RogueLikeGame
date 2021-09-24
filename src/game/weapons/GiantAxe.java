@@ -35,25 +35,4 @@ public class GiantAxe extends MeleeWeapon {
         return new SpinAttackAction(this);
     }
 
-    /**
-     * Getter.
-     *
-     * Returns an unmodifiable copy of the actions list so that calling methods won't
-     * be able to change what this Item can do without the Item checking.
-     * @return an unmodifiable list of Actions
-     */
-    @Override
-    public List<Action> getAllowableActions() {
-        boolean present = false;
-        for(Action action: allowableActions) {
-            if (action instanceof PurchaseGiantAxeAction) {
-                present = true;
-                break;
-            }
-        }
-        if(!present){
-            allowableActions.add(new PurchaseGiantAxeAction(new GiantAxe()));
-        }
-        return allowableActions.getUnmodifiableActionList();
-    }
 }
