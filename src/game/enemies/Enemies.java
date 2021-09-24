@@ -66,6 +66,7 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void resetInstance(GameMap map) {
     this.hitPoints = maxHitPoints;
+    System.out.println(behaviours.toString());
     for( Behaviour behavior : behaviours ) {
       if ( behavior instanceof FollowBehaviour ) {
         behaviours.remove(behavior);
@@ -100,16 +101,14 @@ public class Enemies extends Actor implements Resettable, Soul {
     // TODO : IMPLEMENT WEAPON ACTIVE SKILLS IN
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
-
         normalAttack = action;
-        Actor target = ((AttackAction) action).getTarget();
-        behaviours.add(new FollowBehaviour(target));
-        behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
 
       } else if ( action instanceof WeaponAction ){
         weaponSkills.add(action);
       }
     }
+
+
 
     if ( weaponSkills != null && rand.nextInt(100) < activeSkillChance) {
       return weaponSkills.get( rand.nextInt(weaponSkills.size() - 1) );
@@ -121,6 +120,14 @@ public class Enemies extends Actor implements Resettable, Soul {
   public boolean checkIsPlayerNear(Actions actions ) {
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
+
+        for ( Behaviour behaviour : behaviours ) {
+          if ( behaviour instanceof WanderBehaviour ) {
+            Actor target = ((AttackAction) action).getTarget();
+            behaviours.add(new FollowBehaviour(target));
+            behaviours.removeIf(tempBehaviour -> tempBehaviour instanceof WanderBehaviour);
+          }
+        }
         return true;
       }
     }
