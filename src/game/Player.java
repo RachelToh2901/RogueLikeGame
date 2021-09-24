@@ -11,8 +11,6 @@ import game.items.EstusFlask;
 import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
 import game.items.EstusFlask;
-import javafx.scene.input.TouchEvent;
-import jdk.nashorn.internal.parser.Token;
 
 /**
  * Class representing the Player.
