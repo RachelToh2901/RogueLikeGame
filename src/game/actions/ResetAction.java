@@ -36,10 +36,25 @@ public class ResetAction extends Action {
             } else {
                 playerLastLocation = map.locationOf(actor);
             }
+            //Spawn new TokenOfSouls
+            TokenOfSouls tokenOfSouls = new TokenOfSouls(actor);
+            //Add it to the location player died
+            playerLastLocation.addItem(tokenOfSouls);
+
+            //Check whether a tokenOfSouls is already exist in map
+            Location previousTokenLocation = ((Player)actor).getPreviousTokenLocation();
+            //if yes, remove it from map
+            if (previousTokenLocation != null){
+                previousTokenLocation.removeItem(((Player)actor).getPreviousTokenOfSouls());
+            }
+            //record the new token of souls and its location
+            ((Player) actor).setPreviousTokenOfSouls(tokenOfSouls);
+            ((Player) actor).setPreviousTokenLocation(playerLastLocation);
+
 
             ResetManager.getInstance().run(map);
-            playerLastLocation.addItem(new TokenOfSouls(actor));
-            ((Player) actor).subtractSouls(((Player) actor).getSouls());
+
+
 
             return "You Died!";
         }

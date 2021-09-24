@@ -32,6 +32,8 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	private int souls;
 	private Location lastLocation;
+	private Location previousTokenLocation = null;
+	private TokenOfSouls previousTokenOfSouls = null;
 
 	/**
 	 * Constructor.
@@ -110,10 +112,13 @@ public class Player extends Actor implements Soul, Resettable {
 			setLastSavedLocation(map.locationOf(this));
 			map.moveActor(this, previouslySavedLocation);
 		} else  {
+			this.subtractSouls(this.getSouls());
 			map.moveActor(this, lastSavedLocation);
 		}
+
 		this.hitPoints = maxHitPoints;
 		getEstusFlask().setChargesLeft(3);
+
 	}
 
 	/**
@@ -180,6 +185,12 @@ public class Player extends Actor implements Soul, Resettable {
 		return true;
 	}
 
+	@Override
+	public boolean subtractSouls(int souls) {
+		this.souls -= souls;
+		return true;
+	}
+
 	/**
 	 * Getter
 	 * Get value of totalCharges
@@ -195,5 +206,21 @@ public class Player extends Actor implements Soul, Resettable {
 		Actions actions = new Actions();
 		actions.add(new AttackAction(this, direction));
 		return actions;
+	}
+
+	public void setPreviousTokenLocation(Location location){
+		this.previousTokenLocation = location;
+	}
+
+	public Location getPreviousTokenLocation(){
+		return this.previousTokenLocation;
+	}
+
+	public void setPreviousTokenOfSouls(TokenOfSouls tokenOfSouls){
+		this.previousTokenOfSouls = tokenOfSouls;
+	}
+
+	public TokenOfSouls getPreviousTokenOfSouls(){
+		return this.previousTokenOfSouls;
 	}
 }
