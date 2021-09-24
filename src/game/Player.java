@@ -83,7 +83,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 		// return/print the console menu
 		// print health points using display
-		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding BroadSword, " + souls + " Souls");
+		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + this.getWeapon() + ", " + souls + " Souls");
 		return menu.showMenu(this, actions, display);
 
 	}
