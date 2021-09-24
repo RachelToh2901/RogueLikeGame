@@ -55,6 +55,7 @@ public class ResetManager {
         for ( Resettable actor : resettableList ) {
             if ( actor.isExist() ) {
                 actor.resetInstance(map);
+
             } else  {
                 map.removeActor((Actor) actor);
             }

@@ -39,6 +39,7 @@ public class ResetAction extends Action {
 
             ResetManager.getInstance().run(map);
             playerLastLocation.addItem(new TokenOfSouls(actor));
+            ((Player) actor).subtractSouls(((Player) actor).getSouls());
 
             return "You Died!";
         }
