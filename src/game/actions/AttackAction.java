@@ -63,7 +63,7 @@ public class AttackAction extends Action {
 		int damage;
 		//Applied dullness of StormRules here
 		// TODO: is it okay to apply dullness here?
-		if (actor instanceof Player && !(target instanceof LordOfCinder && actor.getWeapon() instanceof StormRuler)){
+		if (actor instanceof Player && !(target instanceof LordOfCinder) && actor.getWeapon() instanceof StormRuler){
 			damage = ((StormRuler) actor.getWeapon()).dullness();
 		}else{
 			damage = weapon.damage();
