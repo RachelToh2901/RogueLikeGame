@@ -90,7 +90,6 @@ public class Application {
 //		gameMap.at(6,3).addActor(new Skeleton());
 
 
-
 		world.run();
 
 	}
