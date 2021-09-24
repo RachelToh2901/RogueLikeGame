@@ -107,8 +107,6 @@ public class Enemies extends Actor implements Resettable, Soul {
       }
     }
 
-
-
     if ( weaponSkills != null && rand.nextInt(100) < activeSkillChance) {
       return weaponSkills.get( rand.nextInt(weaponSkills.size() - 1) );
     } else {

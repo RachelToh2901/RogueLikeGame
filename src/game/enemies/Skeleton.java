@@ -87,7 +87,7 @@ public class Skeleton extends Enemies {
             if ( rand.nextInt(100) < 50 ) {
                 this.hitPoints = maxHitPoints;
                 this.revivedOnce = true;
-                return  this.name + "revived.";
+                return  this.name + " revived.";
             }
         }
         map.removeActor(this);

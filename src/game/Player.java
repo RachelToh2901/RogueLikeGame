@@ -11,8 +11,6 @@ import game.items.EstusFlask;
 import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
 import game.items.EstusFlask;
-import javafx.scene.input.TouchEvent;
-import jdk.nashorn.internal.parser.Token;
 
 /**
  * Class representing the Player.
@@ -45,13 +43,13 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
-		super(name, displayChar, hitPoints);
+		super(name, displayChar, 10000);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.souls = 0;
+		this.souls = 99999999;
 	}
 
 	/**
