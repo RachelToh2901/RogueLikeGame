@@ -14,12 +14,13 @@ public class DrinkEstusFlaskAction extends Action {
     /**
      * Creating new instance of Estus Flask
      */
-    private EstusFlask estusFlask = new EstusFlask();
+    // TODO : THIS WON'T WORK LOL
+//    private EstusFlask estusFlask = new EstusFlask();
 
     /**
      * Number of charges that the Estus Flask has left
      */
-    private int chargesLeft = estusFlask.getChargesLeft();
+    // private int chargesLeft = estusFlask.getChargesLeft();
 
     /**
      * Perform the Action.
@@ -30,10 +31,11 @@ public class DrinkEstusFlaskAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if(chargesLeft >= 1){
+        EstusFlask estusFlask = ((Player) actor).getEstusFlask();
+        if(estusFlask.getChargesLeft() >= 1){
             int maxHitPoints = ((Player) actor).getMaxHitPoints();
-            actor.heal((40/100)*maxHitPoints);
-            estusFlask.setChargesLeft(chargesLeft -=1);
+            actor.heal((int) (0.4 * maxHitPoints));
+            estusFlask.drink();
         }
         else{
             System.out.println("Estus Flask doesn't have any charges left");
@@ -48,6 +50,7 @@ public class DrinkEstusFlaskAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
+        EstusFlask estusFlask = ((Player) actor).getEstusFlask();
         return actor + " drinks " + estusFlask + "(" + estusFlask.getChargesLeft() + "/3" + ")";
     }
 

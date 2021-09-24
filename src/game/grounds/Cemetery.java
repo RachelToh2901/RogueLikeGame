@@ -16,7 +16,7 @@ public class Cemetery extends Ground {
      *
      */
     public Cemetery() {
-        super('c');
+        super('C');
     }
 
     /**
@@ -29,8 +29,18 @@ public class Cemetery extends Ground {
         if ( rand.nextInt(100) < 25 ) {
             List<Exit> exits = location.getExits();
             int direction = rand.nextInt(exits.size());
-            Location there = exits.get(direction).getDestination();
-            there.addActor(new Undead(NameGenerator.getInstance().generateName()+ "the Undead" ));
+            boolean added = false;
+            while (!added) {
+                Location there = exits.get(direction).getDestination();
+                if ( there.getGround() instanceof Dirt && there.getActor() == null ) {
+                    there.addActor(new Undead(NameGenerator.getInstance().generateName() + " the Undead" ));
+                    added = true;
+                }
+                direction = rand.nextInt(exits.size());
+            }
+
+
+
         }
     }
 }

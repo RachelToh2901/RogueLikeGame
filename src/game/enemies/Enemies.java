@@ -4,10 +4,13 @@ import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.behaviors.FollowBehaviour;
 import game.behaviors.WanderBehaviour;
+import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Class for enemies
@@ -22,7 +25,7 @@ public class Enemies extends Actor implements Resettable, Soul {
   /**
    * Initial location of enemy on the map
    */
-  protected Location initialLocation;
+  protected Location initialLocation =null;
 
   /**
    * Number of souls the player gains if a particular enemy is killed
@@ -63,7 +66,12 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void resetInstance(GameMap map) {
     this.hitPoints = maxHitPoints;
-    behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour);
+    for( Behaviour behavior : behaviours ) {
+      if ( behavior instanceof FollowBehaviour ) {
+        behaviours.remove(behavior);
+        behaviours.add(new WanderBehaviour());
+      }
+    }
     if ( initialLocation != null ) {
       map.moveActor(this, initialLocation);
     }
@@ -84,17 +92,39 @@ public class Enemies extends Actor implements Resettable, Soul {
    * @param actions list of actions
    */
   public Action attackPlayer(Actions actions ) {
+    Action normalAttack = null;
+    List<Action> weaponSkills = null;
+    int activeSkillChance = 50;
+    Random rand = new Random();
 
     // TODO : IMPLEMENT WEAPON ACTIVE SKILLS IN
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
+
+        normalAttack = action;
         Actor target = ((AttackAction) action).getTarget();
         behaviours.add(new FollowBehaviour(target));
         behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
-        return action;
+
+      } else if ( action instanceof WeaponAction ){
+        weaponSkills.add(action);
       }
     }
-    return null;
+
+    if ( weaponSkills != null && rand.nextInt(100) < activeSkillChance) {
+      return weaponSkills.get( rand.nextInt(weaponSkills.size() - 1) );
+    } else {
+      return normalAttack;
+    }
+  }
+
+  public boolean checkIsPlayerNear(Actions actions ) {
+    for ( Action action : actions ) {
+      if ( action instanceof AttackAction) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -124,5 +154,35 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void transferSouls(Soul soulObject) {
     soulObject.addSouls(this.soulReward);
+  }
+
+  /**
+   * At the moment, we only make it can be attacked by enemy that has HOSTILE capability
+   * You can do something else with this method.
+   * @param otherActor the Actor that might be performing attack
+   * @param direction  String representing the direction of the other Actor
+   * @param map        current GameMap
+   * @return list of actions
+   * @see Status#HOSTILE_TO_ENEMY
+   */
+  @Override
+  public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+    Actions actions = new Actions();
+    // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
+    if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+      actions.add(new AttackAction(this,direction));
+    }
+    return actions;
+  }
+
+  @Override
+  public String toString() {
+    if ( getWeapon() instanceof IntrinsicWeapon ) {
+      return name + " (" + hitPoints + "/" + maxHitPoints + ") ( no weapon )";
+    } else {
+      return name + " ( " + hitPoints + "/" + maxHitPoints + " ) ( " + getWeapon().toString() + " )";
+    }
+
+
   }
 }

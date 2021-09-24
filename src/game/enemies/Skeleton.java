@@ -2,6 +2,7 @@ package game.enemies;
 
 import edu.monash.fit2099.engine.*;
 
+import game.NameGenerator;
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;
 import game.weapons.BroadSword;
@@ -20,15 +21,14 @@ public class Skeleton extends Enemies {
      */
     private boolean revivedOnce = false;
 
+    private int activeSkillChance = 50;
+
     /**
      * Constructor.
      *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
      */
-    public Skeleton(String name, char displayChar, int hitPoints) {
-        super("Skeleton", 's', 100, 250);
+    public Skeleton() {
+        super(NameGenerator.getInstance().generateName() + " the Skeleton", 'S', 100, 250);
 
         // Equipping Weapon
         Random rand = new Random();
@@ -37,6 +37,7 @@ public class Skeleton extends Enemies {
         } else {
             addItemToInventory(new GiantAxe());
         }
+        registerInstance();
     }
 
     /**
@@ -49,11 +50,20 @@ public class Skeleton extends Enemies {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         // Saves initial Location
-        if (lastAction == null) {
+        if ( initialLocation == null ) {
             setInitialLocation(map.locationOf(this));
         }
         // Attacks player whenever possible
-        if ( attackPlayer(actions) != null ) {
+        if ( checkIsPlayerNear(actions)) {
+            for ( Action action : actions ) {
+
+                // If possible to use Weapon Active Skill
+                if ( action instanceof WeaponAction ) {
+                    if ( new Random().nextInt(100) < activeSkillChance ) {
+                        return action;
+                    }
+                }
+            }
             return attackPlayer(actions);
         }
         // loop through all behaviours

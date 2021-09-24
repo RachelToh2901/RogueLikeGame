@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.AttackAction;
 import game.actions.ResetAction;
 import game.enums.Abilities;
 import game.enums.Status;
@@ -24,7 +25,7 @@ public class Player extends Actor implements Soul, Resettable {
 	/**
 	 * Last location of Player
 	 */
-	private Location lastSavedLocation;
+	private Location lastSavedLocation = null;
 
 	/**
 	 * Number of Souls that the Player has
@@ -46,8 +47,6 @@ public class Player extends Actor implements Soul, Resettable {
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.maxHitPoints = 100;
-
 		this.souls = 0;
 	}
 
@@ -72,7 +71,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		if (lastAction == null || lastAction instanceof ResetAction) {
+		if ( lastSavedLocation == null ) {
 			setLastSavedLocation(map.locationOf(this));
 		}
 		// Handle multi-turn Actions
@@ -107,8 +106,10 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public void resetInstance(GameMap map) {
 		this.hitPoints = maxHitPoints;
-		this.getEstusFlask().setChargesLeft(3);
-		map.moveActor(this, lastSavedLocation);
+		getEstusFlask().setChargesLeft(3);
+		Location previouslySavedLocation = lastSavedLocation;
+		setLastSavedLocation(map.locationOf(this));
+		map.moveActor(this, previouslySavedLocation);
 	}
 
 	/**
@@ -135,9 +136,9 @@ public class Player extends Actor implements Soul, Resettable {
 	 *
 	 * @return EstusFlask - Estus Flask object
 	 */
-	private EstusFlask getEstusFlask() {
+	public EstusFlask getEstusFlask() {
 		for (Item item : this.inventory) {
-			if (item.toString().equals("Estus Flask")) {
+			if (item instanceof EstusFlask ) {
 				return (EstusFlask) item;
 			}
 		}
@@ -183,5 +184,12 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	public int getSouls(){
 		return this.souls;
+	}
+
+	@Override
+	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+		Actions actions = new Actions();
+		actions.add(new AttackAction(this, direction));
+		return actions;
 	}
 }

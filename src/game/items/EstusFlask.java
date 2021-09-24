@@ -45,6 +45,7 @@ public class EstusFlask extends Item {
      *
      * @param totalCharges - total number of charges of estus flask
      */
+    // TODO : WHAT IS THIS FOR?
     public int setTotalCharges(int totalCharges) {
         return totalCharges;
     }
@@ -63,6 +64,8 @@ public class EstusFlask extends Item {
     public void setChargesLeft(int chargesLeft) {
         this.chargesLeft = chargesLeft;
     }
+
+    public void drink() {chargesLeft -= 1;}
 
     /**
      * Getter.

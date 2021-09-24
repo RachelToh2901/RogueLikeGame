@@ -11,9 +11,8 @@ public class Bonfire extends Ground {
     /**
      * Constructor.
      *
-     * @param displayChar character to display for this type of terrain
      */
-    public Bonfire(char displayChar) {
+    public Bonfire() {
         super('B');
     }
 

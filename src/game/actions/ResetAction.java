@@ -24,19 +24,21 @@ public class ResetAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        // Reset all Actor
-        ResetManager.getInstance().run(map);
-
+        // Check if Player died or rested
         if ( actor.isConscious() ) {
-            return "Rested";
+            ResetManager.getInstance().run(map);
+            return "Rested. Maximum Hit Points and Estus Flask have been refilled.";
         } else {
+            Location playerLastLocation;
+
             if ( map.locationOf(actor).getGround() instanceof Valley ) {
-                Location playerLastLocation = ((Player) actor).getLastLocation();
-                playerLastLocation.addItem(new TokenOfSouls(actor));
+                playerLastLocation = ((Player) actor).getLastLocation();
             } else {
-                Location playerLastLocation = map.locationOf(actor);
-                playerLastLocation.addItem(new TokenOfSouls(actor));
+                playerLastLocation = map.locationOf(actor);
             }
+
+            ResetManager.getInstance().run(map);
+            playerLastLocation.addItem(new TokenOfSouls(actor));
 
             return "You Died!";
         }

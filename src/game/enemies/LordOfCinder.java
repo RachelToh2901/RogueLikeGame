@@ -27,6 +27,7 @@ public class LordOfCinder extends Enemies {
         super("Lord of Cinder", 'Y', 500 , 5000);
         behaviours.clear();
         addItemToInventory(new YhormsGiantMachete());
+        registerInstance();
     }
 
     /**
@@ -39,7 +40,7 @@ public class LordOfCinder extends Enemies {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         // Saves initial Location
-        if (lastAction == null) {
+        if ( initialLocation == null ) {
             setInitialLocation(map.locationOf(this));
         }
 
@@ -50,7 +51,7 @@ public class LordOfCinder extends Enemies {
         }
 
         // Attacks player whenever possible
-        if ( attackPlayer(actions) != null ) {
+        if ( checkIsPlayerNear(actions) ) {
             return attackPlayer(actions);
         }
         return new DoNothingAction();
@@ -63,7 +64,7 @@ public class LordOfCinder extends Enemies {
     @Override
     public void resetInstance(GameMap map) {
         this.hitPoints = maxHitPoints;
-        behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour);
+        behaviours.removeIf(behaviour -> behaviour instanceof EnragedBossFollowBehavior);
         if ( initialLocation != null ) {
             map.moveActor(this, initialLocation);
         }
