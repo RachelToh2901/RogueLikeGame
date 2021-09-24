@@ -36,7 +36,8 @@ public class RetrieveSoulAction extends Action {
             numOfSouls = tokenOfSouls.getNumberOfSouls();
             ((Player) actor).addSouls(numOfSouls);
             map.locationOf(actor).removeItem(tokenOfSouls);
-            return menuDescription(actor);
+            return actor + " has retrieved " + numOfSouls + " number of Souls";
+
     }
 
     /**
@@ -46,6 +47,6 @@ public class RetrieveSoulAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " has retrieved " + numOfSouls + " number of Souls";
+        return actor + " pick up token of souls to retrieve total souls:  " + tokenOfSouls.getNumberOfSouls();
     }
 }
