@@ -28,10 +28,11 @@ public class BroadSword extends MeleeWeapon {
     public int damage() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(100);
+        int damageDealt = this.damage;
         if (randomNumber <= 20) {
-            return damage * 2;
+            return damageDealt * 2;
         }else{
-            return damage;
+            return damageDealt;
         }
     }
 
