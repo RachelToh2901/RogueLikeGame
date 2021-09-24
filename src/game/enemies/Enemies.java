@@ -66,7 +66,6 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void resetInstance(GameMap map) {
     this.hitPoints = maxHitPoints;
-    System.out.println(behaviours.toString());
     for( Behaviour behavior : behaviours ) {
       if ( behavior instanceof FollowBehaviour ) {
         behaviours.remove(behavior);
