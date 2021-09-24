@@ -105,11 +105,15 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public void resetInstance(GameMap map) {
+		if ( isConscious() ) {
+			Location previouslySavedLocation = lastSavedLocation;
+			setLastSavedLocation(map.locationOf(this));
+			map.moveActor(this, previouslySavedLocation);
+		} else  {
+			map.moveActor(this, lastSavedLocation);
+		}
 		this.hitPoints = maxHitPoints;
 		getEstusFlask().setChargesLeft(3);
-		Location previouslySavedLocation = lastSavedLocation;
-		setLastSavedLocation(map.locationOf(this));
-		map.moveActor(this, previouslySavedLocation);
 	}
 
 	/**

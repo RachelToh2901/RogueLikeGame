@@ -81,9 +81,9 @@ public class AttackAction extends Action {
 			if ( target instanceof Player) {
 				// TODO : COMPLETE IT
 				Action reset = new ResetAction();
-				reset.execute(target, map);
+				result = reset.execute(target, map);
 			} else {
-				((Enemies) target).die(map, (Soul) actor);
+				result = ((Enemies) target).die(map, (Soul) actor);
 			}
 		}
 
