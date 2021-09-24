@@ -114,9 +114,7 @@ public class Player extends Actor implements Soul, Resettable {
 			setLastSavedLocation(map.locationOf(this));
 			map.moveActor(this, previouslySavedLocation);
 		} else  {
-			System.out.println("Before subtract, Souls: " + this.getSouls());
 			this.subtractSouls(this.getSouls());
-			System.out.println("After subtract, Souls: " + this.getSouls());
 			map.moveActor(this, lastSavedLocation);
 		}
 
