@@ -32,11 +32,11 @@ public class StormRuler extends MeleeWeapon {
     public int damage() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(100);
+        int damageDealt = this.damage;
         if (randomNumber <= 20) {
-            return damage *= 2;
-        }else{
-            return damage;
+            damageDealt *= 2;
         }
+        return damageDealt;
     }
 
     /**
@@ -77,5 +77,10 @@ public class StormRuler extends MeleeWeapon {
             allowableActions.add(new PurchaseStormRulerAction(new StormRuler()));
         }
         return allowableActions.getUnmodifiableActionList();
+    }
+
+    public int dullness(){
+        int damageDealt = this.damage;
+        return damageDealt/2;
     }
 }

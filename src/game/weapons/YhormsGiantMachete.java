@@ -18,7 +18,7 @@ public class YhormsGiantMachete extends MeleeWeapon {
      * Method to activate Ember form of Yhorm the Giant
      */
     public void activateEmberForm (){
-        hitRate *= 30/100;
+        hitRate += 30;
     }
 
 }

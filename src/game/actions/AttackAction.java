@@ -9,9 +9,10 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 import game.Player;
-import game.ResetManager;
 import game.enemies.Enemies;
+import game.enemies.LordOfCinder;
 import game.interfaces.Soul;
+import game.weapons.StormRuler;
 
 /**
  * Special Action for attacking other Actors.
@@ -59,8 +60,17 @@ public class AttackAction extends Action {
 			return actor + " misses " + target + ".";
 		}
 
-		int damage = weapon.damage();
+		int damage;
+		//Applied dullness of StormRules here
+		// TODO: is it okay to apply dullness here?
+		if (actor instanceof Player && !(target instanceof LordOfCinder && actor.getWeapon() instanceof StormRuler)){
+			damage = ((StormRuler) actor.getWeapon()).dullness();
+		}else{
+			damage = weapon.damage();
+		}
+
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+
 		target.hurt(damage);
 		if (!target.isConscious()) {
 
