@@ -6,6 +6,7 @@ import game.behaviors.WanderBehaviour;
 import game.behaviors.EnragedBossFollowBehavior;
 import game.behaviors.FollowBehaviour;
 import game.interfaces.Behaviour;
+import game.items.CindersOfALord;
 import game.weapons.YhormsGiantMachete;
 
 /**
@@ -27,6 +28,7 @@ public class LordOfCinder extends Enemies {
         super("Lord of Cinder", 'Y', 500 , 5000);
         behaviours.clear();
         addItemToInventory(new YhormsGiantMachete());
+        addItemToInventory(new CindersOfALord());
         registerInstance();
     }
 
@@ -95,13 +97,16 @@ public class LordOfCinder extends Enemies {
      */
     public void enraged() {
         ((YhormsGiantMachete) getWeapon()).activateEmberForm();
-        for ( Behaviour behaviour : behaviours ) {
-            if ( behaviour instanceof FollowBehaviour) {
-                Actor target = ((FollowBehaviour) behaviour).getTarget();
-                behaviours.add(new EnragedBossFollowBehavior(target));
-                behaviours.remove(behaviour);
+        Actor target = null;
+        for ( int i = 0; i < behaviours.size(); i ++ ) {
+            if ( behaviours.get(i) instanceof FollowBehaviour) {
+//                target = ((FollowBehaviour) behaviour).getTarget();
+                target = ((FollowBehaviour) behaviours.get(i)).getTarget();
+                behaviours.set(i,new EnragedBossFollowBehavior(target));
             }
         }
+
+
         emberForm = true;
     }
 }
