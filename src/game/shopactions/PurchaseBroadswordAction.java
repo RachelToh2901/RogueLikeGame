@@ -3,6 +3,7 @@ package game.shopactions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import game.Player;
 
 public class PurchaseBroadswordAction extends PurchaseWeaponAction {
 
@@ -29,17 +30,14 @@ public class PurchaseBroadswordAction extends PurchaseWeaponAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-//        if (actor.getSouls() >= soulsCost) {
+        if (((Player) actor).getSouls() >= soulsCost) {
             super.execute(actor, map);
-            //TODO: implement souls methods in player class
-//        actor.subtractSouls(soulsCost);
-//        }else{
-//          return actor " does not have enough souls. Purchase FAILED.";
-//      }
-       //return actor + " purchase " + actor.getWeapon() + " with " + soulsCost + " souls";
+            ((Player) actor).subtractSouls(soulsCost);
+        }else{
+          return actor + " does not have enough souls. Purchase FAILED.";
+      }
+       return actor + " purchase " + actor.getWeapon() + " with " + soulsCost + " souls";
 
-        // EDIT
-        return menuDescription(actor);
     }
 
 

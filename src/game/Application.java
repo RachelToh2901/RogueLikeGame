@@ -4,11 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.FancyGroundFactory;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.World;
+import edu.monash.fit2099.engine.*;
 import game.enemies.LordOfCinder;
 import game.enemies.Skeleton;
 import game.grounds.*;
@@ -91,6 +87,7 @@ public class Application {
 //		gameMap.at(42,6).addActor(new Skeleton());
 //		gameMap.at(35,15).addActor(new Skeleton());
 //		gameMap.at(6,3).addActor(new Skeleton());
+
 
 
 		world.run();

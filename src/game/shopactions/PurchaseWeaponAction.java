@@ -41,7 +41,6 @@ public class PurchaseWeaponAction extends SwapWeaponAction {
             }
         }
 
-        // if the ground has item, remove that item.
         // additionally, add new weapon to the inventory (equip).
         actor.addItemToInventory(item);
         return actor + " purchase " + currentWeapon;
