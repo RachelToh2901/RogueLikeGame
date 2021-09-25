@@ -118,13 +118,17 @@ public class Enemies extends Actor implements Resettable, Soul {
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
 
-        for ( Behaviour behaviour : behaviours ) {
-          if ( behaviour instanceof WanderBehaviour ) {
-            Actor target = ((AttackAction) action).getTarget();
-            behaviours.add(new FollowBehaviour(target));
-            behaviours.removeIf(tempBehaviour -> tempBehaviour instanceof WanderBehaviour);
-          }
-        }
+        Actor target = ((AttackAction) action).getTarget();
+        behaviours.add(new FollowBehaviour(target));
+        behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
+
+//        for ( Behaviour behaviour : behaviours ) {
+//          if ( behaviour instanceof WanderBehaviour ) {
+//            behaviours.removeIf(tempBehaviour -> tempBehaviour instanceof WanderBehaviour);
+//          }
+//          Actor target = ((AttackAction) action).getTarget();
+//          behaviours.add(new FollowBehaviour(target));
+//        }
         return true;
       }
     }

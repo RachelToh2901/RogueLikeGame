@@ -48,13 +48,13 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
-		super(name, displayChar, 100000);
+		super(name, displayChar, 100);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.souls = 100;
+		this.souls = 0;
 	}
 
 	/**
@@ -103,9 +103,6 @@ public class Player extends Actor implements Soul, Resettable {
 			}
 		}
 
-		for (Item item: this.getInventory()){
-			System.out.println(item);
-		}
 		return menu.showMenu(this, actions, display);
 
 	}

@@ -54,7 +54,7 @@ public class ResetAction extends Action {
 
             ResetManager.getInstance().run(map);
 
-            return "You Died!";
+            return printDieMessage();
         }
     }
 
@@ -66,5 +66,20 @@ public class ResetAction extends Action {
     @Override
     public String menuDescription(Actor actor) {
         return "Rest at Firelink Shrine bonfire";
+    }
+
+    public String printDieMessage(){
+        String res = "";
+        res += "   YY          YY   OOOOOOOOO    UU         UU        DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!";
+        res += "    YY        YY   OO       OO   UU         UU        DD     DD        II       EE            DD     DD    !!";
+        res += "     YY      YY    OO       OO   UU         UU        DD      DD       II       EE            DD      DD   !!";
+        res += "      YY    YY     OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
+        res += "       YY  YY      OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
+        res += "         YY        OO       OO   UU         UU        DD       DD      II       EEEEEEEEEEE   DD       DD  !!";
+        res += "         YY        OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
+        res += "         YY        OO       OO   UU         UU        DD      DD       II       EE            DD      DD     ";
+        res += "         YY        OO       OO    UU       UU         DD     DD        II       EE            DD     DD    !!";
+        res += "         YY         OOOOOOOOO      UUUUUUUU           DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!";
+        return res;
     }
 }

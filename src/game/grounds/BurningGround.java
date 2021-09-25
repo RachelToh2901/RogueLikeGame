@@ -6,7 +6,7 @@ import game.enemies.LordOfCinder;
 
 public class BurningGround extends Ground {
 
-    private int turnExisted = 1;
+    private int turnExisted = 0;
 
     /**
      * Constructor.
