@@ -25,8 +25,6 @@ public class TokenOfSouls extends Item {
 
     @Override
     public List<Action> getAllowableActions() {
-//        this.allowableActions.add(new RetrieveSoulAction(this));
-//        return allowableActions.getUnmodifiableActionList();
         boolean present = false;
         for(Action action: allowableActions) {
             if (action instanceof RetrieveSoulAction) {
@@ -44,7 +42,4 @@ public class TokenOfSouls extends Item {
         return numberOfSouls;
     }
 
-    public Location getItemLocation(){
-        return itemLocation;
-    }
 }
