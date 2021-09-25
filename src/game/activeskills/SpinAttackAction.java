@@ -28,19 +28,6 @@ public class SpinAttackAction extends WeaponAction {
      */
     public String execute(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
-//        int xCord = actorLocation.x();
-//        int yCord = actorLocation.y();
-//        String result = "";
-//        for (int i = -1; i<=1; i++) {
-//            for (int j = -1; j <= 1; j++) {
-//                if (i == 0 && j == 0) {
-//                    break;
-//                }
-//                int newXCord = xCord + i;
-//                int newYCord = yCord + i;
-//                Location targetLocation = new Location(map, newXCord, newYCord);
-//            }
-//        }
         String result = "";
         int damage = weapon.damage() / 2;
         for (Exit exit : here.getExits())

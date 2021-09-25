@@ -48,7 +48,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
-		super(name, displayChar, 10000);
+		super(name, displayChar, 100000);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
@@ -78,13 +78,8 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		for (Item item: this.getInventory()){
-			if (item instanceof StormRuler && !(this.getWeapon() instanceof StormRuler)){
-				SwapWeaponAction swapWeaponAction = new SwapWeaponAction(item);
-				swapWeaponAction.execute(this, map);
-			}
-		}
-		System.out.println("Player Weapon: " + this.getWeapon());
+
+
 		if ( lastSavedLocation == null ) {
 			setLastSavedLocation(map.locationOf(this));
 		}
@@ -99,6 +94,16 @@ public class Player extends Actor implements Soul, Resettable {
 		// return/print the console menu
 		// print health points using display
 		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + this.getWeapon() + ", " + souls + " Souls");
+		if (this.getWeapon() instanceof StormRuler){
+			int numOfCharge = ChargeAction.getNumOfCharge();
+			if (numOfCharge == 0){
+				display.println("Storm Ruler not Charged");
+			} else if (numOfCharge == 3){
+				display.println("Storm Ruler is FULLY CHARGED");
+			} else{
+				display.println("Charging Storm Ruler");
+			}
+		}
 		return menu.showMenu(this, actions, display);
 
 	}
@@ -177,16 +182,6 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastSavedLocation = location;
 	}
 
-	/**
-	 * Getter
-	 * Get value of lastSavedLocation
-	 *
-	 * @return lastSaveLocation - last know location of player
-	 */
-	public Location getLastSavedLocation() {
-		return this.lastSavedLocation;
-	}
-
 
 	public Location getLastLocation(){
 		return this.lastLocation;
@@ -218,22 +213,13 @@ public class Player extends Actor implements Soul, Resettable {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		actions.add(new AttackAction(this, direction));
-		System.out.println(this.getWeapon() instanceof StormRuler);
-		if (this.getWeapon() instanceof StormRuler){
-			System.out.println("add active skill");
-			actions.add(((StormRuler) this.getWeapon()).getActiveSkill());
+		for (Item item: this.getInventory()){
+			if (item instanceof StormRuler && !(this.getWeapon() instanceof StormRuler)){
+				((StormRuler) item).setHolder(this);
+				SwapWeaponAction swapWeaponAction = new SwapWeaponAction(item);
+				swapWeaponAction.execute(this, map);
+			}
 		}
-//		boolean present = false;
-//		for (Action action : actions){
-//			if (action instanceof SpinAttackAction || action instanceof ChargeAction || action instanceof WindSlashAction){
-//				System.out.println("is present");
-//				present = true;
-//			}
-//		}
-//		if (!present){
-//			System.out.println("adding..");
-//			actions.add(this.getWeapon().getActiveSkill(otherActor, direction));
-//		}
 		return actions;
 	}
 

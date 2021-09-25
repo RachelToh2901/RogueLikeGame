@@ -64,7 +64,7 @@ public class Application {
 			// gameMap.at(32, 7).addActor(new Undead("Undead"));
 
 		// Storm Ruler Spawn
-		gameMap.at(7, 25).addItem(new StormRuler());
+		gameMap.at(7, 25).addItem(new StormRuler(null));
 
 		// Spawn Skeleton
 		int numOfSkeleton = 6;

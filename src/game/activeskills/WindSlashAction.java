@@ -40,10 +40,13 @@ public class WindSlashAction extends WeaponAction{
      * @return a description of what happened that can be displayed to the user.
      */
     public String execute(Actor actor, GameMap map) {
-
         String result = "";
+        //reset the number of charge after using this skill
+        ChargeAction.resetNumOfCharge();
+
         int damage = weapon.damage();
         Location here = map.locationOf(actor);
+
         for (Exit exit : here.getExits())
             if (exit.getDestination().containsAnActor()) {
                 Location targetLocation = exit.getDestination();
@@ -61,8 +64,6 @@ public class WindSlashAction extends WeaponAction{
                 }
                 if (isAttack) {
                     target.hurt(damage);
-                    //reset the number of charge after using this skill
-                    ChargeAction.resetNumOfCharge();
                     if (!target.isConscious()) {
                         // drop all items
                         Actions dropActions = new Actions();
