@@ -9,6 +9,7 @@ public class BurningGround extends Ground {
     // TODO : THINK IF THIS NEEDS TO BE IN WEAPON INSTEAD
 
     private int turnExisted = 1;
+    private Ground previousGround;
 
     /**
      * Constructor.
@@ -28,8 +29,12 @@ public class BurningGround extends Ground {
         if ( turnExisted > 3) {
             location.setGround(new Dirt());
         }
-        if ( !(location.getActor() instanceof LordOfCinder)) {
-            location.getActor().hurt(25);
+
+        if ( location.getActor() != null ) {
+            if ( !(location.getActor() instanceof LordOfCinder)) {
+                location.getActor().hurt(25);
+            }
         }
+
     }
 }

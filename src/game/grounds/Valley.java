@@ -29,7 +29,7 @@ public class Valley extends Ground {
 	 */
 	@Override
 	public boolean canActorEnter(Actor actor){
-		return true;
+		return actor instanceof Player;
 	}
 
 	/**

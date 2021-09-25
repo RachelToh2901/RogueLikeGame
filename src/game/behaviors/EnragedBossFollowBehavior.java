@@ -3,6 +3,7 @@ package game.behaviors;
 import edu.monash.fit2099.engine.*;
 import game.grounds.BurningGround;
 import game.grounds.Dirt;
+import game.grounds.Floor;
 
 /**
  * Behaviour for Ember Form of Yhorm the Giant
@@ -35,11 +36,14 @@ public class EnragedBossFollowBehavior extends FollowBehaviour{
         Location here = map.locationOf(actor);
         Location there = map.locationOf(target);
 
-        for ( Exit exit : there.getExits() ){
-            if ( exit.getDestination().getGround() instanceof Dirt ) {
+        for ( Exit exit : here.getExits() ){
+            Ground currentGround = exit.getDestination().getGround();
+            if ( currentGround instanceof Dirt  || currentGround instanceof BurningGround ) {
                 exit.getDestination().setGround(new BurningGround());
             }
         }
+        here.setGround(new BurningGround());
+
 
         int currentDistance = distance(here, there);
         for (Exit exit : here.getExits()) {

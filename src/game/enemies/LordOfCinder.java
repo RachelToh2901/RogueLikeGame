@@ -56,6 +56,14 @@ public class LordOfCinder extends Enemies {
         if ( checkIsPlayerNear(actions) ) {
             return attackPlayer(actions);
         }
+
+        // loop through all behaviours
+        for(Behaviour Behaviour : behaviours) {
+            Action action = Behaviour.getAction(this, map);
+            if (action != null)
+                return action;
+        }
+
         return new DoNothingAction();
     }
 
