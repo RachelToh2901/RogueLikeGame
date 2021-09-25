@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.Player;
-import game.actions.DrinkEstusFlaskAction;
 import game.actions.RetrieveSoulAction;
 
 import java.util.List;
@@ -25,8 +24,6 @@ public class TokenOfSouls extends Item {
 
     @Override
     public List<Action> getAllowableActions() {
-//        this.allowableActions.add(new RetrieveSoulAction(this));
-//        return allowableActions.getUnmodifiableActionList();
         boolean present = false;
         for(Action action: allowableActions) {
             if (action instanceof RetrieveSoulAction) {
@@ -44,7 +41,4 @@ public class TokenOfSouls extends Item {
         return numberOfSouls;
     }
 
-    public Location getItemLocation(){
-        return itemLocation;
-    }
 }

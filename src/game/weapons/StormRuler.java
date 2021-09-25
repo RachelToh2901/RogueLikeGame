@@ -4,7 +4,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponAction;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.actions.RetrieveSoulAction;
 import game.activeskills.ChargeAction;
+import game.activeskills.SpinAttackAction;
 import game.activeskills.WindSlashAction;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class StormRuler extends MeleeWeapon {
      * Constructor
      */
     public StormRuler () {
-        super("Storm Ruler", '7', 70, " attacks ", 60);
+        super("Storm Ruler", '7', 70, " slam ", 60);
     }
 
     /**
@@ -56,6 +58,31 @@ public class StormRuler extends MeleeWeapon {
         }
     }
 
+//    @Override
+//    public List<Action> getAllowableActions() {
+//        boolean present1 = false;
+//        boolean present2 = false;
+//        int chargeCount = ChargeAction.getNumOfCharge();
+//        for(Action action: allowableActions) {
+//            if (action instanceof ChargeAction) {
+//                present1 = true;
+//                break;
+//            }
+//        }
+//        for(Action action: allowableActions) {
+//            if (action instanceof WindSlashAction) {
+//                present2 = true;
+//                break;
+//            }
+//        }
+//        if(!present1){
+//            allowableActions.add(new ChargeAction(this));
+//        }
+////        if(!present2){
+////            allowableActions.add((new WindSlashAction(this)));
+////        }
+//        return allowableActions.getUnmodifiableActionList();
+//    }
 
     public int dullness(){
         int damageDealt = this.damage;

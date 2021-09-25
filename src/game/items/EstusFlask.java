@@ -41,22 +41,6 @@ public class EstusFlask extends Item {
     }
 
     /**
-     * Set value of totalCharges
-     *
-     * @param totalCharges - total number of charges of estus flask
-     */
-    // TODO : WHAT IS THIS FOR?
-    public int setTotalCharges(int totalCharges) {
-        return totalCharges;
-    }
-
-    /**
-     * Get value of totalCharges
-     *
-     * @return value of totalCharges
-     */
-
-    /**
      * Set value of chargesLeft
      *
      * @param chargesLeft-number of charges left in the estus flask
@@ -65,7 +49,12 @@ public class EstusFlask extends Item {
         this.chargesLeft = chargesLeft;
     }
 
-    public void drink() {chargesLeft -= 1;}
+    /**
+     * Method to reduce the charges left by 1
+     */
+    public void drink() {
+        chargesLeft -= 1;
+    }
 
     /**
      * Getter.
@@ -76,7 +65,6 @@ public class EstusFlask extends Item {
      */
     @Override
     public List<Action> getAllowableActions() {
-        // Question : why not just return new DrinkEstusFlask Action?
         boolean present = false;
         for(Action action: allowableActions) {
             if (action instanceof DrinkEstusFlaskAction) {

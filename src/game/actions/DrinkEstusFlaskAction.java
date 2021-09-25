@@ -12,17 +12,6 @@ import game.items.EstusFlask;
 public class DrinkEstusFlaskAction extends Action {
 
     /**
-     * Creating new instance of Estus Flask
-     */
-    // TODO : THIS WON'T WORK LOL
-//    private EstusFlask estusFlask = new EstusFlask();
-
-    /**
-     * Number of charges that the Estus Flask has left
-     */
-    // private int chargesLeft = estusFlask.getChargesLeft();
-
-    /**
      * Perform the Action.
      *
      * @param actor The actor performing the action.
@@ -34,7 +23,9 @@ public class DrinkEstusFlaskAction extends Action {
         EstusFlask estusFlask = ((Player) actor).getEstusFlask();
         if(estusFlask.getChargesLeft() >= 1){
             int maxHitPoints = ((Player) actor).getMaxHitPoints();
+            // heal the player by 40% of the maximum hit points
             actor.heal((int) (0.4 * maxHitPoints));
+            // reduce number of charges left by 1
             estusFlask.drink();
         }
         else{
