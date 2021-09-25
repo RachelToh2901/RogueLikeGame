@@ -23,7 +23,9 @@ public class DrinkEstusFlaskAction extends Action {
         EstusFlask estusFlask = ((Player) actor).getEstusFlask();
         if(estusFlask.getChargesLeft() >= 1){
             int maxHitPoints = ((Player) actor).getMaxHitPoints();
+            // heal the player by 40% of the maximum hit points
             actor.heal((int) (0.4 * maxHitPoints));
+            // reduce number of charges left by 1
             estusFlask.drink();
         }
         else{
