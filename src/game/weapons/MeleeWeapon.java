@@ -33,16 +33,4 @@ public class MeleeWeapon extends WeaponItem {
         return null;
     }
 
-//    public void setChanceToHit(int newChanceToHit){hitRate = newChanceToHit;}
-
-    //should we implement here?
-//    public int criticalStrike(int successRate){
-//        Random rand = new Random();
-//        int randomNumber = rand.nextInt(100);
-//        if (randomNumber>=0 && randomNumber<= successRate){
-//            return damage *= 2;
-//        }else{
-//            return damage;
-//        }
-//    }
 }

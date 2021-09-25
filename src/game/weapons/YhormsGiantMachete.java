@@ -11,7 +11,7 @@ public class YhormsGiantMachete extends MeleeWeapon {
      */
     public YhormsGiantMachete () {
         //TODO: update displayChar
-        super("Yhorm Giant Machete", '?', 95, "smash", 60);
+        super("Yhorm Giant Machete", 'L', 95, "hits", 60);
     }
 
     /**

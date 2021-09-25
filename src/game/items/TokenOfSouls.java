@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.Player;
-import game.actions.DrinkEstusFlaskAction;
 import game.actions.RetrieveSoulAction;
 
 import java.util.List;

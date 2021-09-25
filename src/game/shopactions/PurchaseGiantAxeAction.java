@@ -44,7 +44,6 @@ public class PurchaseGiantAxeAction extends PurchaseWeaponAction {
      * @param actor The actor performing the action.
      * @return the text we put on the menu
      */
-    // EDIT
     @Override
     public String menuDescription(Actor actor) {
         return actor + " buys Giant Axe (" + soulsCost + " souls" + ")";

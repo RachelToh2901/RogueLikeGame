@@ -41,7 +41,6 @@ public class PurchaseBroadswordAction extends PurchaseWeaponAction {
     }
 
 
-    // EDIT
     /**
      * Returns a descriptive string
      * @param actor The actor performing the action.
