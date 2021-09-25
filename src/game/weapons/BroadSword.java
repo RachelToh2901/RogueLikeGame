@@ -35,27 +35,4 @@ public class BroadSword extends MeleeWeapon {
         return damageDealt;
 
     }
-
-//    /**
-//     * Getter.
-//     *
-//     * Returns an unmodifiable copy of the actions list so that calling methods won't
-//     * be able to change what this Item can do without the Item checking.
-//     * @return an unmodifiable list of Actions
-//     */
-//    @Override
-//    public List<Action> getAllowableActions() {
-//        boolean present = false;
-//        for(Action action: allowableActions) {
-//            if (action instanceof PurchaseBroadswordAction) {
-//                present = true;
-//                break;
-//            }
-//        }
-//        if(!present){
-//            allowableActions.add(new PurchaseBroadswordAction(new BroadSword()));
-//        }
-//        return allowableActions.getUnmodifiableActionList();
-//    }
-
 }

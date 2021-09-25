@@ -12,17 +12,6 @@ import game.items.EstusFlask;
 public class DrinkEstusFlaskAction extends Action {
 
     /**
-     * Creating new instance of Estus Flask
-     */
-    // TODO : THIS WON'T WORK LOL
-//    private EstusFlask estusFlask = new EstusFlask();
-
-    /**
-     * Number of charges that the Estus Flask has left
-     */
-    // private int chargesLeft = estusFlask.getChargesLeft();
-
-    /**
      * Perform the Action.
      *
      * @param actor The actor performing the action.

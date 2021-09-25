@@ -36,7 +36,6 @@ public class PurchaseStatAction extends Action {
      * @param actor The actor performing the action.
      * @return the text we put on the menu
      */
-    // EDIT
     @Override
     public String menuDescription(Actor actor) {
         return actor + "buys max HP modifier (+25HP): " + soulsCost;
