@@ -3,6 +3,9 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.actions.ResetAction;
+import game.activeskills.ChargeAction;
+import game.activeskills.SpinAttackAction;
+import game.activeskills.WindSlashAction;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Resettable;
@@ -43,13 +46,13 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
-		super(name, displayChar, 10000);
+		super(name, displayChar, 100);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.souls = 99999999;
+		this.souls = 5000;
 	}
 
 	/**
@@ -79,6 +82,7 @@ public class Player extends Actor implements Soul, Resettable {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+
 
 		// Save Previous Location
 		lastLocation = map.locationOf(this);
@@ -205,6 +209,17 @@ public class Player extends Actor implements Soul, Resettable {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		actions.add(new AttackAction(this, direction));
+//		boolean present = false;
+//		for (Action action : actions){
+//			if (action instanceof SpinAttackAction || action instanceof ChargeAction || action instanceof WindSlashAction){
+//				System.out.println("is present");
+//				present = true;
+//			}
+//		}
+//		if (!present){
+//			System.out.println("adding..");
+//			actions.add(this.getWeapon().getActiveSkill(otherActor, direction));
+//		}
 		return actions;
 	}
 

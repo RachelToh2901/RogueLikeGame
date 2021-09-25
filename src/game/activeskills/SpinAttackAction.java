@@ -42,20 +42,20 @@ public class SpinAttackAction extends WeaponAction {
 //            }
 //        }
         String result = "";
-        int damage = weapon.damage();
-        for(Exit exit : here.getExits())
+        int damage = weapon.damage() / 2;
+        for (Exit exit : here.getExits())
             if (exit.getDestination().containsAnActor()) {
                 Location targetLocation = exit.getDestination();
                 Actor target = map.getActorAt(targetLocation);
                 boolean isAttack = false;
-                if (actor instanceof Player){
-                    result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+                if (actor instanceof Player) {
+                    result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage. \n" ;
                     isAttack = true;
-                }else if (actor instanceof Enemies && target instanceof Player){
+                } else if (actor instanceof Enemies && target instanceof Player) {
                     result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
                     isAttack = true;
                 }
-                if (isAttack){
+                if (isAttack) {
                     target.hurt(damage);
                     if (!target.isConscious()) {
                         // drop all items
@@ -64,11 +64,6 @@ public class SpinAttackAction extends WeaponAction {
                             dropActions.add(item.getDropAction(actor));
                         for (Action drop : dropActions)
                             drop.execute(target, map);
-                    }
-                        /** if actor is player
-                         * 		reward =  rewardsystem ( target)
-                         * 		player.addSouls(reward)
-                         */
 
                         if (target instanceof Player) {
                             // TODO : COMPLETE IT
@@ -77,9 +72,11 @@ public class SpinAttackAction extends WeaponAction {
                             ((Enemies) target).die(map, (Soul) actor);
                         }
 
-                        result += System.lineSeparator() + target + " is killed." + System.lineSeparator();
+                        result += target + " is killed." + System.lineSeparator();
+                    }
                 }
-        }
+
+            }
         return result;
     }
 
@@ -88,8 +85,7 @@ public class SpinAttackAction extends WeaponAction {
      * @param actor The actor performing the action.
      * @return the text we put on the menu
      */
-    public String menuDescription(Actor actor) {
+    public String menuDescription (Actor actor){
         return actor + " uses spin attack with " + weapon;
     }
-
 }

@@ -17,6 +17,7 @@ public class BroadSword extends MeleeWeapon {
     public BroadSword() {
         //TODO: update displayChar of Broad Sword
         super("Broad Sword", '?', 30, "hits", 80);
+
     }
 
     /**
@@ -35,4 +36,5 @@ public class BroadSword extends MeleeWeapon {
         return damageDealt;
 
     }
+
 }

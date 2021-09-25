@@ -41,7 +41,4 @@ public class TokenOfSouls extends Item {
         return numberOfSouls;
     }
 
-    public Location getItemLocation(){
-        return itemLocation;
-    }
 }
