@@ -1,4 +1,4 @@
-package game.activeskills;
+package game.activeSkills;
 
 import edu.monash.fit2099.engine.*;
 import game.Player;
@@ -8,6 +8,8 @@ import game.enemies.LordOfCinder;
 import game.interfaces.Soul;
 
 import java.util.Random;
+
+import static game.enums.Status.STUNNED;
 
 /**
  * Special Action for Storm Ruler
@@ -61,8 +63,9 @@ public class WindSlashAction extends WeaponAction{
                 }
                 if (isAttack) {
                     target.hurt(damage);
+                    target.addCapability(STUNNED);
                     //reset the number of charge after using this skill
-                    ChargeAction.resetNumOfCharge();
+                    game.activeskills.ChargeAction.resetNumOfCharge();
                     if (!target.isConscious()) {
                         // drop all items
                         Actions dropActions = new Actions();

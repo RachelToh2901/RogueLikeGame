@@ -3,6 +3,7 @@ package game.weapons;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.WeaponAction;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.activeSkills.WindSlashAction;
 import game.activeskills.ChargeAction;
 import game.activeskills.WindSlashAction;
 
