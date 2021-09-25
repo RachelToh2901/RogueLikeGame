@@ -20,7 +20,7 @@ public class GiantAxe extends MeleeWeapon {
      */
     public GiantAxe () {
         //TODO: update displayChar
-        super("Giant Axe", '?', 50, "flink", 80);
+        super("Giant Axe", 'T', 50, "flink", 80);
     }
 
 
