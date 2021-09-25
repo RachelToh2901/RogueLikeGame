@@ -28,6 +28,7 @@ public class GiantAxe extends MeleeWeapon {
     public List<Action> getAllowableActions() {
         boolean present = false;
         for(Action action: allowableActions) {
+            System.out.println(action.toString());
             if (action instanceof SpinAttackAction) {
                 present = true;
                 break;

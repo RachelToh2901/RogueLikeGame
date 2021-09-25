@@ -6,17 +6,14 @@ import game.enemies.LordOfCinder;
 
 public class BurningGround extends Ground {
 
-    // TODO : THINK IF THIS NEEDS TO BE IN WEAPON INSTEAD
-
     private int turnExisted = 1;
-    private Ground previousGround;
 
     /**
      * Constructor.
      *
      */
     public BurningGround() {
-        super('V');
+        super('v');
     }
 
     /**

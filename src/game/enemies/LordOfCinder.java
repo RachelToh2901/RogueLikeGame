@@ -9,6 +9,8 @@ import game.interfaces.Behaviour;
 import game.items.CindersOfALord;
 import game.weapons.YhormsGiantMachete;
 
+import static game.enums.Status.STUNNED;
+
 /**
  * The boss of Design o' Souls
  * FIXME: This boss is Boring. It does nothing. You need to implement features here.
@@ -46,10 +48,17 @@ public class LordOfCinder extends Enemies {
             setInitialLocation(map.locationOf(this));
         }
 
+        // Status check
+        if ( this.hasCapability(STUNNED)) {
+            removeCapability(STUNNED);
+            return new DoNothingAction();
+        }
+
         // Feature : Ember Form
         if ( hitPoints <= ( maxHitPoints /2 ) && !emberForm ) {
-            enraged();
+            ((YhormsGiantMachete) getWeapon()).activateEmberForm(this,map);
             display.println("Ember Form Activated");
+            emberForm = true;
         }
 
         // Attacks player whenever possible
@@ -81,40 +90,40 @@ public class LordOfCinder extends Enemies {
         emberForm = false;
     }
 
-    /**
-     * Method for Lord of Cinder to attack player
-     * @param actions list of actions
-     */
-    @Override
-    public Action attackPlayer(Actions actions ) {
-
-        for ( Action action : actions ) {
-            if ( action instanceof AttackAction) {
-                Actor target = ((AttackAction) action).getTarget();
-                behaviours.add(new EnragedBossFollowBehavior(target));
-                behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
-                return action;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Method for Lord of Cinder to attack player in ember form(enraged)
-     *
-     */
-    public void enraged() {
-        ((YhormsGiantMachete) getWeapon()).activateEmberForm();
-        Actor target = null;
-        for ( int i = 0; i < behaviours.size(); i ++ ) {
-            if ( behaviours.get(i) instanceof FollowBehaviour) {
-//                target = ((FollowBehaviour) behaviour).getTarget();
-                target = ((FollowBehaviour) behaviours.get(i)).getTarget();
-                behaviours.set(i,new EnragedBossFollowBehavior(target));
-            }
-        }
-
-
-        emberForm = true;
-    }
+//    /**
+//     * Method for Lord of Cinder to attack player
+//     * @param actions list of actions
+//     */
+//    @Override
+//    public Action attackPlayer(Actions actions ) {
+//
+//        for ( Action action : actions ) {
+//            if ( action instanceof AttackAction) {
+//                Actor target = ((AttackAction) action).getTarget();
+//                behaviours.add(new EnragedBossFollowBehavior(target));
+//                behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
+//                return action;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    /**
+//     * Method for Lord of Cinder to attack player in ember form(enraged)
+//     *
+//     */
+//    public void enraged() {
+//        ((YhormsGiantMachete) getWeapon()).activateEmberForm();
+//        Actor target = null;
+//        for ( int i = 0; i < behaviours.size(); i ++ ) {
+//            if ( behaviours.get(i) instanceof FollowBehaviour) {
+////                target = ((FollowBehaviour) behaviour).getTarget();
+//                target = ((FollowBehaviour) behaviours.get(i)).getTarget();
+//                behaviours.set(i,new EnragedBossFollowBehavior(target));
+//            }
+//        }
+//
+//
+//        emberForm = true;
+//    }
 }

@@ -54,7 +54,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.souls = 0;
+		this.souls = 100000;
 	}
 
 	/**
@@ -121,9 +121,7 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public void resetInstance(GameMap map) {
 		if ( isConscious() ) {
-			Location previouslySavedLocation = lastSavedLocation;
 			setLastSavedLocation(map.locationOf(this));
-			map.moveActor(this, previouslySavedLocation);
 		} else  {
 			this.subtractSouls(this.getSouls());
 			map.moveActor(this, lastSavedLocation);

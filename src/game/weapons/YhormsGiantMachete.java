@@ -1,7 +1,9 @@
 package game.weapons;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.WeaponAction;
+import edu.monash.fit2099.engine.*;
+import game.grounds.BurningGround;
+import game.grounds.Dirt;
+
 /**
  * Yhorm's Giant Machete weapon
  */
@@ -17,7 +19,16 @@ public class YhormsGiantMachete extends MeleeWeapon {
     /**
      * Method to activate Ember form of Yhorm the Giant
      */
-    public void activateEmberForm (){
+    public void activateEmberForm (Actor actor, GameMap map){
+        Location here = map.locationOf(actor);
+
+        for ( Exit exit : here.getExits() ){
+            Ground currentGround = exit.getDestination().getGround();
+            if ( currentGround instanceof Dirt || currentGround instanceof BurningGround) {
+                exit.getDestination().setGround(new BurningGround());
+            }
+        }
+        here.setGround(new BurningGround());
         hitRate += 30;
     }
 
