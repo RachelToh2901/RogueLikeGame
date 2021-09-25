@@ -58,31 +58,31 @@ public class StormRuler extends MeleeWeapon {
         }
     }
 
-//    @Override
-//    public List<Action> getAllowableActions() {
-//        boolean present1 = false;
-//        boolean present2 = false;
-//        int chargeCount = ChargeAction.getNumOfCharge();
-//        for(Action action: allowableActions) {
-//            if (action instanceof ChargeAction) {
-//                present1 = true;
-//                break;
-//            }
+    @Override
+    public List<Action> getAllowableActions() {
+        boolean present1 = false;
+        boolean present2 = false;
+        int chargeCount = ChargeAction.getNumOfCharge();
+        for(Action action: allowableActions) {
+            if (action instanceof ChargeAction) {
+                present1 = true;
+                break;
+            }
+        }
+        for(Action action: allowableActions) {
+            if (action instanceof WindSlashAction) {
+                present2 = true;
+                break;
+            }
+        }
+        if(!present1){
+            allowableActions.add(new ChargeAction(this));
+        }
+//        if(!present2){
+//            allowableActions.add((new WindSlashAction(this)));
 //        }
-//        for(Action action: allowableActions) {
-//            if (action instanceof WindSlashAction) {
-//                present2 = true;
-//                break;
-//            }
-//        }
-//        if(!present1){
-//            allowableActions.add(new ChargeAction(this));
-//        }
-////        if(!present2){
-////            allowableActions.add((new WindSlashAction(this)));
-////        }
-//        return allowableActions.getUnmodifiableActionList();
-//    }
+        return allowableActions.getUnmodifiableActionList();
+    }
 
     public int dullness(){
         int damageDealt = this.damage;
