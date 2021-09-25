@@ -1,12 +1,9 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponAction;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.actions.RetrieveSoulAction;
 import game.activeskills.ChargeAction;
-import game.activeskills.SpinAttackAction;
 import game.activeskills.WindSlashAction;
 
 import java.util.List;
@@ -44,22 +41,46 @@ public class StormRuler extends MeleeWeapon {
      * Get an action or skill from the weapon that will be used against one target.
      * This method allows StormRuler instance to interact with Actor class.
      * @see WeaponItem#allowableActions for a self-direction skill instead of using this method (recommendation)
-     * @param target the target actor
-     * @param direction the direction of target, e.g. "north"
      * @return null by default because a weapon doesn't have any active skill. Otherwise, return a WeaponAction instance.
      */
-    @Override
-    public WeaponAction getActiveSkill(Actor target, String direction) {
+    public WeaponAction getActiveSkill() {
         int chargeCount = ChargeAction.getNumOfCharge();
         if (chargeCount <3){
             return new ChargeAction(this);
         }else{
-            return new WindSlashAction(this, target, direction);
+            return new WindSlashAction(this);
         }
     }
 
-//    @Override
-//    public List<Action> getAllowableActions() {
+    @Override
+    public List<Action> getAllowableActions() {
+        Action activeSkill = getActiveSkill();
+        boolean presentCharge = activeSkill instanceof ChargeAction;
+        boolean presentWindSlash = activeSkill instanceof WindSlashAction;
+        boolean present = false;
+        for (Action action : allowableActions) {
+            if (presentCharge) {
+                if (action instanceof ChargeAction) {
+                    present = true;
+                }
+                if (action instanceof WindSlashAction) {
+                    allowableActions.remove(action);
+                }
+            } else if (presentWindSlash) {
+                if (action instanceof WindSlashAction) {
+                    present = true;
+                }
+                if (action instanceof ChargeAction) {
+                    allowableActions.remove(action);
+                }
+            }
+        }
+        if (!present) {
+            allowableActions.add(activeSkill);
+        }
+        return allowableActions.getUnmodifiableActionList();
+    }
+
 //        boolean present1 = false;
 //        boolean present2 = false;
 //        int chargeCount = ChargeAction.getNumOfCharge();
@@ -75,12 +96,18 @@ public class StormRuler extends MeleeWeapon {
 //                break;
 //            }
 //        }
-//        if(!present1){
+//        System.out.println("Present Charge: " + present1);
+//        System.out.println("Present WindSlash: " + present2);
+//        if(!present1 && chargeCount < 3){
 //            allowableActions.add(new ChargeAction(this));
+//            if (present2){
+//                allowableActions.remove(new WindSlashAction(this));
+//            }
 //        }
-////        if(!present2){
-////            allowableActions.add((new WindSlashAction(this)));
-////        }
+//        if(!present2 && chargeCount == 3){
+//            allowableActions.remove(new ChargeAction(this));
+//            allowableActions.add((new WindSlashAction(this)));
+//        }
 //        return allowableActions.getUnmodifiableActionList();
 //    }
 

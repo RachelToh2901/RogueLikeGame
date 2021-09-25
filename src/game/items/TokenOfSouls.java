@@ -19,7 +19,6 @@ public class TokenOfSouls extends Item {
         super("Token of Souls", '$', false);
         itemLocation = ((Player) actor).getLastLocation();
         numberOfSouls = ((Player) actor).getSouls();
-        System.out.println("numberOfSouls in TokenOfSouls: " + numberOfSouls);
     }
 
 
