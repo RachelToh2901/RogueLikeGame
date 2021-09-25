@@ -1,6 +1,7 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.SwapWeaponAction;
 import game.activeskills.ChargeAction;
 import game.activeskills.WindSlashAction;
 
@@ -21,6 +22,7 @@ public class StormRuler extends MeleeWeapon {
     public StormRuler (Actor holder) {
         super("Storm Ruler", '7', 70, " slam ", 60);
         this.holder = holder;
+//        this.portable = false;
     }
 
     /**
@@ -87,6 +89,8 @@ public class StormRuler extends MeleeWeapon {
                 allowableActions.remove(actionToRemove);
             }
         }
+//        SwapWeaponAction swapWeaponAction = new SwapWeaponAction(this);
+//        allowableActions.add(swapWeaponAction);
         return allowableActions.getUnmodifiableActionList();
     }
 

@@ -78,8 +78,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-
-
 		if ( lastSavedLocation == null ) {
 			setLastSavedLocation(map.locationOf(this));
 		}
@@ -103,6 +101,10 @@ public class Player extends Actor implements Soul, Resettable {
 			} else{
 				display.println("Charging Storm Ruler");
 			}
+		}
+
+		for (Item item: this.getInventory()){
+			System.out.println(item);
 		}
 		return menu.showMenu(this, actions, display);
 
@@ -211,14 +213,27 @@ public class Player extends Actor implements Soul, Resettable {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		actions.add(new AttackAction(this, direction));
+		checkHoldingStormRuler();
+		return actions;
+	}
+
+	public void checkHoldingStormRuler(){
+		boolean holdStormRuler = false;
 		for (Item item: this.getInventory()){
 			if (item instanceof StormRuler && !(this.getWeapon() instanceof StormRuler)){
 				((StormRuler) item).setHolder(this);
-				SwapWeaponAction swapWeaponAction = new SwapWeaponAction(item);
-				swapWeaponAction.execute(this, map);
+				holdStormRuler = true;
+				break;
 			}
 		}
-		return actions;
+		if (holdStormRuler){
+			for(Item item : this.getInventory()){
+				if(item.asWeapon() != null){
+					this.removeItemFromInventory(item);
+					break; // after it removes that weapon, break the loop.
+				}
+			}
+		}
 	}
 
 	public void setPreviousTokenLocation(Location location){
