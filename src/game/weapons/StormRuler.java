@@ -80,7 +80,6 @@ public class StormRuler extends MeleeWeapon {
         }
         return allowableActions.getUnmodifiableActionList();
     }
-
 //        boolean present1 = false;
 //        boolean present2 = false;
 //        int chargeCount = ChargeAction.getNumOfCharge();
