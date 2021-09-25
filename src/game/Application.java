@@ -1,14 +1,14 @@
 package game;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import edu.monash.fit2099.engine.*;
 import game.enemies.LordOfCinder;
 import game.enemies.Skeleton;
 import game.grounds.*;
 import game.weapons.StormRuler;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 /**
  * The main class for the Jurassic World game.
@@ -52,9 +52,9 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
-			Actor player = new Player("Unkindled (Player)", '@', 100);
+			Actor player = new Player("Unkindled (Player)", '@', 10000);
 //			world.addPlayer(player, gameMap.at(38, 12));
-			world.addPlayer(player, gameMap.at(7, 25));
+			world.addPlayer(player, gameMap.at(8, 25));
 
 			// Place Yhorm the Giant/boss in the map
 			gameMap.at(6, 25).addActor(new LordOfCinder());

@@ -28,10 +28,8 @@ public class WindSlashAction extends WeaponAction{
      * Constructor
      * @param weaponItem the weapon item that has capabilities
      */
-    public WindSlashAction(WeaponItem weaponItem, Actor target, String direction) {
+    public WindSlashAction(WeaponItem weaponItem) {
         super(weaponItem);
-        this.target = target;
-        this.direction = direction;
     }
 
     /**
@@ -44,26 +42,22 @@ public class WindSlashAction extends WeaponAction{
     public String execute(Actor actor, GameMap map) {
 
         String result = "";
-        char yhormTheGiantChar = 'Y';
-        int compareChar = Character.compare(target.getDisplayChar(), yhormTheGiantChar);
         int damage = weapon.damage();
-        if (compareChar == 0) {
-            damage *= 2;
-        }else {
-            Random rand = new Random();
-            if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-                return actor + " misses " + target + ".";
-            }
-        }
         Location here = map.locationOf(actor);
         for (Exit exit : here.getExits())
             if (exit.getDestination().containsAnActor()) {
                 Location targetLocation = exit.getDestination();
                 Actor target = map.getActorAt(targetLocation);
                 boolean isAttack = false;
-                if (actor instanceof LordOfCinder) {
+                if (target instanceof LordOfCinder) {
+                    damage *= 2;
                     result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage." + System.lineSeparator() ;
                     isAttack = true;
+                }else {
+                    Random rand = new Random();
+                    if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
+                        return actor + " misses " + target + ".";
+                    }
                 }
                 if (isAttack) {
                     target.hurt(damage);

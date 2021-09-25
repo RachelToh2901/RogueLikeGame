@@ -54,8 +54,6 @@ public class ResetAction extends Action {
 
             ResetManager.getInstance().run(map);
 
-
-
             return "You Died!";
         }
     }

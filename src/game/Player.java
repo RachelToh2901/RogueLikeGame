@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.actions.ResetAction;
+import game.actions.SwapWeaponAction;
 import game.activeskills.ChargeAction;
 import game.activeskills.SpinAttackAction;
 import game.activeskills.WindSlashAction;
@@ -14,6 +15,7 @@ import game.items.EstusFlask;
 import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
 import game.items.EstusFlask;
+import game.weapons.StormRuler;
 
 /**
  * Class representing the Player.
@@ -76,6 +78,13 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		for (Item item: this.getInventory()){
+			if (item instanceof StormRuler && !(this.getWeapon() instanceof StormRuler)){
+				SwapWeaponAction swapWeaponAction = new SwapWeaponAction(item);
+				swapWeaponAction.execute(this, map);
+			}
+		}
+		System.out.println("Player Weapon: " + this.getWeapon());
 		if ( lastSavedLocation == null ) {
 			setLastSavedLocation(map.locationOf(this));
 		}
@@ -209,6 +218,11 @@ public class Player extends Actor implements Soul, Resettable {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		actions.add(new AttackAction(this, direction));
+		System.out.println(this.getWeapon() instanceof StormRuler);
+		if (this.getWeapon() instanceof StormRuler){
+			System.out.println("add active skill");
+			actions.add(((StormRuler) this.getWeapon()).getActiveSkill());
+		}
 //		boolean present = false;
 //		for (Action action : actions){
 //			if (action instanceof SpinAttackAction || action instanceof ChargeAction || action instanceof WindSlashAction){
