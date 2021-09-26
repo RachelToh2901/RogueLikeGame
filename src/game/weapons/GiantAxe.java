@@ -23,7 +23,13 @@ public class GiantAxe extends MeleeWeapon {
         super("Giant Axe", 'T', 50, "flink", 80);
     }
 
-
+    /**
+     * Getter.
+     *
+     * Returns an unmodifiable copy of the actions list so that calling methods won't
+     * be able to change what this Item can do without the Item checking.
+     * @return an unmodifiable list of Actions
+     */
     @Override
     public List<Action> getAllowableActions() {
         boolean present = false;

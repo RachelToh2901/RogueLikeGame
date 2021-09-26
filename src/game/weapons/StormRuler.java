@@ -56,6 +56,13 @@ public class StormRuler extends MeleeWeapon {
         }
     }
 
+    /**
+     * Getter.
+     *
+     * Returns an unmodifiable copy of the actions list so that calling methods won't
+     * be able to change what this Item can do without the Item checking.
+     * @return an unmodifiable list of Actions
+     */
     @Override
     public List<Action> getAllowableActions() {
         if (holder != null) {
@@ -94,12 +101,19 @@ public class StormRuler extends MeleeWeapon {
         return allowableActions.getUnmodifiableActionList();
     }
 
+    /**
+     * Method to reduce damage of storm Ruler when atatcking enemies that are not weak to storm ruler
+     * @return damageDealt/2
+     */
     public int dullness(){
         int damageDealt = this.damage;
         return damageDealt/2;
     }
 
-
+    /**
+     * Setter
+     * Set holder of StormRuler
+     */
     public void setHolder(Actor holder){
         this.holder = holder;
     }
