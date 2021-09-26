@@ -3,6 +3,7 @@ package game.activeskills;
 import edu.monash.fit2099.engine.*;
 import game.Player;
 import game.ResetManager;
+import game.actions.ResetAction;
 import game.enemies.Enemies;
 import game.interfaces.Soul;
 
@@ -53,7 +54,9 @@ public class SpinAttackAction extends WeaponAction {
                             drop.execute(target, map);
 
                         if (target instanceof Player) {
-                            ResetManager.getInstance().run(map);
+//                            ResetManager.getInstance().run(map);
+                            Action reset = new ResetAction();
+                            result = reset.execute(target, map);
                         } else {
                             ((Enemies) target).die(map, (Soul) actor);
                         }
