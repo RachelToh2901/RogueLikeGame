@@ -56,6 +56,7 @@ public class ResetAction extends Action {
         }
     }
 
+
     /**
      * Returns a descriptive string
      * @param actor The actor performing the action.
