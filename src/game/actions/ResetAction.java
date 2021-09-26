@@ -77,7 +77,7 @@ public class ResetAction extends Action {
         res += "       YY  YY      OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
         res += "         YY        OO       OO   UU         UU        DD       DD      II       EEEEEEEEEEE   DD       DD  !!";
         res += "         YY        OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
-        res += "         YY        OO       OO   UU         UU        DD      DD       II       EE            DD      DD     ";
+        res += "         YY        OO       OO   UU         UU        DD      DD       II       EE            DD      DD   !!";
         res += "         YY        OO       OO    UU       UU         DD     DD        II       EE            DD     DD    !!";
         res += "         YY         OOOOOOOOO      UUUUUUUU           DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!";
         return res;
