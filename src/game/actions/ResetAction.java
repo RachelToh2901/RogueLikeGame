@@ -67,6 +67,9 @@ public class ResetAction extends Action {
         return "Rest at Firelink Shrine bonfire";
     }
 
+    /**
+     * Method to print "YOU DIED" in the console when the Player dies
+     */
     public void printDieMessage(){
         String res = "";
         res += "YY          YY   OOOOOOOOO    UU         UU        DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!" + System.lineSeparator();

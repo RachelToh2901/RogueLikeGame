@@ -21,6 +21,9 @@ public class Skeleton extends Enemies {
      */
     private boolean revivedOnce = false;
 
+    /**
+     * Probability of active skill being activated
+     */
     private int activeSkillChance = 50;
 
     /**

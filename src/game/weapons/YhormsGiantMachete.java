@@ -5,7 +5,7 @@ import game.grounds.BurningGround;
 import game.grounds.Dirt;
 
 /**
- * Yhorm's Giant Machete weapon
+ *  Class for Yhorm's Giant Machete weapon
  */
 public class YhormsGiantMachete extends MeleeWeapon {
     /**

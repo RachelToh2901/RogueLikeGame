@@ -3,7 +3,7 @@ package game.weapons;
 import java.util.Random;
 
 /**
- * BroadSword weapon
+ * Class for BroadSword weapon
  */
 public class BroadSword extends MeleeWeapon {
 
@@ -11,7 +11,6 @@ public class BroadSword extends MeleeWeapon {
      * Constructor
      */
     public BroadSword() {
-        //TODO: update displayChar of Broad Sword
         super("Broad Sword", '1', 30, "hits", 80);
 
     }

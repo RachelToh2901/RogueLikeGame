@@ -10,6 +10,9 @@ import game.shopactions.PurchaseStatAction;
 import game.weapons.BroadSword;
 import game.weapons.GiantAxe;
 
+/**
+ * Class for creating a Vendor where Player can buy BroadSword, Giant Axe or increase maximum hit points by 25
+ */
 public class Vendor extends Ground {
 
     /**

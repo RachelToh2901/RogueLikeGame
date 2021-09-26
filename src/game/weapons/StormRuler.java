@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Storm Ruler weapon
+ * Class for Storm Ruler weapon
  */
 public class StormRuler extends MeleeWeapon {
 

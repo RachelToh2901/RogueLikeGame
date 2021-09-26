@@ -8,6 +8,9 @@ import game.actions.SwapWeaponAction;
 
 import java.util.List;
 
+/**
+ * Class for player to purchase weapons from the Vendor
+ */
 public class PurchaseWeaponAction extends SwapWeaponAction {
 
     /**
@@ -38,7 +41,6 @@ public class PurchaseWeaponAction extends SwapWeaponAction {
                 break; // after it removes that weapon, break the loop.
             }
         }
-
         // additionally, add new weapon to the inventory (equip).
         actor.addItemToInventory(item);
         return actor + " purchase " + currentWeapon;

@@ -31,8 +31,20 @@ public class Player extends Actor implements Soul, Resettable {
 	 * Number of Souls that the Player has
 	 */
 	private int souls;
+
+	/**
+	 * Last location of the Player before dying
+	 */
 	private Location lastLocation;
+
+	/**
+	 * Location of previous Token of Souls object
+	 */
 	private Location previousTokenLocation = null;
+
+	/**
+	 * Previous Token of Souls object
+	 */
 	private TokenOfSouls previousTokenOfSouls = null;
 
 	/**
@@ -175,6 +187,10 @@ public class Player extends Actor implements Soul, Resettable {
 	}
 
 
+	/**
+	 * Getter
+	 * @return lastLocation Last location of Player before dying
+	 */
 	public Location getLastLocation(){
 		return this.lastLocation;
 	}

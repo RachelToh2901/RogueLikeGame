@@ -66,19 +66,6 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void resetInstance(GameMap map) {
     this.hitPoints = maxHitPoints;
-//    Behaviour behaviourToRemove = null;
-//    List<Behaviour> toRemove = new ArrayList<>();
-//    for( Behaviour behavior : behaviours ) {
-//      if ( behavior instanceof FollowBehaviour ) {
-//        behaviours.remove(behavior);
-//        behaviourToRemove = behavior;
-//        toRemove.add(behavior);
-//
-//      }
-//    }
-    //    if (behaviourToRemove != null){
-//      behaviours.remove(behaviourToRemove);
-//    }
     behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour);
     behaviours.add(new WanderBehaviour());
 
@@ -126,6 +113,11 @@ public class Enemies extends Actor implements Resettable, Soul {
     }
   }
 
+  /**
+   * Method to check if the target(Player) is near the enemy
+   * @param actions ArrayList of allowbale actions
+   * @return True/False
+   */
   public boolean checkIsPlayerNear(Actions actions ) {
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
@@ -188,6 +180,10 @@ public class Enemies extends Actor implements Resettable, Soul {
     return actions;
   }
 
+  /**
+   * Method that returns a String
+   * @return String that displays the name of the enemy along with its hit points and the weapon that it is holding
+   */
   @Override
   public String toString() {
     if ( getWeapon() instanceof IntrinsicWeapon ) {

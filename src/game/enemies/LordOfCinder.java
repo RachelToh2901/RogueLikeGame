@@ -63,7 +63,6 @@ public class LordOfCinder extends Enemies {
             return attackPlayer(actions);
         }
 
-
         // loop through all behaviours
         for(Behaviour Behaviour : behaviours) {
             Action action = Behaviour.getAction(this, map);
@@ -87,6 +86,4 @@ public class LordOfCinder extends Enemies {
         }
         emberForm = false;
     }
-
-
 }

@@ -19,6 +19,10 @@ public class RetrieveSoulAction extends Action {
      */
     private int numOfSouls;
 
+    /**
+     * Constructor for RetrieveSoulAction class
+     * @param tokenOfSouls
+     */
     public RetrieveSoulAction(TokenOfSouls tokenOfSouls){
         this.tokenOfSouls = tokenOfSouls;
     }

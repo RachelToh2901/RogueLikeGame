@@ -9,6 +9,9 @@ import game.enemies.Undead;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class to create cemetery from which Undead spawns
+ */
 public class Cemetery extends Ground {
 
     /**
@@ -38,9 +41,6 @@ public class Cemetery extends Ground {
                 }
                 direction = rand.nextInt(exits.size());
             }
-
-
-
         }
     }
 }

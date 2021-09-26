@@ -5,6 +5,9 @@ import game.actions.DrinkEstusFlaskAction;
 
 import java.util.List;
 
+/**
+ * Class for Estus Flask which Player carries throughout the game
+ */
 public class EstusFlask extends Item {
 
     /**

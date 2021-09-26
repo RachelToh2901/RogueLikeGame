@@ -39,7 +39,6 @@ public class SwapWeaponAction extends PickUpItemAction {
                 break; // after it removes that weapon, break the loop.
             }
         }
-
         // if the ground has item, remove that item.
         // additionally, add new weapon to the inventory (equip).
         super.execute(actor, map);

@@ -6,7 +6,7 @@ import game.activeskills.SpinAttackAction;
 import java.util.List;
 
 /**
- * Giant Axe weapon
+ * Class for Giant Axe weapon
  */
 public class GiantAxe extends MeleeWeapon {
 
@@ -14,7 +14,6 @@ public class GiantAxe extends MeleeWeapon {
      * Constructor
      */
     public GiantAxe () {
-        //TODO: update displayChar
         super("Giant Axe", 'T', 50, "flink", 80);
     }
 

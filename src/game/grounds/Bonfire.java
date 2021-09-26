@@ -6,6 +6,9 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.actions.ResetAction;
 
+/**
+ * Class to create a new Bonfire where Player can rest
+ */
 public class Bonfire extends Ground {
 
     /**
