@@ -53,7 +53,6 @@ public class SpinAttackAction extends WeaponAction {
                             drop.execute(target, map);
 
                         if (target instanceof Player) {
-                            // TODO : COMPLETE IT
                             ResetManager.getInstance().run(map);
                         } else {
                             ((Enemies) target).die(map, (Soul) actor);

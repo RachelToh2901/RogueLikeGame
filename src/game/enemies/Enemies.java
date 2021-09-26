@@ -66,17 +66,22 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void resetInstance(GameMap map) {
     this.hitPoints = maxHitPoints;
-    Behaviour behaviourToRemove = null;
-    for( Behaviour behavior : behaviours ) {
-      if ( behavior instanceof FollowBehaviour ) {
+//    Behaviour behaviourToRemove = null;
+//    List<Behaviour> toRemove = new ArrayList<>();
+//    for( Behaviour behavior : behaviours ) {
+//      if ( behavior instanceof FollowBehaviour ) {
 //        behaviours.remove(behavior);
-        behaviourToRemove = behavior;
-        behaviours.add(new WanderBehaviour());
-      }
-    }
-    if (behaviourToRemove != null){
-      behaviours.remove(behaviourToRemove);
-    }
+//        behaviourToRemove = behavior;
+//        toRemove.add(behavior);
+//
+//      }
+//    }
+    //    if (behaviourToRemove != null){
+//      behaviours.remove(behaviourToRemove);
+//    }
+    behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour);
+    behaviours.add(new WanderBehaviour());
+
     if ( initialLocation != null ) {
       map.moveActor(this, initialLocation);
     }

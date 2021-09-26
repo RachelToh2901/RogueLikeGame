@@ -14,6 +14,11 @@ public class TokenOfSouls extends Item {
     private int numberOfSouls;
     public Location itemLocation;
 
+    /**
+     * Constructor.
+     *
+     * @param actor actor who will spawn Token
+     */
     public TokenOfSouls(Actor actor) {
         super("Token of Souls", '$', false);
         itemLocation = ((Player) actor).getLastLocation();
