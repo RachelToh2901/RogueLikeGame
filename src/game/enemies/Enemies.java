@@ -90,7 +90,7 @@ public class Enemies extends Actor implements Resettable, Soul {
    */
   public Action attackPlayer(Actions actions ) {
     Action normalAttack = null;
-    List<Action> weaponSkills = null;
+    List<Action> weaponSkills = new ArrayList<>();
     int activeSkillChance = 50;
     Random rand = new Random();
 
@@ -100,13 +100,11 @@ public class Enemies extends Actor implements Resettable, Soul {
         normalAttack = action;
 
       } else if ( action instanceof WeaponAction ){
-        if (weaponSkills != null) {
           weaponSkills.add(action);
-        }
       }
     }
 
-    if ( weaponSkills != null && rand.nextInt(100) < activeSkillChance) {
+    if ( !weaponSkills.isEmpty() && rand.nextInt(100) < activeSkillChance) {
       return weaponSkills.get( rand.nextInt(weaponSkills.size() - 1) );
     } else {
       return normalAttack;
