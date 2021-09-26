@@ -54,7 +54,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.souls = 5000;
+		this.souls = 0;
 	}
 
 	/**
@@ -184,12 +184,22 @@ public class Player extends Actor implements Soul, Resettable {
 		return this.lastLocation;
 	}
 
+	/**
+	 * Method to add souls to the Player
+	 * @param souls number of souls to be incremented.
+	 * @return true
+	 */
 	@Override
 	public boolean addSouls(int souls){
 		this.souls += souls;
 		return true;
 	}
 
+	/**
+	 * Method to deduct souls from the Player
+	 * @param souls number souls to be deducted
+	 * @return true
+	 */
 	@Override
 	public boolean subtractSouls(int souls) {
 		this.souls -= souls;
@@ -206,6 +216,14 @@ public class Player extends Actor implements Soul, Resettable {
 		return this.souls;
 	}
 
+	/**
+	 * Returns a collection of the Actions that the otherActor can do to the current Actor.
+	 *
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction  String representing the direction of the other Actor
+	 * @param map        current GameMap
+	 * @return A collection of Actions.
+	 */
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
@@ -214,6 +232,9 @@ public class Player extends Actor implements Soul, Resettable {
 		return actions;
 	}
 
+	/**
+	 * Method to check if the player is holding StormRuler
+	 */
 	public void checkHoldingStormRuler(){
 		boolean holdStormRuler = false;
 		for (Item item: this.getInventory()){
@@ -233,18 +254,34 @@ public class Player extends Actor implements Soul, Resettable {
 		}
 	}
 
+	/**
+	 * Setter
+	 * @param location last location of the token of souls
+	 */
 	public void setPreviousTokenLocation(Location location){
 		this.previousTokenLocation = location;
 	}
 
+	/**
+	 * Getter
+	 * @return previousTokenLocation location of token of souls
+	 */
 	public Location getPreviousTokenLocation(){
 		return this.previousTokenLocation;
 	}
 
+	/**
+	 * Getter
+	 * @param tokenOfSouls The TokenOfSouls object
+	 */
 	public void setPreviousTokenOfSouls(TokenOfSouls tokenOfSouls){
 		this.previousTokenOfSouls = tokenOfSouls;
 	}
 
+	/**
+	 * Getter
+	 * @return previousTokeOfSouls
+	 */
 	public TokenOfSouls getPreviousTokenOfSouls(){
 		return this.previousTokenOfSouls;
 	}

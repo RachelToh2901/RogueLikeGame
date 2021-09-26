@@ -68,16 +68,16 @@ public class ResetAction extends Action {
 
     public void printDieMessage(){
         String res = "";
-        res += "   YY          YY   OOOOOOOOO    UU         UU        DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!" + System.lineSeparator();
-        res += "    YY        YY   OO       OO   UU         UU        DD     DD        II       EE            DD     DD    !!" + System.lineSeparator();
-        res += "     YY      YY    OO       OO   UU         UU        DD      DD       II       EE            DD      DD   !!" + System.lineSeparator();
-        res += "      YY    YY     OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
-        res += "       YY  YY      OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
-        res += "         YY        OO       OO   UU         UU        DD       DD      II       EEEEEEEEEEE   DD       DD  !!" + System.lineSeparator();
-        res += "         YY        OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
-        res += "         YY        OO       OO   UU         UU        DD      DD       II       EE            DD      DD     " + System.lineSeparator();
-        res += "         YY        OO       OO    UU       UU         DD     DD        II       EE            DD     DD    !!" + System.lineSeparator();
-        res += "         YY         OOOOOOOOO      UUUUUUUU           DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!" + System.lineSeparator();
+        res += "YY          YY   OOOOOOOOO    UU         UU        DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!" + System.lineSeparator();
+        res += " YY        YY   OO       OO   UU         UU        DD     DD        II       EE            DD     DD    !!" + System.lineSeparator();
+        res += "  YY      YY    OO       OO   UU         UU        DD      DD       II       EE            DD      DD   !!" + System.lineSeparator();
+        res += "   YY    YY     OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
+        res += "    YY  YY      OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
+        res += "      YY        OO       OO   UU         UU        DD       DD      II       EEEEEEEEEEE   DD       DD  !!" + System.lineSeparator();
+        res += "      YY        OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
+        res += "      YY        OO       OO   UU         UU        DD      DD       II       EE            DD      DD     " + System.lineSeparator();
+        res += "      YY        OO       OO    UU       UU         DD     DD        II       EE            DD     DD    !!" + System.lineSeparator();
+        res += "      YY         OOOOOOOOO      UUUUUUUU           DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!" + System.lineSeparator();
         Display display = new Display();
         display.println(res);
     }
