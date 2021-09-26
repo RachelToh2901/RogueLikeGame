@@ -80,13 +80,6 @@ public class AttackAction extends Action {
 			for (Action drop : dropActions)
 				drop.execute(target, map);
 
-
-			// OLD CODE
-			// remove actor
-			// DONE: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-			// map.removeActor(target);
-			// result += System.lineSeparator() + target + " is killed.";
-
 			if ( target instanceof Player) {
 				// TODO : COMPLETE IT
 				Action reset = new ResetAction();

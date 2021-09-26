@@ -66,11 +66,16 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void resetInstance(GameMap map) {
     this.hitPoints = maxHitPoints;
+    Behaviour behaviourToRemove = null;
     for( Behaviour behavior : behaviours ) {
       if ( behavior instanceof FollowBehaviour ) {
-        behaviours.remove(behavior);
+//        behaviours.remove(behavior);
+        behaviourToRemove = behavior;
         behaviours.add(new WanderBehaviour());
       }
+    }
+    if (behaviourToRemove != null){
+      behaviours.remove(behaviourToRemove);
     }
     if ( initialLocation != null ) {
       map.moveActor(this, initialLocation);
@@ -122,13 +127,6 @@ public class Enemies extends Actor implements Resettable, Soul {
         behaviours.add(new FollowBehaviour(target));
         behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
 
-//        for ( Behaviour behaviour : behaviours ) {
-//          if ( behaviour instanceof WanderBehaviour ) {
-//            behaviours.removeIf(tempBehaviour -> tempBehaviour instanceof WanderBehaviour);
-//          }
-//          Actor target = ((AttackAction) action).getTarget();
-//          behaviours.add(new FollowBehaviour(target));
-//        }
         return true;
       }
     }

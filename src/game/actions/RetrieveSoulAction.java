@@ -32,7 +32,6 @@ public class RetrieveSoulAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        // Question : Do we need to check whether actor is player?
             numOfSouls = tokenOfSouls.getNumberOfSouls();
             ((Player) actor).addSouls(numOfSouls);
             map.locationOf(actor).removeItem(tokenOfSouls);

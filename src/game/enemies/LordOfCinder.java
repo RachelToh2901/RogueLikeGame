@@ -57,7 +57,7 @@ public class LordOfCinder extends Enemies {
         // Feature : Ember Form
         if ( hitPoints <= ( maxHitPoints /2 ) && !emberForm ) {
             ((YhormsGiantMachete) getWeapon()).activateEmberForm(this,map);
-            display.println("Ember Form Activated");
+            display.println("Ember Form Activated. KHARGHH!!");
             emberForm = true;
         }
 
@@ -91,40 +91,5 @@ public class LordOfCinder extends Enemies {
         emberForm = false;
     }
 
-//    /**
-//     * Method for Lord of Cinder to attack player
-//     * @param actions list of actions
-//     */
-//    @Override
-//    public Action attackPlayer(Actions actions ) {
-//
-//        for ( Action action : actions ) {
-//            if ( action instanceof AttackAction) {
-//                Actor target = ((AttackAction) action).getTarget();
-//                behaviours.add(new EnragedBossFollowBehavior(target));
-//                behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
-//                return action;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    /**
-//     * Method for Lord of Cinder to attack player in ember form(enraged)
-//     *
-//     */
-//    public void enraged() {
-//        ((YhormsGiantMachete) getWeapon()).activateEmberForm();
-//        Actor target = null;
-//        for ( int i = 0; i < behaviours.size(); i ++ ) {
-//            if ( behaviours.get(i) instanceof FollowBehaviour) {
-////                target = ((FollowBehaviour) behaviour).getTarget();
-//                target = ((FollowBehaviour) behaviours.get(i)).getTarget();
-//                behaviours.set(i,new EnragedBossFollowBehavior(target));
-//            }
-//        }
-//
-//
-//        emberForm = true;
-//    }
+
 }

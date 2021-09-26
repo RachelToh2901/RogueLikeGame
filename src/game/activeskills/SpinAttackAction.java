@@ -36,7 +36,7 @@ public class SpinAttackAction extends WeaponAction {
                 Actor target = map.getActorAt(targetLocation);
                 boolean isAttack = false;
                 if (actor instanceof Player) {
-                    result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage. \n" ;
+                    result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage." + System.lineSeparator() ;
                     isAttack = true;
                 } else if (actor instanceof Enemies && target instanceof Player) {
                     result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";

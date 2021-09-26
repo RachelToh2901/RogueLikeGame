@@ -96,8 +96,6 @@ public class StormRuler extends MeleeWeapon {
                 allowableActions.remove(actionToRemove);
             }
         }
-//        SwapWeaponAction swapWeaponAction = new SwapWeaponAction(this);
-//        allowableActions.add(swapWeaponAction);
         return allowableActions.getUnmodifiableActionList();
     }
 

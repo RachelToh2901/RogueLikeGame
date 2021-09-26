@@ -23,7 +23,6 @@ public class Valley extends Ground {
 	}
 
 	/**
-	 * FIXME: At the moment, the Player cannot enter it. It is boring.
 	 * @param actor the Actor to check
 	 * @return false or actor cannot enter.
 	 */

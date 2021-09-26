@@ -15,16 +15,6 @@ import java.util.Random;
 public class WindSlashAction extends WeaponAction{
 
     /**
-     * The Actor that is to be attacked
-     */
-    protected Actor target;
-
-    /**
-     * The direction of incoming attack.
-     */
-    protected String direction;
-
-    /**
      * Constructor
      * @param weaponItem the weapon item that has capabilities
      */

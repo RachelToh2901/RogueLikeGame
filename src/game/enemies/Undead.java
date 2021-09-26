@@ -26,15 +26,12 @@ public class Undead extends Enemies {
 	public Undead(String name) {
 		super(name, 'U', 50, 50);
 		registerInstance();
-		// OLD CODE
-		// behaviours.add(new WanderBehaviour());
 	}
 
 
 
 	/**
 	 * Figure out what to do next.
-	 * FIXME: An Undead wanders around at random and it cannot attack anyone. Also, figure out how to spawn this creature.
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
 	@Override

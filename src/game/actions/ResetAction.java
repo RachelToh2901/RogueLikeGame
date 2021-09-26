@@ -4,11 +4,8 @@ import edu.monash.fit2099.engine.*;
 import game.Player;
 import game.ResetManager;
 import game.grounds.Valley;
-import game.interfaces.Resettable;
 import game.items.TokenOfSouls;
 
-import javax.management.ValueExp;
-import java.util.List;
 
 /**
  * Special Action for Player to rest at FireLink Shrine
@@ -51,10 +48,11 @@ public class ResetAction extends Action {
             ((Player) actor).setPreviousTokenOfSouls(tokenOfSouls);
             ((Player) actor).setPreviousTokenLocation(playerLastLocation);
 
+            printDieMessage();
 
             ResetManager.getInstance().run(map);
 
-            return printDieMessage();
+            return "You Died";
         }
     }
 
@@ -68,18 +66,19 @@ public class ResetAction extends Action {
         return "Rest at Firelink Shrine bonfire";
     }
 
-    public String printDieMessage(){
+    public void printDieMessage(){
         String res = "";
-        res += "   YY          YY   OOOOOOOOO    UU         UU        DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!";
-        res += "    YY        YY   OO       OO   UU         UU        DD     DD        II       EE            DD     DD    !!";
-        res += "     YY      YY    OO       OO   UU         UU        DD      DD       II       EE            DD      DD   !!";
-        res += "      YY    YY     OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
-        res += "       YY  YY      OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
-        res += "         YY        OO       OO   UU         UU        DD       DD      II       EEEEEEEEEEE   DD       DD  !!";
-        res += "         YY        OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!";
-        res += "         YY        OO       OO   UU         UU        DD      DD       II       EE            DD      DD   !!";
-        res += "         YY        OO       OO    UU       UU         DD     DD        II       EE            DD     DD    !!";
-        res += "         YY         OOOOOOOOO      UUUUUUUU           DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!";
-        return res;
+        res += "   YY          YY   OOOOOOOOO    UU         UU        DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!" + System.lineSeparator();
+        res += "    YY        YY   OO       OO   UU         UU        DD     DD        II       EE            DD     DD    !!" + System.lineSeparator();
+        res += "     YY      YY    OO       OO   UU         UU        DD      DD       II       EE            DD      DD   !!" + System.lineSeparator();
+        res += "      YY    YY     OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
+        res += "       YY  YY      OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
+        res += "         YY        OO       OO   UU         UU        DD       DD      II       EEEEEEEEEEE   DD       DD  !!" + System.lineSeparator();
+        res += "         YY        OO       OO   UU         UU        DD       DD      II       EE            DD       DD  !!" + System.lineSeparator();
+        res += "         YY        OO       OO   UU         UU        DD      DD       II       EE            DD      DD     " + System.lineSeparator();
+        res += "         YY        OO       OO    UU       UU         DD     DD        II       EE            DD     DD    !!" + System.lineSeparator();
+        res += "         YY         OOOOOOOOO      UUUUUUUU           DDDDDDDD     IIIIIIIIII   EEEEEEEEEEE   DDDDDDDD     !!" + System.lineSeparator();
+        Display display = new Display();
+        display.println(res);
     }
 }
