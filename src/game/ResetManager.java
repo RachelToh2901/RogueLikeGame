@@ -3,7 +3,6 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.interfaces.Resettable;
-import game.items.TokenOfSouls;
 
 import java.util.ArrayList;
 import java.util.List;

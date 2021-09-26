@@ -79,14 +79,6 @@ public class Application {
 				}
 			}
 		}
-//		gameMap.at(6,17).addActor(new Skeleton());
-//		gameMap.at(6,9).addActor(new Skeleton());
-//		gameMap.at(4,20).addActor(new Skeleton());
-//		gameMap.at(42,6).addActor(new Skeleton());
-//		gameMap.at(35,15).addActor(new Skeleton());
-//		gameMap.at(6,3).addActor(new Skeleton());
-
-
 		world.run();
 
 	}

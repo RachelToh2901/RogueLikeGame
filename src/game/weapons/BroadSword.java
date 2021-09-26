@@ -1,9 +1,5 @@
 package game.weapons;
 
-import edu.monash.fit2099.engine.Action;
-import game.shopactions.PurchaseBroadswordAction;
-
-import java.util.List;
 import java.util.Random;
 
 /**

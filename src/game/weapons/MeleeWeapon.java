@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.WeaponItem;
 
-import java.util.Random;
 
 public class MeleeWeapon extends WeaponItem {
     /**

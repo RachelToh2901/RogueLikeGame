@@ -2,7 +2,6 @@ package game.activeskills;
 
 import edu.monash.fit2099.engine.*;
 import game.Player;
-import game.ResetManager;
 import game.actions.ResetAction;
 import game.enemies.Enemies;
 import game.enemies.LordOfCinder;
@@ -64,8 +63,6 @@ public class WindSlashAction extends WeaponAction{
                             drop.execute(target, map);
 
                         if (target instanceof Player) {
-                            // TODO : COMPLETE IT
-//                            ResetManager.getInstance().run(map);
                             Action reset = new ResetAction();
                             result = reset.execute(target, map);
                         } else {

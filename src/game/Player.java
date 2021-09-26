@@ -2,11 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
-import game.actions.ResetAction;
-import game.actions.SwapWeaponAction;
 import game.activeskills.ChargeAction;
-import game.activeskills.SpinAttackAction;
-import game.activeskills.WindSlashAction;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Resettable;
@@ -14,7 +10,6 @@ import game.interfaces.Soul;
 import game.items.EstusFlask;
 import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
-import game.items.EstusFlask;
 import game.weapons.StormRuler;
 
 /**

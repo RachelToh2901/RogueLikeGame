@@ -3,7 +3,6 @@ package game.behaviors;
 import edu.monash.fit2099.engine.*;
 import game.grounds.BurningGround;
 import game.grounds.Dirt;
-import game.grounds.Floor;
 
 /**
  * Behaviour for Ember Form of Yhorm the Giant

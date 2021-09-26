@@ -2,10 +2,8 @@ package game.enemies;
 
 
 import edu.monash.fit2099.engine.*;
-import game.actions.AttackAction;
 import game.actions.DieByChanceAction;
 import game.behaviors.FollowBehaviour;
-import game.enums.Status;
 import game.interfaces.Behaviour;
 
 import java.util.Random;
@@ -14,9 +12,6 @@ import java.util.Random;
  * An undead minion which is an enemy of Design o' Souls
  */
 public class Undead extends Enemies {
-	// OLD CODE
-	// Will need to change this to a collection if Undeads gets additional Behaviours.
-	// private ArrayList<Behaviour> behaviours = new ArrayList<>();
 
 	/** 
 	 * Constructor.

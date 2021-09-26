@@ -1,10 +1,7 @@
 package game.enemies;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.AttackAction;
-import game.behaviors.WanderBehaviour;
 import game.behaviors.EnragedBossFollowBehavior;
-import game.behaviors.FollowBehaviour;
 import game.interfaces.Behaviour;
 import game.items.CindersOfALord;
 import game.weapons.YhormsGiantMachete;

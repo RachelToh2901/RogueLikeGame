@@ -1,11 +1,9 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.SwapWeaponAction;
 import game.activeskills.ChargeAction;
 import game.activeskills.WindSlashAction;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
