@@ -108,7 +108,9 @@ public class Enemies extends Actor implements Resettable, Soul {
         normalAttack = action;
 
       } else if ( action instanceof WeaponAction ){
-        weaponSkills.add(action);
+        if (weaponSkills != null) {
+          weaponSkills.add(action);
+        }
       }
     }
 
