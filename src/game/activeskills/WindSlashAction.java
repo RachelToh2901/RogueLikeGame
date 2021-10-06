@@ -65,7 +65,7 @@ public class WindSlashAction extends WeaponAction{
                     target.hurt(damage);
                     target.addCapability(STUNNED);
                     //reset the number of charge after using this skill
-                    game.activeskills.ChargeAction.resetNumOfCharge();
+                    ChargeAction.resetNumOfCharge();
                     if (!target.isConscious()) {
                         // drop all items
                         Actions dropActions = new Actions();
