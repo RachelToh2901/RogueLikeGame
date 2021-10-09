@@ -32,4 +32,10 @@ public class YhormsGiantMachete extends MeleeWeapon {
         hitRate += 30;
     }
 
+    //TODO: add Javadoc;
+    @Override
+    public String toString() {
+        return "YhormsGiantMachete";
+    }
+
 }
