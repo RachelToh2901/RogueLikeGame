@@ -1,11 +1,8 @@
 package game.activeskills;
 
 import edu.monash.fit2099.engine.*;
-import game.Player;
-import game.actions.ResetAction;
-import game.enemies.Enemies;
+import game.cleanBattleField;
 import game.enemies.LordOfCinder;
-import game.interfaces.Soul;
 
 import java.util.Random;
 
@@ -41,38 +38,35 @@ public class WindSlashAction extends WeaponAction{
             if (exit.getDestination().containsAnActor()) {
                 Location targetLocation = exit.getDestination();
                 Actor target = map.getActorAt(targetLocation);
-                boolean isAttack = false;
                 if (target instanceof LordOfCinder) {
                     damage *= 2;
                     result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage." + System.lineSeparator() ;
-                    isAttack = true;
                 }else {
                     Random rand = new Random();
                     if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
                         return actor + " misses " + target + ".";
+                    }else{
+                        result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage." + System.lineSeparator() ;
                     }
                 }
-                if (isAttack) {
-                    target.hurt(damage);
-                    if (!target.isConscious()) {
-                        // drop all items
-                        Actions dropActions = new Actions();
-                        for (Item item : target.getInventory())
-                            dropActions.add(item.getDropAction(actor));
-                        for (Action drop : dropActions)
-                            drop.execute(target, map);
-
-                        if (target instanceof Player) {
-                            Action reset = new ResetAction();
-                            result = reset.execute(target, map);
-                        } else {
-                            ((Enemies) target).die(map, (Soul) actor);
-                        }
-
-                        result += System.lineSeparator() + target + " is killed." + System.lineSeparator();
-                    }
-                }
-
+                target.hurt(damage);
+                result += cleanBattleField.cleanBattle(actor, map, target);
+//                    if (!target.isConscious()) {
+//                        // drop all items
+//                        Actions dropActions = new Actions();
+//                        for (Item item : target.getInventory())
+//                            dropActions.add(item.getDropAction(actor));
+//                        for (Action drop : dropActions)
+//                            drop.execute(target, map);
+//
+//                        if (target instanceof Player) {
+//                            Action reset = new ResetAction();
+//                            result = reset.execute(target, map);
+//                        } else {
+//                            ((Enemies) target).die(map, (Soul) actor);
+//                        }
+//
+//                        result += System.lineSeparator() + target + " is killed." + System.lineSeparator();
             }
         return result;
     }
