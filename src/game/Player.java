@@ -2,11 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
-import game.actions.ResetAction;
-import game.actions.SwapWeaponAction;
 import game.activeskills.ChargeAction;
-import game.activeskills.SpinAttackAction;
-import game.activeskills.WindSlashAction;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Resettable;
@@ -14,7 +10,6 @@ import game.interfaces.Soul;
 import game.items.EstusFlask;
 import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
-import game.items.EstusFlask;
 import game.weapons.StormRuler;
 
 /**
@@ -36,8 +31,20 @@ public class Player extends Actor implements Soul, Resettable {
 	 * Number of Souls that the Player has
 	 */
 	private int souls;
+
+	/**
+	 * Last location of the Player before dying
+	 */
 	private Location lastLocation;
+
+	/**
+	 * Location of previous Token of Souls object
+	 */
 	private Location previousTokenLocation = null;
+
+	/**
+	 * Previous Token of Souls object
+	 */
 	private TokenOfSouls previousTokenOfSouls = null;
 
 	/**
@@ -48,13 +55,13 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
-		super(name, displayChar, 10000);
+		super(name, displayChar, 100);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.souls = 100000;
+		this.souls = 0;
 	}
 
 	/**
@@ -78,13 +85,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		for (Item item: this.getInventory()){
-			if (item instanceof StormRuler && !(this.getWeapon() instanceof StormRuler)){
-				SwapWeaponAction swapWeaponAction = new SwapWeaponAction(item);
-				swapWeaponAction.execute(this, map);
-			}
-		}
-		System.out.println("Player Weapon: " + this.getWeapon());
 		if ( lastSavedLocation == null ) {
 			setLastSavedLocation(map.locationOf(this));
 		}
@@ -99,6 +99,17 @@ public class Player extends Actor implements Soul, Resettable {
 		// return/print the console menu
 		// print health points using display
 		display.println("Unkindled" + "(" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + this.getWeapon() + ", " + souls + " Souls");
+		if (this.getWeapon() instanceof StormRuler){
+			int numOfCharge = ChargeAction.getNumOfCharge();
+			if (numOfCharge == 0){
+				display.println("Storm Ruler not Charged");
+			} else if (numOfCharge == 3){
+				display.println("Storm Ruler is FULLY CHARGED");
+			} else{
+				display.println("Charging Storm Ruler");
+			}
+		}
+
 		return menu.showMenu(this, actions, display);
 
 	}
@@ -175,27 +186,31 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastSavedLocation = location;
 	}
 
+
 	/**
 	 * Getter
-	 * Get value of lastSavedLocation
-	 *
-	 * @return lastSaveLocation - last know location of player
+	 * @return lastLocation Last location of Player before dying
 	 */
-	public Location getLastSavedLocation() {
-		return this.lastSavedLocation;
-	}
-
-
 	public Location getLastLocation(){
 		return this.lastLocation;
 	}
 
+	/**
+	 * Method to add souls to the Player
+	 * @param souls number of souls to be incremented.
+	 * @return true
+	 */
 	@Override
 	public boolean addSouls(int souls){
 		this.souls += souls;
 		return true;
 	}
 
+	/**
+	 * Method to deduct souls from the Player
+	 * @param souls number souls to be deducted
+	 * @return true
+	 */
 	@Override
 	public boolean subtractSouls(int souls) {
 		this.souls -= souls;
@@ -212,41 +227,72 @@ public class Player extends Actor implements Soul, Resettable {
 		return this.souls;
 	}
 
+	/**
+	 * Returns a collection of the Actions that the otherActor can do to the current Actor.
+	 *
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction  String representing the direction of the other Actor
+	 * @param map        current GameMap
+	 * @return A collection of Actions.
+	 */
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		actions.add(new AttackAction(this, direction));
-		System.out.println(this.getWeapon() instanceof StormRuler);
-		if (this.getWeapon() instanceof StormRuler){
-			System.out.println("add active skill");
-			actions.add(((StormRuler) this.getWeapon()).getActiveSkill());
-		}
-//		boolean present = false;
-//		for (Action action : actions){
-//			if (action instanceof SpinAttackAction || action instanceof ChargeAction || action instanceof WindSlashAction){
-//				System.out.println("is present");
-//				present = true;
-//			}
-//		}
-//		if (!present){
-//			System.out.println("adding..");
-//			actions.add(this.getWeapon().getActiveSkill(otherActor, direction));
-//		}
+		checkHoldingStormRuler();
 		return actions;
 	}
 
+	/**
+	 * Method to check if the player is holding StormRuler
+	 */
+	public void checkHoldingStormRuler(){
+		boolean holdStormRuler = false;
+		for (Item item: this.getInventory()){
+			if (item instanceof StormRuler && !(this.getWeapon() instanceof StormRuler)){
+				((StormRuler) item).setHolder(this);
+				holdStormRuler = true;
+				break;
+			}
+		}
+		if (holdStormRuler){
+			for(Item item : this.getInventory()){
+				if(item.asWeapon() != null){
+					this.removeItemFromInventory(item);
+					break; // after it removes that weapon, break the loop.
+				}
+			}
+		}
+	}
+
+	/**
+	 * Setter
+	 * @param location last location of the token of souls
+	 */
 	public void setPreviousTokenLocation(Location location){
 		this.previousTokenLocation = location;
 	}
 
+	/**
+	 * Getter
+	 * @return previousTokenLocation location of token of souls
+	 */
 	public Location getPreviousTokenLocation(){
 		return this.previousTokenLocation;
 	}
 
+	/**
+	 * Getter
+	 * @param tokenOfSouls The TokenOfSouls object
+	 */
 	public void setPreviousTokenOfSouls(TokenOfSouls tokenOfSouls){
 		this.previousTokenOfSouls = tokenOfSouls;
 	}
 
+	/**
+	 * Getter
+	 * @return previousTokeOfSouls
+	 */
 	public TokenOfSouls getPreviousTokenOfSouls(){
 		return this.previousTokenOfSouls;
 	}

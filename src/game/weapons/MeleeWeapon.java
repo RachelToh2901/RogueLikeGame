@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.WeaponItem;
 
-import java.util.Random;
 
 public class MeleeWeapon extends WeaponItem {
     /**
@@ -20,7 +19,6 @@ public class MeleeWeapon extends WeaponItem {
         super(name, displayChar, damage, verb, hitRate);
     }
 
-    //TODO: please figure out how to disable dropping item action.
 
     /**
      * Create and return an action to drop this Item.

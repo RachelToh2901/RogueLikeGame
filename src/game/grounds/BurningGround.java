@@ -4,9 +4,15 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.enemies.LordOfCinder;
 
+/**
+ * Class to create burning ground when Lord of cinder activates Ember Form
+ */
 public class BurningGround extends Ground {
 
-    private int turnExisted = 1;
+    /**
+     * Number of turns for which Ember Form of Lord of Cinder has been activated
+     */
+    private int turnExisted = 0;
 
     /**
      * Constructor.

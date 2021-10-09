@@ -1,30 +1,18 @@
-package game.activeSkills;
+package game.activeskills;
 
 import edu.monash.fit2099.engine.*;
 import game.Player;
-import game.ResetManager;
+import game.actions.ResetAction;
 import game.enemies.Enemies;
 import game.enemies.LordOfCinder;
 import game.interfaces.Soul;
 
 import java.util.Random;
 
-import static game.enums.Status.STUNNED;
-
 /**
  * Special Action for Storm Ruler
  */
 public class WindSlashAction extends WeaponAction{
-
-    /**
-     * The Actor that is to be attacked
-     */
-    protected Actor target;
-
-    /**
-     * The direction of incoming attack.
-     */
-    protected String direction;
 
     /**
      * Constructor
@@ -42,10 +30,13 @@ public class WindSlashAction extends WeaponAction{
      * @return a description of what happened that can be displayed to the user.
      */
     public String execute(Actor actor, GameMap map) {
-
         String result = "";
+        //reset the number of charge after using this skill
+        ChargeAction.resetNumOfCharge();
+
         int damage = weapon.damage();
         Location here = map.locationOf(actor);
+
         for (Exit exit : here.getExits())
             if (exit.getDestination().containsAnActor()) {
                 Location targetLocation = exit.getDestination();
@@ -63,9 +54,6 @@ public class WindSlashAction extends WeaponAction{
                 }
                 if (isAttack) {
                     target.hurt(damage);
-                    target.addCapability(STUNNED);
-                    //reset the number of charge after using this skill
-                    ChargeAction.resetNumOfCharge();
                     if (!target.isConscious()) {
                         // drop all items
                         Actions dropActions = new Actions();
@@ -75,8 +63,8 @@ public class WindSlashAction extends WeaponAction{
                             drop.execute(target, map);
 
                         if (target instanceof Player) {
-                            // TODO : COMPLETE IT
-                            ResetManager.getInstance().run(map);
+                            Action reset = new ResetAction();
+                            result = reset.execute(target, map);
                         } else {
                             ((Enemies) target).die(map, (Soul) actor);
                         }

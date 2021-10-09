@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.Player;
 
+/**
+ * Class for player to purchase Giant Axe from Vendor
+ */
 public class PurchaseGiantAxeAction extends PurchaseWeaponAction {
 
     /**

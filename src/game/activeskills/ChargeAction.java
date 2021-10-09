@@ -49,7 +49,6 @@ public class ChargeAction extends WeaponAction {
     /**
      * Accessor to retrieve the reset Number of charges
      *
-     * @return the reset number of charges
      */
     public static void resetNumOfCharge(){
         numOfCharge = 0;

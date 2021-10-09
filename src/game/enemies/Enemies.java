@@ -66,12 +66,9 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public void resetInstance(GameMap map) {
     this.hitPoints = maxHitPoints;
-    for( Behaviour behavior : behaviours ) {
-      if ( behavior instanceof FollowBehaviour ) {
-        behaviours.remove(behavior);
-        behaviours.add(new WanderBehaviour());
-      }
-    }
+    behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour);
+    behaviours.add(new WanderBehaviour());
+
     if ( initialLocation != null ) {
       map.moveActor(this, initialLocation);
     }
@@ -93,7 +90,7 @@ public class Enemies extends Actor implements Resettable, Soul {
    */
   public Action attackPlayer(Actions actions ) {
     Action normalAttack = null;
-    List<Action> weaponSkills = null;
+    List<Action> weaponSkills = new ArrayList<>();
     int activeSkillChance = 50;
     Random rand = new Random();
 
@@ -103,23 +100,30 @@ public class Enemies extends Actor implements Resettable, Soul {
         normalAttack = action;
 
       } else if ( action instanceof WeaponAction ){
-        weaponSkills.add(action);
+          weaponSkills.add(action);
       }
     }
 
-    if ( weaponSkills != null && rand.nextInt(100) < activeSkillChance) {
+    if ( !weaponSkills.isEmpty() && rand.nextInt(100) < activeSkillChance) {
       return weaponSkills.get( rand.nextInt(weaponSkills.size() - 1) );
     } else {
       return normalAttack;
     }
   }
 
+  /**
+   * Method to check if the target(Player) is near the enemy
+   * @param actions ArrayList of allowbale actions
+   * @return True/False
+   */
   public boolean checkIsPlayerNear(Actions actions ) {
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
+
         Actor target = ((AttackAction) action).getTarget();
         behaviours.add(new FollowBehaviour(target));
         behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
+
         return true;
       }
     }
@@ -174,6 +178,10 @@ public class Enemies extends Actor implements Resettable, Soul {
     return actions;
   }
 
+  /**
+   * Method that returns a String
+   * @return String that displays the name of the enemy along with its hit points and the weapon that it is holding
+   */
   @Override
   public String toString() {
     if ( getWeapon() instanceof IntrinsicWeapon ) {

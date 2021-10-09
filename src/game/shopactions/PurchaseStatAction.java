@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.Player;
 
+/**
+ * Class for Player to purchase stats(increase maximum hit points by 25) from the Vendor
+ */
 public class PurchaseStatAction extends Action {
 
     /**

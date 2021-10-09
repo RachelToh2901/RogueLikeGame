@@ -66,6 +66,11 @@ public class FollowBehaviour implements Behaviour {
 	}
 
 	// TODO : CHECK IF THIS IS ACCEPTABLE
+
+	/**
+	 * Getter
+	 * @return target - The target that the enemy needs to follow
+	 */
 	public Actor getTarget() {
 		return target;
 	}

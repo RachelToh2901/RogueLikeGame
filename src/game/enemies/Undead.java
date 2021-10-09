@@ -2,10 +2,8 @@ package game.enemies;
 
 
 import edu.monash.fit2099.engine.*;
-import game.actions.AttackAction;
 import game.actions.DieByChanceAction;
 import game.behaviors.FollowBehaviour;
-import game.enums.Status;
 import game.interfaces.Behaviour;
 
 import java.util.Random;
@@ -14,9 +12,6 @@ import java.util.Random;
  * An undead minion which is an enemy of Design o' Souls
  */
 public class Undead extends Enemies {
-	// OLD CODE
-	// Will need to change this to a collection if Undeads gets additional Behaviours.
-	// private ArrayList<Behaviour> behaviours = new ArrayList<>();
 
 	/** 
 	 * Constructor.
@@ -26,15 +21,16 @@ public class Undead extends Enemies {
 	public Undead(String name) {
 		super(name, 'U', 50, 50);
 		registerInstance();
-		// OLD CODE
-		// behaviours.add(new WanderBehaviour());
 	}
 
-
-
 	/**
-	 * Figure out what to do next.
-	 * FIXME: An Undead wanders around at random and it cannot attack anyone. Also, figure out how to spawn this creature.
+	 * Select and return an action to perform on the current turn.
+	 *
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return the Action to be performed
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
 	@Override
@@ -43,7 +39,6 @@ public class Undead extends Enemies {
 		if ( checkIsPlayerNear(actions) ) {
 			return attackPlayer(actions);
 		}
-
 		// loop through all behaviours
 		for(Behaviour Behaviour : behaviours) {
 

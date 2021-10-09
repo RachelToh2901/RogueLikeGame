@@ -1,9 +1,6 @@
 package game.weapons;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.WeaponAction;
-import edu.monash.fit2099.engine.WeaponItem;
-import game.activeSkills.WindSlashAction;
+import edu.monash.fit2099.engine.*;
 import game.activeskills.ChargeAction;
 import game.activeskills.WindSlashAction;
 
@@ -11,15 +8,19 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Storm Ruler weapon
+ * Class for Storm Ruler weapon
  */
 public class StormRuler extends MeleeWeapon {
+
+    private Actor holder;
 
     /**
      * Constructor
      */
-    public StormRuler () {
+    public StormRuler (Actor holder) {
         super("Storm Ruler", '7', 70, " slam ", 60);
+        this.holder = holder;
+//        this.portable = false;
     }
 
     /**
@@ -53,66 +54,63 @@ public class StormRuler extends MeleeWeapon {
         }
     }
 
+    /**
+     * Getter.
+     *
+     * Returns an unmodifiable copy of the actions list so that calling methods won't
+     * be able to change what this Item can do without the Item checking.
+     * @return an unmodifiable list of Actions
+     */
     @Override
     public List<Action> getAllowableActions() {
-        Action activeSkill = getActiveSkill();
-        boolean presentCharge = activeSkill instanceof ChargeAction;
-        boolean presentWindSlash = activeSkill instanceof WindSlashAction;
-        boolean present = false;
-        for (Action action : allowableActions) {
-            if (presentCharge) {
-                if (action instanceof ChargeAction) {
-                    present = true;
-                }
-                if (action instanceof WindSlashAction) {
-                    allowableActions.remove(action);
-                }
-            } else if (presentWindSlash) {
-                if (action instanceof WindSlashAction) {
-                    present = true;
-                }
-                if (action instanceof ChargeAction) {
-                    allowableActions.remove(action);
+        if (holder != null) {
+            Action activeSkill = getActiveSkill();
+            boolean presentCharge = activeSkill instanceof ChargeAction;
+            boolean presentWindSlash = activeSkill instanceof WindSlashAction;
+            boolean present = false;
+            Action actionToRemove = null;
+            for (Action action : allowableActions) {
+                if (presentCharge) {
+                    if (action instanceof ChargeAction) {
+                        present = true;
+                    }
+                    if (action instanceof WindSlashAction) {
+                        actionToRemove = action;
+                    }
+
+                } else if (presentWindSlash) {
+                    if (action instanceof WindSlashAction) {
+                        present = true;
+                    }
+                    if (action instanceof ChargeAction) {
+                        actionToRemove = action;
+                    }
                 }
             }
-        }
-        if (!present) {
-            allowableActions.add(activeSkill);
+            if (!present) {
+                allowableActions.add(activeSkill);
+            }
+            if (actionToRemove != null) {
+                allowableActions.remove(actionToRemove);
+            }
         }
         return allowableActions.getUnmodifiableActionList();
     }
-//        boolean present1 = false;
-//        boolean present2 = false;
-//        int chargeCount = ChargeAction.getNumOfCharge();
-//        for(Action action: allowableActions) {
-//            if (action instanceof ChargeAction) {
-//                present1 = true;
-//                break;
-//            }
-//        }
-//        for(Action action: allowableActions) {
-//            if (action instanceof WindSlashAction) {
-//                present2 = true;
-//                break;
-//            }
-//        }
-//        System.out.println("Present Charge: " + present1);
-//        System.out.println("Present WindSlash: " + present2);
-//        if(!present1 && chargeCount < 3){
-//            allowableActions.add(new ChargeAction(this));
-//            if (present2){
-//                allowableActions.remove(new WindSlashAction(this));
-//            }
-//        }
-//        if(!present2 && chargeCount == 3){
-//            allowableActions.remove(new ChargeAction(this));
-//            allowableActions.add((new WindSlashAction(this)));
-//        }
-//        return allowableActions.getUnmodifiableActionList();
-//    }
 
+    /**
+     * Method to reduce damage of storm Ruler when atatcking enemies that are not weak to storm ruler
+     * @return damageDealt/2
+     */
     public int dullness(){
         int damageDealt = this.damage;
         return damageDealt/2;
+    }
+
+    /**
+     * Setter
+     * Set holder of StormRuler
+     */
+    public void setHolder(Actor holder){
+        this.holder = holder;
     }
 }

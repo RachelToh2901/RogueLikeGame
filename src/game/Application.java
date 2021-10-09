@@ -54,17 +54,13 @@ public class Application {
 
 			Actor player = new Player("Unkindled (Player)", '@', 10000);
 			world.addPlayer(player, gameMap.at(38, 12));
-//			world.addPlayer(player, gameMap.at(8, 25));
 
 			// Place Yhorm the Giant/boss in the map
 			gameMap.at(6, 25).addActor(new LordOfCinder());
 
-			// Place a Hollow in the the map
-			// FIXME: the Undead should be generated from the Cemetery
-			// gameMap.at(32, 7).addActor(new Undead("Undead"));
 
 		// Storm Ruler Spawn
-		gameMap.at(7, 25).addItem(new StormRuler());
+		gameMap.at(7, 25).addItem(new StormRuler(null));
 
 		// Spawn Skeleton
 		int numOfSkeleton = 6;
@@ -82,14 +78,6 @@ public class Application {
 				}
 			}
 		}
-//		gameMap.at(6,17).addActor(new Skeleton());
-//		gameMap.at(6,9).addActor(new Skeleton());
-//		gameMap.at(4,20).addActor(new Skeleton());
-//		gameMap.at(42,6).addActor(new Skeleton());
-//		gameMap.at(35,15).addActor(new Skeleton());
-//		gameMap.at(6,3).addActor(new Skeleton());
-
-
 		world.run();
 
 	}

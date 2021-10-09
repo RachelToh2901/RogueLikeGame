@@ -2,7 +2,7 @@ package game.activeskills;
 
 import edu.monash.fit2099.engine.*;
 import game.Player;
-import game.ResetManager;
+import game.actions.ResetAction;
 import game.enemies.Enemies;
 import game.interfaces.Soul;
 
@@ -28,19 +28,6 @@ public class SpinAttackAction extends WeaponAction {
      */
     public String execute(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
-//        int xCord = actorLocation.x();
-//        int yCord = actorLocation.y();
-//        String result = "";
-//        for (int i = -1; i<=1; i++) {
-//            for (int j = -1; j <= 1; j++) {
-//                if (i == 0 && j == 0) {
-//                    break;
-//                }
-//                int newXCord = xCord + i;
-//                int newYCord = yCord + i;
-//                Location targetLocation = new Location(map, newXCord, newYCord);
-//            }
-//        }
         String result = "";
         int damage = weapon.damage() / 2;
         for (Exit exit : here.getExits())
@@ -49,7 +36,7 @@ public class SpinAttackAction extends WeaponAction {
                 Actor target = map.getActorAt(targetLocation);
                 boolean isAttack = false;
                 if (actor instanceof Player) {
-                    result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage. \n" ;
+                    result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage." + System.lineSeparator() ;
                     isAttack = true;
                 } else if (actor instanceof Enemies && target instanceof Player) {
                     result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
@@ -66,8 +53,8 @@ public class SpinAttackAction extends WeaponAction {
                             drop.execute(target, map);
 
                         if (target instanceof Player) {
-                            // TODO : COMPLETE IT
-                            ResetManager.getInstance().run(map);
+                            Action reset = new ResetAction();
+                            result = reset.execute(target, map);
                         } else {
                             ((Enemies) target).die(map, (Soul) actor);
                         }
