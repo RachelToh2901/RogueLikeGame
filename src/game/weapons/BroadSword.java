@@ -32,4 +32,10 @@ public class BroadSword extends MeleeWeapon {
 
     }
 
+    //TODO: add Javadoc;
+    @Override
+    public String toString() {
+        return "BroadSword";
+    }
+
 }

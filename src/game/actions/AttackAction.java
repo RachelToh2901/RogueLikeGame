@@ -3,15 +3,12 @@ package game.actions;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.cleanBattleField;
 import game.Player;
-import game.enemies.Enemies;
 import game.enemies.LordOfCinder;
-import game.interfaces.Soul;
 import game.weapons.StormRuler;
 
 /**
@@ -71,23 +68,23 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		target.hurt(damage);
-		if (!target.isConscious()) {
-
-			Actions dropActions = new Actions();
-			// drop all items
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-
-			if ( target instanceof Player) {
-				// TODO : COMPLETE IT
-				Action reset = new ResetAction();
-				result = reset.execute(target, map);
-			} else {
-				result = ((Enemies) target).die(map, (Soul) actor);
-			}
-		}
+		result += cleanBattleField.cleanBattle(actor, map, target);
+//		if (!target.isConscious()) {
+//
+//			Actions dropActions = new Actions();
+//			// drop all items
+//			for (Item item : target.getInventory())
+//				dropActions.add(item.getDropAction(actor));
+//			for (Action drop : dropActions)
+//				drop.execute(target, map);
+//
+//			if ( target instanceof Player) {
+//				Action reset = new ResetAction();
+//				result = reset.execute(target, map);
+//			} else {
+//				result = ((Enemies) target).die(map, (Soul) actor);
+//			}
+//		}
 
 		return result;
 	}

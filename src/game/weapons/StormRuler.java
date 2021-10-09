@@ -113,4 +113,10 @@ public class StormRuler extends MeleeWeapon {
     public void setHolder(Actor holder){
         this.holder = holder;
     }
+
+    //TODO: add Javadoc;
+    @Override
+    public String toString() {
+        return "Storm Ruler";
+    }
 }

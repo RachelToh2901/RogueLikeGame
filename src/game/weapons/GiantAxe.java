@@ -38,4 +38,10 @@ public class GiantAxe extends MeleeWeapon {
         }
         return allowableActions.getUnmodifiableActionList();
     }
+
+    //TODO: add Javadoc;
+    @Override
+    public String toString() {
+        return "Giant Axe";
+    }
 }

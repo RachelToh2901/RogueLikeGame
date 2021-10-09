@@ -1,8 +1,11 @@
 package game.grounds;
 
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
+import game.Player;
+import game.actions.ResetAction;
+import game.enemies.Enemies;
 import game.enemies.LordOfCinder;
+import game.interfaces.Soul;
 
 /**
  * Class to create burning ground when Lord of cinder activates Ember Form
@@ -30,7 +33,9 @@ public class BurningGround extends Ground {
     public void tick(Location location) {
         turnExisted ++;
         if ( turnExisted > 3) {
+            System.out.println("test Burning Ground start");
             location.setGround(new Dirt());
+            System.out.println("test Burning Ground end");
         }
 
         if ( location.getActor() != null ) {
