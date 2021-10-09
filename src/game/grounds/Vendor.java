@@ -1,12 +1,8 @@
 package game.grounds;
 
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
-import game.shopactions.PurchaseBroadswordAction;
-import game.shopactions.PurchaseGiantAxeAction;
-import game.shopactions.PurchaseStatAction;
+import edu.monash.fit2099.engine.*;
+import game.items.C4Bomb;
+import game.shopactions.*;
 import game.weapons.BroadSword;
 import game.weapons.GiantAxe;
 
@@ -14,6 +10,8 @@ import game.weapons.GiantAxe;
  * Class for creating a Vendor where Player can buy BroadSword, Giant Axe or increase maximum hit points by 25
  */
 public class Vendor extends Ground {
+
+//    PurchaseAction purchaseAction;
 
     /**
      * Constructor.
@@ -37,6 +35,21 @@ public class Vendor extends Ground {
         actions.add(new PurchaseBroadswordAction(new BroadSword()));
         actions.add(new PurchaseGiantAxeAction(new GiantAxe()));
         actions.add(new PurchaseStatAction());
+        boolean existBomb = false;
+        for (Item item : actor.getInventory()){
+            if (item instanceof C4Bomb){
+                existBomb = true;
+                break;
+            }
+        }
+        if (!existBomb){
+            actions.add(new PurchaseC4BombAction(new C4Bomb(actor)));
+        }
+//        actions.add(new PurchaseAction());
         return actions;
     }
+
+//    public Action setPurchaseAction(){
+//        this.purchaseAction =
+//    }
 }

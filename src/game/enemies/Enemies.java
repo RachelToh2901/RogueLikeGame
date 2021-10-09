@@ -94,7 +94,6 @@ public class Enemies extends Actor implements Resettable, Soul {
     int activeSkillChance = 50;
     Random rand = new Random();
 
-    // TODO : IMPLEMENT WEAPON ACTIVE SKILLS IN
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
         normalAttack = action;
