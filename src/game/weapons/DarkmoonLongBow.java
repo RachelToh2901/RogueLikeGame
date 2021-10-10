@@ -1,22 +1,22 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.*;
+import game.grounds.Wall;
+
 import java.util.Random;
 
-/**
- * Class for BroadSword weapon
- */
-public class BroadSword extends MeleeWeapon {
+public class DarkmoonLongBow extends LongRangedWeapon{
 
     /**
-     * Constructor
+     * Constructor.
+     *
      */
-    public BroadSword() {
-        super("Broad Sword", '1', 30, "hits", 80);
-
+    public DarkmoonLongBow() {
+        super("Darkmoon LongBow",'D',70,"hits",80);
     }
 
     /**
-     * The amount of damage the BroadSword will inflict
+     * The amount of damage the StormRuler will inflict
      *
      * @return the damage, in hitpoints
      */
@@ -25,16 +25,15 @@ public class BroadSword extends MeleeWeapon {
         Random rand = new Random();
         int randomNumber = rand.nextInt(100);
         int damageDealt = this.damage;
-        if (randomNumber <= 20) {
+        if (randomNumber <= 15) {
             damageDealt *= 2;
         }
         return damageDealt;
-
     }
+
 
     @Override
     public String toString() {
-        return "BroadSword";
+        return "Darkmoon Longbow";
     }
-
 }
