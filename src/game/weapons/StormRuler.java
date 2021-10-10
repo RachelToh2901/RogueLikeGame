@@ -98,7 +98,7 @@ public class StormRuler extends MeleeWeapon {
     }
 
     /**
-     * Method to reduce damage of storm Ruler when atatcking enemies that are not weak to storm ruler
+     * Method to reduce damage of storm Ruler when attacking enemies that are not weak to storm ruler
      * @return damageDealt/2
      */
     public int dullness(){

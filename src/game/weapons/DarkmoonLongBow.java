@@ -5,10 +5,7 @@ import game.grounds.Wall;
 
 import java.util.Random;
 
-public class DarkmoonLongBow extends MeleeWeapon{
-
-    private Actor actor;
-    private GameMap map;
+public class DarkmoonLongBow extends LongRangedWeapon{
 
     /**
      * Constructor.
@@ -32,18 +29,6 @@ public class DarkmoonLongBow extends MeleeWeapon{
             damageDealt *= 2;
         }
         return damageDealt;
-    }
-
-    public String rangedWeapon(Actor actor, GameMap map) {
-        Location here = map.locationOf(actor);
-        for (Exit exit : here.getExits()) {
-            Ground currentGround = exit.getDestination().getGround();
-            if (currentGround instanceof Wall) {
-                return "Darkmoon Longbow missed" + actor;
-            }
-        }
-        return "target hit";
-
     }
 
 
