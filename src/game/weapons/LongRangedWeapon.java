@@ -19,16 +19,21 @@ public class LongRangedWeapon extends WeaponItem {
         super.addCapability(Abilities.LONG_RANGED_WEAPON);
     }
 
-
     public String rangedWeapon(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
+        String result = "";
         for (Exit exit : here.getExits()) {
             Ground currentGround = exit.getDestination().getGround();
             if (currentGround instanceof Wall) {
-                return "Weapon missed" + actor;
+                result =  "Weapon missed" + actor;
+            }
+            if (exit.getDestination().containsAnActor()) {
+                Actor target = exit.getDestination().getActor();
+                target.hurt(damage);
+                result = "Weapon hits" + target + "for" + damage + "damage";
             }
         }
-        return "Weapon hits" + actor + "for" + damage + "damage";
+        return result;
     }
 
 }
