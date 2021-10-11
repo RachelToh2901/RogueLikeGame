@@ -1,14 +1,10 @@
 package game;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import edu.monash.fit2099.engine.*;
-import game.enemies.LordOfCinder;
-import game.enemies.Skeleton;
-import game.grounds.*;
-import game.weapons.StormRuler;
+import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.World;
+import game.worldmap.AnorLondo;
+import game.worldmap.MapsManager;
+import game.worldmap.ProfaneCapital;
 
 /**
  * The main class for the Jurassic World game.
@@ -19,66 +15,17 @@ public class Application {
 	public static void main(String[] args) {
 
 
-			World world = new World(new Display());
+		World world = new World(new Display());
+		BonFireManager bonFireManager = new BonFireManager();
+		MapsManager mapsManager = new MapsManager();
+		ProfaneCapital profaneCapital = new ProfaneCapital( world, bonFireManager, mapsManager);
+		AnorLondo anorLondo = new AnorLondo( world, bonFireManager, mapsManager);
+		mapsManager.spawnFogDoor();
+//		anorLondo.getGameMap().draw(new Display());
+//		System.out.println("---------------------------------------");
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(), new Vendor(), new Cemetery());
+		profaneCapital.addPlayer("Unkindled (Player)", '@', 10000);
 
-			List<String> map = Arrays.asList(
-					"..++++++..+++...........................++++......+++.................+++.......",
-					"........+++++..............................+++++++.................+++++........",
-					"...C.......+++.......................................................+++++......",
-					"..............................................................C.........++......",
-					".........................................................................+++....",
-					"............................+.............................................+++...",
-					".................C...........+++.......++++.....................................",
-					".............................++.......+......................++++...............",
-					".............................................................+++++++............",
-					"..................................###___###...................+++...............",
-					"..................................#_______#......................+++............",
-					"...........++.....................#__FB___#.......................+.............",
-					".........+++......................#_______#........................++...........",
-					"............+++...................####_####..........................+..........",
-					"..............+......................................................++.........",
-					"..............++.................................................++++++.........",
-					"............+++...................................................++++..........",
-					"+..................................................................++...........",
-					"++...+++.........................................................++++...........",
-					"+++......................................+++........................+.++........",
-					"++++.......++++.........................++.........................+....++......",
-					"#####___#####++++.........C............+..................C............+..+.....",
-					"_..._....._._#.++......................+...................................+....",
-					"...+.__..+...#+++...........................................................+...",
-					"...+.....+._.#.+.....+++++...++...................................C..........++.",
-					"___.......___#.++++++++++++++.+++.............................................++");
-			GameMap gameMap = new GameMap(groundFactory, map);
-			world.addGameMap(gameMap);
-
-			Actor player = new Player("Unkindled (Player)", '@', 10000);
-			world.addPlayer(player, gameMap.at(38, 12));
-
-			// Place Yhorm the Giant/boss in the map
-			gameMap.at(6, 25).addActor(new LordOfCinder());
-
-
-		// Storm Ruler Spawn
-		gameMap.at(7, 25).addItem(new StormRuler(null));
-
-		// Spawn Skeleton
-		int numOfSkeleton = 6;
-		Random rand = new Random();
-
-		for ( int i = 0; i < numOfSkeleton; i ++ ) {
-			boolean added = false;
-			while ( !added ){
-				int x = rand.nextInt(gameMap.getXRange().max());
-				int y = rand.nextInt(gameMap.getYRange().max());
-
-				if ( gameMap.at( x, y).getActor() == null && gameMap.at( x, y).getGround() instanceof Dirt ) {
-					gameMap.at(x,y).addActor(new Skeleton());
-					added = true;
-				}
-			}
-		}
 		world.run();
 
 
