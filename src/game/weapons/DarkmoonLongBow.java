@@ -1,8 +1,11 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.*;
+import game.grounds.Wall;
+
 import java.util.Random;
 
-public class DarkmoonLongBow extends MeleeWeapon{
+public class DarkmoonLongBow extends LongRangedWeapon{
 
     /**
      * Constructor.
@@ -26,5 +29,11 @@ public class DarkmoonLongBow extends MeleeWeapon{
             damageDealt *= 2;
         }
         return damageDealt;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Darkmoon Longbow";
     }
 }

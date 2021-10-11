@@ -64,7 +64,7 @@ public class AldrichTheDevourer extends Enemies{
     }
 
     /**
-     * Method to reset abilities, items and attributes of Lord of Cinder
+     * Method to reset abilities, items and attributes of Aldrich the Devourer
      * @param map - the map containing Lord of Cinder
      */
     @Override
