@@ -10,9 +10,7 @@ public class MapsManager {
    * Constructor
    */
   public MapsManager(){
-    mapList = new HashMap<>() {
-    };
-
+    mapList = new HashMap<String, Worldmap>() {};
   }
 
   /**

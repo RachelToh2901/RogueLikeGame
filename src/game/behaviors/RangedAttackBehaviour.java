@@ -1,7 +1,7 @@
 package game.behaviors;
 
 import edu.monash.fit2099.engine.*;
-import game.cleanBattleField;
+import game.CleanBattleField;
 import game.interfaces.Behaviour;
 
 import java.util.Random;
@@ -72,7 +72,7 @@ public class RangedAttackBehaviour extends Action implements Behaviour {
         String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
         target.hurt(damage);
-        result += cleanBattleField.cleanBattle(actor, map, target);
+        result += CleanBattleField.cleanBattle(actor, map, target);
         return result;
     }
 

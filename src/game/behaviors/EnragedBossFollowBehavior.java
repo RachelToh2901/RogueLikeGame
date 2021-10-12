@@ -38,10 +38,10 @@ public class EnragedBossFollowBehavior extends FollowBehaviour{
         for ( Exit exit : here.getExits() ){
             Ground currentGround = exit.getDestination().getGround();
             if ( currentGround instanceof Dirt  || currentGround instanceof BurningGround ) {
-                exit.getDestination().setGround(new BurningGround());
+                exit.getDestination().setGround(new BurningGround(actor, map));
             }
         }
-        here.setGround(new BurningGround());
+        here.setGround(new BurningGround(actor, map));
 
 
         int currentDistance = distance(here, there);
