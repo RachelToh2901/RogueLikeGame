@@ -3,7 +3,6 @@ package game.weapons;
 import edu.monash.fit2099.engine.*;
 import game.activeskills.SpinAttackAction;
 import game.behaviors.RangedAttackBehaviour;
-import game.grounds.Wall;
 
 import java.util.List;
 import java.util.Random;
