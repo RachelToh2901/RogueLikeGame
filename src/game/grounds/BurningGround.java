@@ -1,11 +1,8 @@
 package game.grounds;
 
-import edu.monash.fit2099.engine.*;
-import game.Player;
-import game.actions.ResetAction;
-import game.enemies.Enemies;
+import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Location;
 import game.enemies.LordOfCinder;
-import game.interfaces.Soul;
 
 /**
  * Class to create burning ground when Lord of cinder activates Ember Form

@@ -8,10 +8,24 @@ import java.util.Random;
 
 public class RangedAttackBehaviour extends Action implements Behaviour {
 
+    /**
+     * The actor to be followed and attacked
+     */
     private Actor target;
 
+    /**
+     * Constructor
+     * @param subject The target to be attacked
+     */
     public RangedAttackBehaviour(Actor subject){ this.target = subject;}
 
+    /**
+     * Creating an action to attack the target
+     *
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return an Action that actor can perform, or null if actor can't do this.
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
@@ -37,6 +51,13 @@ public class RangedAttackBehaviour extends Action implements Behaviour {
         return null;
     }
 
+    /**
+     * Perform the Action.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Weapon weapon = actor.getWeapon();
@@ -55,6 +76,11 @@ public class RangedAttackBehaviour extends Action implements Behaviour {
         return result;
     }
 
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " shoots " + target;

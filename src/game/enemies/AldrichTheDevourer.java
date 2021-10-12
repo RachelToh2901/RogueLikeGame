@@ -9,6 +9,9 @@ import game.weapons.YhormsGiantMachete;
 
 import static game.enums.Status.STUNNED;
 
+/**
+ * Class to create a new Lord of Cinder called Aldrich the Devourer
+ */
 public class AldrichTheDevourer extends Enemies{
 
     /**

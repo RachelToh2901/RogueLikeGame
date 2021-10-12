@@ -1,22 +1,28 @@
 package game.grounds;
 
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
+import game.BonFireManager;
+import game.actions.LitBonfire;
 import game.actions.ResetAction;
+
+import java.util.HashMap;
 
 /**
  * Class to create a new Bonfire where Player can rest
  */
 public class Bonfire extends Ground {
 
+    private BonFireManager bonFireManager;
+    private boolean lit = false;
+    private String name;
+
     /**
      * Constructor.
      *
      */
-    public Bonfire() {
+    public Bonfire(String name) {
         super('B');
+        this.name = name;
     }
 
     /**
@@ -30,7 +36,32 @@ public class Bonfire extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction){
         Actions actions = new Actions();
-        actions.add(new ResetAction());
+        if (lit) {
+            actions.add(new ResetAction());
+
+            HashMap<Bonfire, Location> bonfireArr = bonFireManager.getTeleportable();
+            for ( Bonfire bonfire : bonfireArr.keySet()) {
+                if ( bonfire != this && bonfire.lit ) {
+                    actions.add( new MoveActorAction(bonfireArr.get(bonfire), "to " + bonfire.name));
+                }
+            }
+        } else  {
+            actions.add(new LitBonfire(this));
+        }
+
         return actions;
-    } 
+    }
+
+    public void setBonFireManager(BonFireManager bonFireManager, Location location) {
+        this.bonFireManager = bonFireManager;
+        bonFireManager.registerBonfire(this, location);
+    }
+
+    public void litBonfire() {
+        this.lit = true;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
