@@ -5,11 +5,29 @@ import game.cleanBattleField;
 import game.grounds.BombedGround;
 import game.grounds.Dirt;
 
+/**
+ * Class for C4 Bomb which is an item that can be purchased from the Vendor
+ */
 public class C4Bomb extends Item {
 
+    /**
+     * Number of turns that the bombed ground has lasted
+     */
     private int turnExisted;
+
+    /**
+     * Player who drops the bomb
+     */
     private Actor player;
+
+    /**
+     * Damage caused by the bomb
+     */
     private int bombDamage = 50;
+
+    /**
+     * Boolean variable that checks if the bomb has already been dropped
+     */
     private boolean hasBombed;
 
     /***
@@ -23,11 +41,23 @@ public class C4Bomb extends Item {
         hasBombed = false;
     }
 
+    /**
+     * Create and return an action to pick this Item up.
+     * If this Item is not portable, returns null.
+     *
+     * @param actor an actor that will interact with this item
+     * @return a new PickUpItemAction if this Item is portable, null otherwise.
+     */
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
         return null;
     }
 
+    /**
+     * Inform an Item on the ground of the passage of time.
+     * This method is called once per turn, if the item rests upon the ground.
+     * @param currentLocation The location of the ground on which we lie.
+     */
     @Override
     public void tick(Location currentLocation) {
         if (!player.getInventory().contains(this)){
@@ -42,6 +72,10 @@ public class C4Bomb extends Item {
 
     }
 
+    /**
+     * Method to simulate bombing when the C4 bomb is droppee by the Player
+     * @param currentLocation Location where the bomb is dropped
+     */
     public void bombing(Location currentLocation){
         Display display = new Display();
         display.println("Ka-BOOOOOOOOMMMMMMMM");
