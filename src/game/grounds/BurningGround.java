@@ -30,11 +30,10 @@ public class BurningGround extends Ground {
     public void tick(Location location) {
         turnExisted ++;
         if ( turnExisted > 3) {
-            System.out.println("test Burning Ground start");
             location.setGround(new Dirt());
-            System.out.println("test Burning Ground end");
         }
 
+        //Note: can use location.containsAnActor()
         if ( location.getActor() != null ) {
             if ( !(location.getActor() instanceof LordOfCinder)) {
                 location.getActor().hurt(25);
