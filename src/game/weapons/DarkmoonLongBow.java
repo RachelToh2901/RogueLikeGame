@@ -1,8 +1,11 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.*;
+import game.activeskills.SpinAttackAction;
+import game.behaviors.RangedAttackBehaviour;
 import game.grounds.Wall;
 
+import java.util.List;
 import java.util.Random;
 
 public class DarkmoonLongBow extends LongRangedWeapon{
@@ -13,6 +16,21 @@ public class DarkmoonLongBow extends LongRangedWeapon{
      */
     public DarkmoonLongBow() {
         super("Darkmoon LongBow",'D',70,"hits",80);
+    }
+
+    @Override
+    public List<Action> getAllowableActions() {
+        boolean present = false;
+        for(Action action: allowableActions) {
+            if (action instanceof SpinAttackAction) {
+                present = true;
+                break;
+            }
+        }
+        if(!present){
+            allowableActions.add(new SpinAttackAction(this));
+        }
+        return allowableActions.getUnmodifiableActionList();
     }
 
     /**

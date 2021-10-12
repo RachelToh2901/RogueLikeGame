@@ -4,10 +4,11 @@ import edu.monash.fit2099.engine.*;
 import game.cleanBattleField;
 import game.grounds.BombedGround;
 import game.grounds.Dirt;
+import game.grounds.Floor;
 
 public class C4Bomb extends Item {
 
-    private int turnExisted;
+    private static int turnExisted;
     private Actor player;
     private int bombDamage = 50;
     private boolean hasBombed;
@@ -30,41 +31,23 @@ public class C4Bomb extends Item {
 
     @Override
     public void tick(Location currentLocation) {
-        if (!player.getInventory().contains(this)){
-            turnExisted += 1;
-        }
+        turnExisted++;
         if (turnExisted >= 3){
-            bombing(currentLocation);
-            turnExisted = 0;
+            GameMap map = currentLocation.map();
+            currentLocation.setGround(new BombedGround(player, map));
+            for (Exit exit: currentLocation.getExits()){
+                Location destination = exit.getDestination();
+                if (destination.getGround() instanceof Dirt){
+                    exit.getDestination().setGround(new BombedGround(player, map));
+                }
+            }
             currentLocation.removeItem(this);
-//            hasBombed = true;
         }
 
     }
 
-    public void bombing(Location currentLocation){
-        Display display = new Display();
-        display.println("Ka-BOOOOOOOOMMMMMMMM");
-        currentLocation.setGround(new BombedGround());
-        GameMap map = currentLocation.map();
-        int damage = bombDamage;
-        String result = "";
-        currentLocation.setGround(new BombedGround());
-        for (Exit exit : currentLocation.getExits()) {
-            Ground currentGround = exit.getDestination().getGround();
-            if (currentGround instanceof Dirt || currentGround instanceof BombedGround){
-                exit.getDestination().setGround(new BombedGround());
-            }
-            if (exit.getDestination().containsAnActor()) {
-                Actor target = exit.getDestination().getActor();
-                target.hurt(damage);
-                result += target + " is boooommedd. 50 hp deducted." + System.lineSeparator();
-                result += cleanBattleField.cleanBattle(player, map, target);
-
-            }
-        }
-        display.println(result);
-    }
-
-
+//    @Override
+//    public DropItemAction getDropAction(Actor actor) {
+//        Location actorLocation =
+//    }
 }
