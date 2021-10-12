@@ -46,7 +46,6 @@ public class C4Bomb extends Item {
 
     }
 
-
 //    @Override
 //    public DropItemAction getDropAction(Actor actor) {
 //        Location actorLocation =
