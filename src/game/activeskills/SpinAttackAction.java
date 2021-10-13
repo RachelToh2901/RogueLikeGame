@@ -1,7 +1,7 @@
 package game.activeskills;
 
 import edu.monash.fit2099.engine.*;
-import game.cleanBattleField;
+import game.CleanBattleField;
 import game.Player;
 import game.enemies.Enemies;
 
@@ -43,7 +43,7 @@ public class SpinAttackAction extends WeaponAction {
                 }
                 if (isAttack) {
                     target.hurt(damage);
-                    result += cleanBattleField.cleanBattle(actor, map, target);
+                    result += CleanBattleField.cleanBattle(actor, map, target);
 //                    if (!target.isConscious()) {
 //                        // drop all items
 //                        Actions dropActions = new Actions();

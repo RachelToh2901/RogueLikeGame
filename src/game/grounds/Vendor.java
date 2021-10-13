@@ -2,6 +2,7 @@ package game.grounds;
 
 import edu.monash.fit2099.engine.*;
 import game.items.C4Bomb;
+import game.items.InvisibleCloak;
 import game.shopactions.*;
 import game.weapons.BroadSword;
 import game.weapons.GiantAxe;
@@ -42,14 +43,21 @@ public class Vendor extends Ground {
                 break;
             }
         }
+        boolean existCloak = false;
+        for (Item item : actor.getInventory()){
+            if (item instanceof InvisibleCloak){
+                existCloak = true;
+                break;
+            }
+        }
         if (!existBomb){
             actions.add(new PurchaseC4BombAction(new C4Bomb(actor)));
+        }
+        if (!existCloak){
+            actions.add(new PurchaseInvisibleCloak(new InvisibleCloak()));
         }
 //        actions.add(new PurchaseAction());
         return actions;
     }
 
-//    public Action setPurchaseAction(){
-//        this.purchaseAction =
-//    }
 }

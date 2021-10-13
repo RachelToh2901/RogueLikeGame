@@ -1,10 +1,8 @@
 package game.items;
 
 import edu.monash.fit2099.engine.*;
-import game.cleanBattleField;
 import game.grounds.BombedGround;
 import game.grounds.Dirt;
-import game.grounds.Floor;
 
 public class C4Bomb extends Item {
 
@@ -32,6 +30,11 @@ public class C4Bomb extends Item {
     @Override
     public void tick(Location currentLocation) {
         turnExisted++;
+        if (!(currentLocation.getGround() instanceof Dirt)){
+            currentLocation.removeItem(this);
+            Display display = new Display();
+            display.println("Bomb is deactivated");
+        }
         if (turnExisted >= 3){
             GameMap map = currentLocation.map();
             currentLocation.setGround(new BombedGround(player, map));
@@ -43,11 +46,6 @@ public class C4Bomb extends Item {
             }
             currentLocation.removeItem(this);
         }
-
     }
 
-//    @Override
-//    public DropItemAction getDropAction(Actor actor) {
-//        Location actorLocation =
-//    }
 }

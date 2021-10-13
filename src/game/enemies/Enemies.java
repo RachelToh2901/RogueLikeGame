@@ -55,9 +55,7 @@ public class Enemies extends Actor implements Resettable, Soul {
    * @return the Action to be performed
    */
   @Override
-  public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-    return null;
-  }
+  public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {return null;}
 
   /**
    * Allows any classes that use this interface to reset abilities, attributes, and items.
@@ -116,6 +114,9 @@ public class Enemies extends Actor implements Resettable, Soul {
    * @return True/False
    */
   public boolean checkIsPlayerNear(Actions actions ) {
+    if (actions == null){
+      return false;
+    }
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
 

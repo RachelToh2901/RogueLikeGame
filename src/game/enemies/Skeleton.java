@@ -10,6 +10,8 @@ import game.weapons.GiantAxe;
 
 import java.util.Random;
 
+import static game.enums.Status.STUNNED;
+
 /**
  * Skeleton which is an enemy of Design o' Souls
  *
@@ -52,6 +54,12 @@ public class Skeleton extends Enemies {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        // Status check
+        if ( this.hasCapability(STUNNED)) {
+            removeCapability(STUNNED);
+            return new DoNothingAction();
+        }
+
         // Saves initial Location
         if ( initialLocation == null ) {
             setInitialLocation(map.locationOf(this));
