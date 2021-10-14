@@ -3,7 +3,6 @@ package game.behaviors;
 import edu.monash.fit2099.engine.*;
 import game.CleanBattleField;
 import game.interfaces.Behaviour;
-
 import java.util.Random;
 
 public class RangedAttackBehaviour extends Action implements Behaviour {
@@ -79,7 +78,7 @@ public class RangedAttackBehaviour extends Action implements Behaviour {
     /**
      * Returns a descriptive string
      * @param actor The actor performing the action.
-     * @return
+     * @return a string message of actor executing the action
      */
     @Override
     public String menuDescription(Actor actor) {
