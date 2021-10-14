@@ -1,21 +1,23 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.*;
-import game.enemies.Enemies;
+import game.items.InvisibleCloak;
+
+import static game.enums.Status.INVISIBLE;
 
 public class InvisibleAction extends Action {
 
+    private InvisibleCloak invisibleCloak;
+
+    public InvisibleAction(InvisibleCloak invisibleCloak){
+        this.invisibleCloak = invisibleCloak;
+    }
+
+
     @Override
     public String execute(Actor actor, GameMap map) {
-        Location here = map.locationOf(actor);
-        for (Exit exit: here.getExits()){
-            if (exit.getDestination().containsAnActor()){
-                Actor target = exit.getDestination().getActor();
-                if (target instanceof Enemies){
-                    ((Enemies) target).checkIsPlayerNear(null);
-                }
-            }
-        }
+        actor.addCapability(INVISIBLE);
+        invisibleCloak.actorUsing();
 
         return menuDescription(actor);
     }
