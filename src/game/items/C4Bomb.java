@@ -34,8 +34,7 @@ public class C4Bomb extends Item {
             currentLocation.removeItem(this);
             Display display = new Display();
             display.println("Bomb is deactivated");
-        }
-        if (turnExisted >= 3){
+        }else if (turnExisted >= 3){
             GameMap map = currentLocation.map();
             currentLocation.setGround(new BombedGround(player, map));
             for (Exit exit: currentLocation.getExits()){

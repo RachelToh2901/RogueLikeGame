@@ -30,19 +30,26 @@ public class BombedGround extends Ground {
      */
     public void tick(Location location){
         tickCount++;
-        if (getTickCount()>4){
+
+        if (getTickCount() >4){
+            if (location.containsAnActor()){
+                Actor target = location.getActor();
+                target.hurt(50);
+                Display display = new Display();
+                display.println(target + " is boooommedd. 50 hp deducted.");
+                String result = CleanBattleField.cleanBattle(player, map, target);
+                if (target.isConscious()){
+                    target.addCapability(STUNNED);
+                }else{
+                    display.println(result);
+                }
+
+            }
             location.setGround(new Dirt());
         }
-        else if (location.containsAnActor()){
-            Actor target = location.getActor();
-            target.hurt(50);
-            Display display = new Display();
-            display.println(target + " is boooommedd. 50 hp deducted." + System.lineSeparator());
-            String result = CleanBattleField.cleanBattle(player, map, target);
-            if (result.length() >0){
-                display.println(result);
-                target.addCapability(STUNNED);
-            }
+
+        if (getTickCount() >= 13){
+            tickCount = 0;
         }
     }
 
