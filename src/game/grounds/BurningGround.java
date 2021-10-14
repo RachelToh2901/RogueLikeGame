@@ -40,7 +40,6 @@ public class BurningGround extends Ground {
             location.setGround(new Dirt());
         }
 
-        //Note: can use location.containsAnActor()
         if (location.containsAnActor() ) {
             if ( !(location.getActor() instanceof LordOfCinder)) {
                 Actor target = location.getActor();
