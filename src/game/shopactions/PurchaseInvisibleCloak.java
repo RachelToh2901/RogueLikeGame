@@ -10,7 +10,7 @@ public class PurchaseInvisibleCloak extends PurchaseAction{
     Item item;
 
     public PurchaseInvisibleCloak(Item item) {
-        super(200);
+        super(500);
         this.item = item;
     }
 
