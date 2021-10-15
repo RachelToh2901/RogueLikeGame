@@ -12,8 +12,6 @@ import game.weapons.GiantAxe;
  */
 public class Vendor extends Ground {
 
-//    PurchaseAction purchaseAction;
-
     /**
      * Constructor.
      *
@@ -23,7 +21,7 @@ public class Vendor extends Ground {
     }
 
     /**
-     * Returns an empty Action list.
+     * Returns a list of actions that the Player can perform
      *
      * @param actor the Actor acting
      * @param location the current Location
@@ -56,7 +54,6 @@ public class Vendor extends Ground {
         if (!existCloak){
             actions.add(new PurchaseInvisibleCloak(new InvisibleCloak()));
         }
-//        actions.add(new PurchaseAction());
         return actions;
     }
 

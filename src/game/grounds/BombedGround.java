@@ -25,7 +25,7 @@ public class BombedGround extends Ground {
     }
 
     /**
-     * Ground can also experience the joy of time.
+     * Method to inflict damage to actors who step on the bombed ground
      * @param location The location of the Ground
      */
     public void tick(Location location){
@@ -53,6 +53,10 @@ public class BombedGround extends Ground {
         }
     }
 
+    /**
+     * Accessor for tickCount instance variable
+     * @return tickCount
+     */
     public static int getTickCount(){
         return tickCount;
     }

@@ -7,6 +7,9 @@ import game.behaviors.RangedAttackBehaviour;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class for darkmoon Longbow weapon which Aldrich the Devourer holds
+ */
 public class DarkmoonLongBow extends LongRangedWeapon{
 
     /**
@@ -49,6 +52,10 @@ public class DarkmoonLongBow extends LongRangedWeapon{
     }
 
 
+    /**
+     * Method that returns a descriptive string
+     * @return a descriptive string
+     */
     @Override
     public String toString() {
         return "Darkmoon Longbow";

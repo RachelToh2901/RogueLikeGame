@@ -32,6 +32,10 @@ public class YhormsGiantMachete extends MeleeWeapon {
         hitRate += 30;
     }
 
+     /**
+      * Method that returns a descriptive string
+      * @return a descriptive string
+      */
     @Override
     public String toString() {
         return "YhormsGiantMachete";

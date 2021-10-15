@@ -130,7 +130,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public void transferSouls(Soul soulObject) {
-		//TODO: transfer Player's souls to another Soul's instance.
 	}
 
 	/**

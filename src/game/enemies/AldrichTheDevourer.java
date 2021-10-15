@@ -25,7 +25,6 @@ public class AldrichTheDevourer extends Enemies{
         registerInstance();
     }
 
-
     /**
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()

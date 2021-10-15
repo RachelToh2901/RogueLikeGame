@@ -32,6 +32,10 @@ public class BroadSword extends MeleeWeapon {
 
     }
 
+    /**
+     * Method that returns a descriptive string
+     * @return a descriptive string
+     */
     @Override
     public String toString() {
         return "BroadSword";

@@ -7,6 +7,9 @@ import java.util.HashMap;
 
 public class BonFireManager {
 
+  /**
+   * Creating new hashmap
+   */
   private HashMap<Bonfire, Location> bonfireList;
 
   /**

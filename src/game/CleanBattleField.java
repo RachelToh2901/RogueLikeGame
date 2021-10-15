@@ -5,7 +5,18 @@ import game.actions.ResetAction;
 import game.enemies.Enemies;
 import game.interfaces.Soul;
 
+/**
+ * Class to clear map when an enemy or Player dies
+ */
 public class CleanBattleField {
+
+    /**
+     * Method to clear the map when an enemy or player dies
+     * @param actor The actor attacking the target
+     * @param map The map the actor is on
+     * @param target The actor who is killed
+     * @return
+     */
     public static String cleanBattle(Actor actor, GameMap map, Actor target){
         String result = "";
         if (!target.isConscious()) {

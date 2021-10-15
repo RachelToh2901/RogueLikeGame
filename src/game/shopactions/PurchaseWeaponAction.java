@@ -25,32 +25,11 @@ public abstract class PurchaseWeaponAction extends PurchaseAction {
         this.weapon = weapon;
     }
 
-
-    //    /**
-//     * Perform the Action.
-//     *
-//     * @param actor The actor performing the action.
-//     * @param map The map the actor is on.
-//     * @return a description of what happened that can be displayed to the user.
-//     */
-//    @Override
-//    public String execute(Actor actor, GameMap map) {
-//        Weapon currentWeapon = actor.getWeapon();
-//        List<Item> items = actor.getInventory();
-//
-//        // loop through all inventory
-//        for(Item item : items){
-//            if(item.asWeapon() != null){
-//                actor.removeItemFromInventory(item);
-//                break; // after it removes that weapon, break the loop.
-//            }
-//        }
-//        // additionally, add new weapon to the inventory (equip).
-//        actor.addItemToInventory(item);
-//        return actor + " purchase " + currentWeapon;
-//    }
-
-
+    /**
+     * Method to add weapon to the Player's inventory
+     * @param actor The actor performing the action
+     * @param map The map the actor is on
+     */
     @Override
     public void doAction(Actor actor, GameMap map) {
         Weapon currentWeapon = actor.getWeapon();
