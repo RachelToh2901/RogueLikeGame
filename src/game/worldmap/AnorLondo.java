@@ -58,8 +58,8 @@ public class AnorLondo extends Worldmap{
 
   @Override
   public void spawnFogDoor() {
-    // Spawning Fog Door to Anor Londo
-    this.map.at(38,0).setGround(new FogDoor(this.mapsManager.getMap("Anor Londo")));
+    // Spawning Fog Door to Profane Capital
+    this.map.at(38,0).setGround(new FogDoor(this.mapsManager.getMap("Profane Capital")));
     this.fogDoorLocation = this.map.at(38,0);
   }
 
