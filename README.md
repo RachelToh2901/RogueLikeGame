@@ -111,15 +111,10 @@ presence of the player even if player is nearby.
 
 |                     Requirements                           |   Features (HOW) Your Approach / Your Answer   |
 | ---------------------------------------------------------- | ---------------------------------------------- |
-
 | Must use at least two (2) classes from the engine package. |                                                |
-
 | Must use/re-use at least one (1) existing feature          |                                                | 
-
 | Must use existing or create new abstraction/interfaces     |                                                |  
-
 | Must use existing or create new capabilities.              |                                                |  
-
 | Must explain why it adheres to the SOLID principles.       |                                                |  
 
 
