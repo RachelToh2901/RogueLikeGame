@@ -33,30 +33,9 @@ public class TokenOfSouls extends Item {
         super("Token of Souls", '$', false);
         itemLocation = ((Player) actor).getLastLocation();
         numberOfSouls = ((Player) actor).getSouls();
+        allowableActions.add(new RetrieveSoulAction(this));
     }
 
-
-    /**
-     * Getter.
-     *
-     * Returns an unmodifiable copy of the actions list so that calling methods won't
-     * be able to change what this Item can do without the Item checking.
-     * @return an unmodifiable list of Actions
-     */
-    @Override
-    public List<Action> getAllowableActions() {
-        boolean present = false;
-        for(Action action: allowableActions) {
-            if (action instanceof RetrieveSoulAction) {
-                present = true;
-                break;
-            }
-        }
-        if(!present){
-            allowableActions.add(new RetrieveSoulAction(this));
-        }
-        return allowableActions.getUnmodifiableActionList();
-    }
 
     /**
      * Getter

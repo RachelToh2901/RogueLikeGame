@@ -21,6 +21,7 @@ public class StormRuler extends MeleeWeapon {
         super("Storm Ruler", '7', 70, " slam ", 60);
         this.holder = holder;
 //        this.portable = false;
+        allowableActions.add(new ChargeAction(this));
     }
 
     /**

@@ -19,22 +19,7 @@ public class InvisibleCloak extends Item {
         super("Invisible Cloak", '?', false);
         tickCount = 0;
         isUsing = false;
-    }
-
-    @Override
-    public List<Action> getAllowableActions() {
-        boolean present = false;
-            for(Action action: allowableActions) {
-                if (action instanceof InvisibleAction) {
-                    present = true;
-                    break;
-                }
-            }
-            if(!present){
-                allowableActions.add(new InvisibleAction(this));
-            }
-
-        return allowableActions.getUnmodifiableActionList();
+        allowableActions.add(new InvisibleAction(this));
     }
 
     @Override

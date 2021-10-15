@@ -18,7 +18,6 @@ public class InvisibleAction extends Action {
     public String execute(Actor actor, GameMap map) {
         actor.addCapability(INVISIBLE);
         invisibleCloak.actorUsing();
-
         return menuDescription(actor);
     }
 

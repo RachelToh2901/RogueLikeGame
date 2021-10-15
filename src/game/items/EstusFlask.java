@@ -21,6 +21,7 @@ public class EstusFlask extends Item {
      */
     public EstusFlask() {
         super("Estus Flask", 'E', true);
+        allowableActions.add(new DrinkEstusFlaskAction());
     }
 
     /**
@@ -66,19 +67,6 @@ public class EstusFlask extends Item {
      * be able to change what this Item can do without the Item checking.
      * @return an unmodifiable list of Actions
      */
-    @Override
-    public List<Action> getAllowableActions() {
-        boolean present = false;
-        for(Action action: allowableActions) {
-            if (action instanceof DrinkEstusFlaskAction) {
-                present = true;
-                break;
-            }
-        }
-        if(!present){
-            allowableActions.add(new DrinkEstusFlaskAction());
-        }
-        return allowableActions.getUnmodifiableActionList();
-    }
+
 }
 
