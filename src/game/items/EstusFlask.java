@@ -16,8 +16,7 @@ public class EstusFlask extends Item {
     private int chargesLeft = 3;
 
     /***
-     * Constructor.
-     * @ Param- None
+     * Constructor
      */
     public EstusFlask() {
         super("Estus Flask", 'E', true);

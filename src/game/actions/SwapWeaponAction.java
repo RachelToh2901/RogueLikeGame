@@ -8,7 +8,6 @@ import java.util.List;
  * An action to swap weapon (new weapon replaces old weapon).
  * It loops through all items in the Actor inventory.
  * The old weapon will be gone.
- * TODO: you may update this code if required.
  */
 public class SwapWeaponAction extends PickUpItemAction {
 

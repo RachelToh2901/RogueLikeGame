@@ -7,9 +7,19 @@ import java.util.List;
 
 import static game.enums.Status.INVISIBLE;
 
+/**
+ * Invisible cloak item that can  be equipped by Player to turn invisible
+ */
 public class InvisibleCloak extends Item {
 
+    /**
+     * Number of turns since invisible cloak has been equipped
+     */
     private int tickCount;
+
+    /**
+     * Boolean variable that checks if Player has already equipped invisible cloak
+     */
     private boolean isUsing;
 
     /***
@@ -21,6 +31,10 @@ public class InvisibleCloak extends Item {
         isUsing = false;
     }
 
+    /**
+     * Method that returns list of allowable actions that Player can do when invisible cloak is equipped
+     * @return arraylist of allowable actions
+     */
     @Override
     public List<Action> getAllowableActions() {
         boolean present = false;
@@ -37,6 +51,11 @@ public class InvisibleCloak extends Item {
         return allowableActions.getUnmodifiableActionList();
     }
 
+    /**
+     * Method that adds the INVISIBLE capability to the Player when the invisible cloak is equipped
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor The actor carrying this Item.
+     */
     @Override
     public void tick(Location currentLocation, Actor actor) {
         if (isUsing){
@@ -49,14 +68,24 @@ public class InvisibleCloak extends Item {
         }
     }
 
+    /**
+     * Accessor to get TickCount variable
+     * @return value of tickCount
+     */
     public int getTickCount() {
         return tickCount;
     }
 
+    /**
+     * Method to reset tickCount instance variable back to 0
+     */
     public void resetTickCount(){
         tickCount = 0;
     }
 
+    /**
+     * Method to check if invisible cloak has already been equipped by Player
+     */
     public void actorUsing(){
         isUsing = true;
     }

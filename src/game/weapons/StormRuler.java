@@ -20,7 +20,6 @@ public class StormRuler extends MeleeWeapon {
     public StormRuler (Actor holder) {
         super("Storm Ruler", '7', 70, " slam ", 60);
         this.holder = holder;
-//        this.portable = false;
     }
 
     /**
@@ -114,6 +113,10 @@ public class StormRuler extends MeleeWeapon {
         this.holder = holder;
     }
 
+    /**
+     * Method that returns a descriptive string
+     * @return
+     */
     @Override
     public String toString() {
         return "Storm Ruler";

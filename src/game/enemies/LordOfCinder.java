@@ -10,8 +10,6 @@ import static game.enums.Status.STUNNED;
 
 /**
  * The boss of Design o' Souls
- * FIXME: This boss is Boring. It does nothing. You need to implement features here.
- * TODO: Could it be an abstract class? If so, why and how?
  */
 public class LordOfCinder extends Enemies {
 
