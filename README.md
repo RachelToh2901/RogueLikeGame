@@ -65,7 +65,7 @@ presence of the player even if player is nearby.
 ### Grounds
 
 **Bombed Ground** `x`
-- 
+- Ground when C4 Bomb has been dropped
 
 **Bonfire** 'B'
 - Bonfire where player can rest
