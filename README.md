@@ -109,4 +109,17 @@ presence of the player even if player is nearby.
 - Souls the player had before dying which spawns at the player's dying location
 
 
+| Requirements | Features (HOW) Your Approach / Your Answer |
+| ------------ | ------------------------------------------ |
+
+| Must use at least two (2) classes from the engine package. |    |
+
+| Must use/re-use at least one (1) existing feature (either from A2 and/or A3 - fixed requirements) |    |
+
+| Must use existing or create new abstraction/interfaces (apart from the engine code). |   |
+
+| Must use existing or create new capabilities. |    |
+
+| Must explain why it adheres to the SOLID principles. |   \
+
 
