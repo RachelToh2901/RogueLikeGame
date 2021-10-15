@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static game.enums.Status.INVISIBLE;
+
 /**
  * Class for enemies
  */
@@ -55,9 +57,7 @@ public class Enemies extends Actor implements Resettable, Soul {
    * @return the Action to be performed
    */
   @Override
-  public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-    return null;
-  }
+  public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {return null;}
 
   /**
    * Allows any classes that use this interface to reset abilities, attributes, and items.
@@ -104,7 +104,11 @@ public class Enemies extends Actor implements Resettable, Soul {
     }
 
     if ( !weaponSkills.isEmpty() && rand.nextInt(100) < activeSkillChance) {
-      return weaponSkills.get( rand.nextInt(weaponSkills.size() - 1) );
+      if (weaponSkills.size() > 1) {
+        return weaponSkills.get(rand.nextInt(weaponSkills.size() - 1));
+      }else{
+        return weaponSkills.get(0);
+      }
     } else {
       return normalAttack;
     }
@@ -118,12 +122,17 @@ public class Enemies extends Actor implements Resettable, Soul {
   public boolean checkIsPlayerNear(Actions actions ) {
     for ( Action action : actions ) {
       if ( action instanceof AttackAction) {
-
         Actor target = ((AttackAction) action).getTarget();
-        behaviours.add(new FollowBehaviour(target));
-        behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
+        if (target.hasCapability(INVISIBLE)){
+          behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour);
+          behaviours.add(new WanderBehaviour());
+          return false;
+        }else {
+          behaviours.add(new FollowBehaviour(target));
+          behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
+          return true;
+        }
 
-        return true;
       }
     }
     return false;
@@ -170,12 +179,15 @@ public class Enemies extends Actor implements Resettable, Soul {
   @Override
   public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
     Actions actions = new Actions();
+
     // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
     if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
       actions.add(new AttackAction(this,direction));
     }
+
     return actions;
   }
+
 
   /**
    * Method that returns a String

@@ -8,6 +8,8 @@ import game.interfaces.Behaviour;
 
 import java.util.Random;
 
+import static game.enums.Status.STUNNED;
+
 /**
  * An undead minion which is an enemy of Design o' Souls
  */
@@ -35,6 +37,12 @@ public class Undead extends Enemies {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		// Status check
+		if ( this.hasCapability(STUNNED)) {
+			removeCapability(STUNNED);
+			return new DoNothingAction();
+		}
+
 		// Attacks player whenever possible
 		if ( checkIsPlayerNear(actions) ) {
 			return attackPlayer(actions);

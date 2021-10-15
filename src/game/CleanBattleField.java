@@ -5,7 +5,7 @@ import game.actions.ResetAction;
 import game.enemies.Enemies;
 import game.interfaces.Soul;
 
-public class cleanBattleField {
+public class CleanBattleField {
     public static String cleanBattle(Actor actor, GameMap map, Actor target){
         String result = "";
         if (!target.isConscious()) {

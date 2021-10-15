@@ -9,17 +9,15 @@ import game.weapons.YhormsGiantMachete;
 
 import static game.enums.Status.STUNNED;
 
+/**
+ * Class to create a new Lord of Cinder called Aldrich the Devourer
+ */
 public class AldrichTheDevourer extends Enemies{
 
     /**
-     * Constructor.
-     *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
-     * @param soulReward
+     * Constructor
      */
-    public AldrichTheDevourer(String name, char displayChar, int hitPoints, int soulReward) {
+    public AldrichTheDevourer() {
         super("Aldrich The Devourer", 'A', 350, 5000);
         behaviours.clear();
         addItemToInventory(new CindersOfALord());
@@ -75,4 +73,5 @@ public class AldrichTheDevourer extends Enemies{
             map.moveActor(this, initialLocation);
         }
     }
+
 }

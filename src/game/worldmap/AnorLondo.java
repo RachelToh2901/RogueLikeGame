@@ -10,8 +10,17 @@ import game.grounds.*;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class for Anor Londo which is the second map in the game
+ */
 public class AnorLondo extends Worldmap{
 
+  /**
+   * Constructor
+   * @param world
+   * @param bonFireManager
+   * @param mapsManager
+   */
   public AnorLondo( World world, BonFireManager bonFireManager, MapsManager mapsManager) {
     super("Anor Londo", world, bonFireManager, mapsManager);
 
@@ -51,11 +60,16 @@ public class AnorLondo extends Worldmap{
     spawnBonfire();
   }
 
+  /**
+   * Method to spawn enemies in Anor Londo
+   */
   @Override
   public void spawnEnemies(){
-
   }
 
+  /**
+   * Method to spawn Fog Door to Anor Londo
+   */
   @Override
   public void spawnFogDoor() {
     // Spawning Fog Door to Profane Capital
@@ -63,6 +77,9 @@ public class AnorLondo extends Worldmap{
     this.fogDoorLocation = this.map.at(38,0);
   }
 
+  /**
+   * Method to spawn Bonfire in Anor Londo
+   */
   @Override
   public void spawnBonfire() {
     bonfire = new Bonfire(name + "'s Bonfire");

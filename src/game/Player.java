@@ -12,6 +12,8 @@ import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
 import game.weapons.StormRuler;
 
+import static game.enums.Status.INVISIBLE;
+
 /**
  * Class representing the Player.
  */
@@ -108,6 +110,13 @@ public class Player extends Actor implements Soul, Resettable {
 			} else{
 				display.println("Charging Storm Ruler");
 			}
+		}
+
+		Actions emptyActions = new Actions();
+		emptyActions.add(new DoNothingAction());
+		if (this.hasCapability(INVISIBLE)){
+			display.println(this.name + " is in now invisible mode, just wait :)");
+			actions = emptyActions;
 		}
 
 		return menu.showMenu(this, actions, display);
@@ -240,6 +249,7 @@ public class Player extends Actor implements Soul, Resettable {
 		Actions actions = new Actions();
 		actions.add(new AttackAction(this, direction));
 		checkHoldingStormRuler();
+//		}
 		return actions;
 	}
 

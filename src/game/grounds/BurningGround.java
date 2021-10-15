@@ -1,7 +1,10 @@
 package game.grounds;
 
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.CleanBattleField;
 import game.enemies.LordOfCinder;
 
 /**
@@ -13,13 +16,17 @@ public class BurningGround extends Ground {
      * Number of turns for which Ember Form of Lord of Cinder has been activated
      */
     private int turnExisted = 0;
+    private Actor player;
+    private GameMap map;
 
     /**
      * Constructor.
      *
      */
-    public BurningGround() {
+    public BurningGround(Actor player, GameMap map) {
         super('v');
+        this.player = player;
+        this.map = map;
     }
 
     /**
@@ -30,14 +37,14 @@ public class BurningGround extends Ground {
     public void tick(Location location) {
         turnExisted ++;
         if ( turnExisted > 3) {
-            System.out.println("test Burning Ground start");
             location.setGround(new Dirt());
-            System.out.println("test Burning Ground end");
         }
 
-        if ( location.getActor() != null ) {
+        if (location.containsAnActor() ) {
             if ( !(location.getActor() instanceof LordOfCinder)) {
-                location.getActor().hurt(25);
+                Actor target = location.getActor();
+                target.hurt(25);
+                CleanBattleField.cleanBattle(player, map, target);
             }
         }
 

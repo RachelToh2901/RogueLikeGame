@@ -1,10 +1,12 @@
 package game.activeskills;
 
 import edu.monash.fit2099.engine.*;
-import game.cleanBattleField;
+import game.CleanBattleField;
 import game.enemies.LordOfCinder;
 
 import java.util.Random;
+
+import static game.enums.Status.STUNNED;
 
 /**
  * Special Action for Storm Ruler
@@ -50,23 +52,11 @@ public class WindSlashAction extends WeaponAction{
                     }
                 }
                 target.hurt(damage);
-                result += cleanBattleField.cleanBattle(actor, map, target);
-//                    if (!target.isConscious()) {
-//                        // drop all items
-//                        Actions dropActions = new Actions();
-//                        for (Item item : target.getInventory())
-//                            dropActions.add(item.getDropAction(actor));
-//                        for (Action drop : dropActions)
-//                            drop.execute(target, map);
-//
-//                        if (target instanceof Player) {
-//                            Action reset = new ResetAction();
-//                            result = reset.execute(target, map);
-//                        } else {
-//                            ((Enemies) target).die(map, (Soul) actor);
-//                        }
-//
-//                        result += System.lineSeparator() + target + " is killed." + System.lineSeparator();
+                String result1= CleanBattleField.cleanBattle(actor, map, target);
+                result += result1;
+                if (result1.length() >0 ){
+                    target.addCapability(STUNNED);
+                }
             }
         return result;
     }

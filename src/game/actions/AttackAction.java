@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Weapon;
-import game.cleanBattleField;
+import game.CleanBattleField;
 import game.Player;
 import game.enemies.LordOfCinder;
 import game.weapons.StormRuler;
@@ -68,7 +68,7 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		target.hurt(damage);
-		result += cleanBattleField.cleanBattle(actor, map, target);
+		result += CleanBattleField.cleanBattle(actor, map, target);
 //		if (!target.isConscious()) {
 //
 //			Actions dropActions = new Actions();

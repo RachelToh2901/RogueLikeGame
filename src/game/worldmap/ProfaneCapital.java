@@ -87,6 +87,9 @@ public class ProfaneCapital extends Worldmap {
     }
   }
 
+  /**
+   * Method to spawn forg door to Profane Capital
+   */
   @Override
   public void spawnFogDoor() {
     // Spawning Fog Door to Anor Londo
@@ -94,6 +97,9 @@ public class ProfaneCapital extends Worldmap {
     this.fogDoorLocation = this.map.at(38,25);
   }
 
+  /**
+   * Method to spawn Bonfire in the Profane Capital
+   */
   @Override
   public void spawnBonfire() {
     bonfire = new Bonfire(name + "'s Bonfire");
