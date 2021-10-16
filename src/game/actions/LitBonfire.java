@@ -3,6 +3,7 @@ package game.actions;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.Player;
 import game.grounds.Bonfire;
 
 /**
@@ -14,7 +15,6 @@ public class LitBonfire extends Action {
    * Creating instance of Bonfire
    */
   private Bonfire bonfire;
-
   /**
    * Constructor
    * @param bonfire

@@ -17,7 +17,6 @@ public class BonFireManager {
    */
   public BonFireManager(){
     bonfireList = new HashMap<>();
-
   }
 
   /**
@@ -36,4 +35,5 @@ public class BonFireManager {
   public HashMap<Bonfire, Location> getTeleportable() {
     return bonfireList;
   }
+
 }

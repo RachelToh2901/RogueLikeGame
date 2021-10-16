@@ -1,9 +1,6 @@
 package game.weapons;
 
-import edu.monash.fit2099.engine.Action;
 import game.activeskills.SpinAttackAction;
-
-import java.util.List;
 
 /**
  * Class for Giant Axe weapon
