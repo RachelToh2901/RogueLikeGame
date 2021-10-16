@@ -1,16 +1,16 @@
 package game.weapons;
 
-import edu.monash.fit2099.engine.*;
-import game.activeskills.SpinAttackAction;
-import game.behaviors.RangedAttackBehaviour;
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.DropItemAction;
+import edu.monash.fit2099.engine.WeaponItem;
+import game.enums.Abilities;
 
-import java.util.List;
 import java.util.Random;
 
 /**
  * Class for darkmoon Longbow weapon which Aldrich the Devourer holds
  */
-public class DarkmoonLongBow extends LongRangedWeapon{
+public class DarkmoonLongBow extends WeaponItem{
 
     /**
      * Constructor.
@@ -18,21 +18,7 @@ public class DarkmoonLongBow extends LongRangedWeapon{
      */
     public DarkmoonLongBow() {
         super("Darkmoon LongBow",'D',70,"hits",80);
-    }
-
-    @Override
-    public List<Action> getAllowableActions() {
-        boolean present = false;
-        for(Action action: allowableActions) {
-            if (action instanceof SpinAttackAction) {
-                present = true;
-                break;
-            }
-        }
-        if(!present){
-            allowableActions.add(new SpinAttackAction(this));
-        }
-        return allowableActions.getUnmodifiableActionList();
+        super.addCapability(Abilities.LONG_RANGED_WEAPON);
     }
 
     /**
@@ -59,5 +45,10 @@ public class DarkmoonLongBow extends LongRangedWeapon{
     @Override
     public String toString() {
         return "Darkmoon Longbow";
+    }
+
+    @Override
+    public DropItemAction getDropAction(Actor actor) {
+        return null;
     }
 }
