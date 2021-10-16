@@ -21,8 +21,6 @@ public class Application {
 		ProfaneCapital profaneCapital = new ProfaneCapital( world, bonFireManager, mapsManager);
 		AnorLondo anorLondo = new AnorLondo( world, bonFireManager, mapsManager);
 		mapsManager.spawnFogDoor();
-//		anorLondo.getGameMap().draw(new Display());
-//		System.out.println("---------------------------------------");
 
 		profaneCapital.addPlayer("Unkindled (Player)", '@', 10000);
 

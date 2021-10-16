@@ -1,12 +1,19 @@
 package game.enemies;
 
 import edu.monash.fit2099.engine.*;
+import game.Player;
+import game.actions.RangeAttackAction;
 import game.behaviors.EnragedBossFollowBehavior;
+import game.behaviors.FollowBehaviour;
+import game.behaviors.WanderBehaviour;
 import game.interfaces.Behaviour;
 import game.items.CindersOfALord;
 import game.weapons.DarkmoonLongBow;
 import game.weapons.YhormsGiantMachete;
 
+import javax.swing.text.PlainDocument;
+
+import static game.enums.Status.HOSTILE_TO_ENEMY;
 import static game.enums.Status.STUNNED;
 
 /**
@@ -46,8 +53,19 @@ public class AldrichTheDevourer extends Enemies{
         }
 
         // Attacks player whenever possible
-        if ( checkIsPlayerNear(actions) ) {
-            return attackPlayer(actions);
+        for ( Exit exit : map.locationOf(this).getExits() ) {
+            for ( Exit exit1 : exit.getDestination().getExits() ) {
+                for ( Exit exit2 : exit1.getDestination().getExits() ) {
+                    if ( exit2.getDestination().containsAnActor() ) {
+                        Actor actor = exit2.getDestination().getActor();
+                        if ( actor.hasCapability(HOSTILE_TO_ENEMY) ) {
+                            behaviours.add(new FollowBehaviour(actor));
+                            behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
+                            return new RangeAttackAction(actor);
+                        }
+                    }
+                }
+            }
         }
 
         // loop through all behaviours
@@ -67,7 +85,7 @@ public class AldrichTheDevourer extends Enemies{
     @Override
     public void resetInstance(GameMap map) {
         this.hitPoints = maxHitPoints;
-        behaviours.removeIf(behaviour -> behaviour instanceof EnragedBossFollowBehavior);
+        behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour);
         if ( initialLocation != null ) {
             map.moveActor(this, initialLocation);
         }
