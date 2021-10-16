@@ -13,6 +13,7 @@ import game.weapons.BroadSword;
 import game.weapons.StormRuler;
 
 import static game.enums.Status.INVISIBLE;
+import static game.enums.Status.STUNNED;
 
 /**
  * Class representing the Player.
@@ -117,6 +118,10 @@ public class Player extends Actor implements Soul, Resettable {
 		if (this.hasCapability(INVISIBLE)){
 			display.println(this.name + " is in now invisible mode, just wait :)");
 			actions = emptyActions;
+		} else if (this.hasCapability(STUNNED)) {
+			display.println(this.name + " is stunned. Wait 1 turn");
+			actions = emptyActions;
+			this.removeCapability(STUNNED);
 		}
 
 		return menu.showMenu(this, actions, display);
