@@ -69,22 +69,6 @@ public class AttackAction extends Action {
 
 		target.hurt(damage);
 		result += CleanBattleField.cleanBattle(actor, map, target);
-//		if (!target.isConscious()) {
-//
-//			Actions dropActions = new Actions();
-//			// drop all items
-//			for (Item item : target.getInventory())
-//				dropActions.add(item.getDropAction(actor));
-//			for (Action drop : dropActions)
-//				drop.execute(target, map);
-//
-//			if ( target instanceof Player) {
-//				Action reset = new ResetAction();
-//				result = reset.execute(target, map);
-//			} else {
-//				result = ((Enemies) target).die(map, (Soul) actor);
-//			}
-//		}
 
 		return result;
 	}

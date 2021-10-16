@@ -12,7 +12,6 @@ area that is within 3 squares away. The damage caused by the bomb will be 50 hit
 once and, it will be removed from the map after it has been used.
 
 
-
 ## Requirement 5:  Invisibility
 
 Souls can be traded by the Player to buy a new item called invisibility cloak which makes the Player invisible 
