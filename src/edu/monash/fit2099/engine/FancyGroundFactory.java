@@ -47,6 +47,8 @@ public class FancyGroundFactory implements GroundFactory {
 		try {
 			return (Ground) map.get(displayChar).newInstance();
 		} catch (Exception e) {
+			System.out.println(displayChar);
+			System.out.println(map.get(displayChar));
 			e.printStackTrace();
 		}
 		return null;
