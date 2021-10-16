@@ -13,10 +13,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class for Profane Capital which is the first map in the game
+ */
 public class ProfaneCapital extends Worldmap {
 
-
-
+  /**
+   * Constructor
+   * @param world World where profane capital exists
+   * @param bonFireManager Instance of bonfireManager class
+   * @param mapsManager Instance of mapsManager class
+   */
   public ProfaneCapital( World world, BonFireManager bonFireManager, MapsManager mapsManager) {
     super("Profane Capital", world, bonFireManager, mapsManager);
 
@@ -56,11 +63,20 @@ public class ProfaneCapital extends Worldmap {
     spawnBonfire();
   }
 
+  /**
+   * Method to add Player to the map
+   * @param name name of Player
+   * @param displayChar display character of Player
+   * @param hitPoints hit point of Player
+   */
   public void addPlayer(String name, char displayChar, int hitPoints) {
     Actor player = new Player(name, displayChar,hitPoints);
     world.addPlayer(player, this.map.at(38, 12));
   }
 
+  /**
+   * Method to add enemies onto the map
+   */
   @Override
   public void spawnEnemies(){
     // Spawn Yhorm the Giant ( Boss )

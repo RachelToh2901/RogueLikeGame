@@ -16,8 +16,7 @@ public class EstusFlask extends Item {
     private int chargesLeft = 3;
 
     /***
-     * Constructor.
-     * @ Param- None
+     * Constructor
      */
     public EstusFlask() {
         super("Estus Flask", 'E', true);
@@ -59,6 +58,14 @@ public class EstusFlask extends Item {
     public void drink() {
         chargesLeft -= 1;
     }
+
+    /**
+     * Getter.
+     *
+     * Returns an unmodifiable copy of the actions list so that calling methods won't
+     * be able to change what this Item can do without the Item checking.
+     * @return an unmodifiable list of Actions
+     */
 
 }
 

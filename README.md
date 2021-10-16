@@ -64,7 +64,7 @@ presence of the player even if player is nearby.
 ### Grounds
 
 **Bombed Ground** `x`
-- 
+- Ground when C4 Bomb has been dropped
 
 **Bonfire** 'B'
 - Bonfire where player can rest
@@ -107,5 +107,13 @@ presence of the player even if player is nearby.
 **Token of Souls** '$'
 - Souls the player had before dying which spawns at the player's dying location
 
+
+|                     Requirements                           |   Features (HOW) Your Approach / Your Answer   |
+| ---------------------------------------------------------- | ---------------------------------------------- |
+| Must use at least two (2) classes from the engine package. |                                                |
+| Must use/re-use at least one (1) existing feature          |                                                | 
+| Must use existing or create new abstraction/interfaces     |                                                |  
+| Must use existing or create new capabilities.              |                                                |  
+| Must explain why it adheres to the SOLID principles.       |                                                |  
 
 

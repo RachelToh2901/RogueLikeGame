@@ -5,6 +5,9 @@ import game.CleanBattleField;
 import game.interfaces.Behaviour;
 import java.util.Random;
 
+/**
+ * Class that will implement the ranged attack behaviour of Aldrich the Devourer
+ */
 public class RangedAttackBehaviour extends Action implements Behaviour {
 
     /**

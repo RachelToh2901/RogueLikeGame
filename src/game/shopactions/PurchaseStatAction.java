@@ -15,31 +15,17 @@ public class PurchaseStatAction extends PurchaseAction {
      */
     private int soulsCost = 200;
 
+    /**
+     * Value of hit points to be increased
+     */
     private final int HPTOINCREASE = 25;
 
+    /**
+     * Constructor
+     */
     public PurchaseStatAction(){
         super(200);
     }
-
-//    /**
-//     * Perform the Action.
-//     *
-//     * @param actor The actor performing the action.
-//     * @param map The map the actor is on.
-//     * @return a description of what happened that can be displayed to the user.
-//     */
-//    @Override
-//    public String execute(Actor actor, GameMap map) {
-//        if (((Player) actor).getSouls() >= soulsCost) {
-//            actor.increaseMaxHp(HPTOINCREASE);
-//            ((Player) actor).subtractSouls(soulsCost);
-//        }else{
-//            return actor + " does not have enough souls. Purchase FAILED.";
-//        }
-//
-//        return menuDescription(actor);
-//    }
-
 
     /**
      * Returns a descriptive string
@@ -51,17 +37,11 @@ public class PurchaseStatAction extends PurchaseAction {
         return actor + " buys max HP modifier (+25HP): " + getSoulsCost();
     }
 
-//    /**
-//     * Returns the key used in the menu to trigger this Action.
-//     *
-//     * @return The key we use for this Action in the menu, or null to have it assigned for you.
-//     */
-//    @Override
-//    public java.lang.String hotkey() {
-//        return "f";
-//    }
-
-    //TODO: add javadoc
+    /**
+     * Method to increase hit points of the Player
+     * @param actor The actor whose hp is to be increased
+     * @param map The map the actor is on
+     */
     @Override
     public void doAction(Actor actor, GameMap map) {
         actor.increaseMaxHp(HPTOINCREASE);

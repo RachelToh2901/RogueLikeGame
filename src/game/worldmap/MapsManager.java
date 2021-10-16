@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 public class MapsManager {
 
+  /**
+   * Creating new Hashmap
+   */
   private HashMap<String, Worldmap> mapList;
 
   /**

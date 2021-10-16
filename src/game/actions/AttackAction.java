@@ -69,7 +69,6 @@ public class AttackAction extends Action {
 
 		target.hurt(damage);
 		result += CleanBattleField.cleanBattle(actor, map, target);
-
 		return result;
 	}
 

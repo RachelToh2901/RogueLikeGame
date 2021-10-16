@@ -44,25 +44,7 @@ public class SpinAttackAction extends WeaponAction {
                 if (isAttack) {
                     target.hurt(damage);
                     result += CleanBattleField.cleanBattle(actor, map, target);
-//                    if (!target.isConscious()) {
-//                        // drop all items
-//                        Actions dropActions = new Actions();
-//                        for (Item item : target.getInventory())
-//                            dropActions.add(item.getDropAction(actor));
-//                        for (Action drop : dropActions)
-//                            drop.execute(target, map);
-//
-//                        if (target instanceof Player) {
-//                            Action reset = new ResetAction();
-//                            result = reset.execute(target, map);
-//                        } else {
-//                            ((Enemies) target).die(map, (Soul) actor);
-//                        }
-//
-//                        result += target + " is killed." + System.lineSeparator();
-//                    }
                 }
-
             }
         return result;
     }

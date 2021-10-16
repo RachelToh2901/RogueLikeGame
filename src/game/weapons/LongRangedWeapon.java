@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.grounds.Wall;
 
+/**
+ * Class for all long ranged weapons
+ */
 public class LongRangedWeapon extends WeaponItem {
     /**
      * Constructor.
@@ -19,6 +22,12 @@ public class LongRangedWeapon extends WeaponItem {
         super.addCapability(Abilities.LONG_RANGED_WEAPON);
     }
 
+    /**
+     * Method that throwns weapon over a range of 3 x 3
+     * @param actor The actor who is throwing the weapon
+     * @param map The map that the actor is on
+     * @return
+     */
     public String rangedWeapon(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
         String result = "";

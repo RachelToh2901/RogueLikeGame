@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Class for Player to purchase C4 Bomb from Vendor
+ */
 public class PurchaseC4BombAction extends PurchaseAction {
 
     /**
