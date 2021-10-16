@@ -5,6 +5,7 @@ import game.Player;
 import game.actions.RangeAttackAction;
 import game.behaviors.EnragedBossFollowBehavior;
 import game.behaviors.FollowBehaviour;
+import game.behaviors.WanderBehaviour;
 import game.interfaces.Behaviour;
 import game.items.CindersOfALord;
 import game.weapons.DarkmoonLongBow;
@@ -55,11 +56,13 @@ public class AldrichTheDevourer extends Enemies{
         for ( Exit exit : map.locationOf(this).getExits() ) {
             for ( Exit exit1 : exit.getDestination().getExits() ) {
                 for ( Exit exit2 : exit1.getDestination().getExits() ) {
-                    Actor actor = exit2.getDestination().getActor();
-                    if ( actor.hasCapability(HOSTILE_TO_ENEMY) ) {
-                        behaviours.add(new FollowBehaviour(actor));
-                        behaviours.removeIf(behaviour -> behaviour instanceof FollowBehaviour );
-                        return new RangeAttackAction(actor);
+                    if ( exit2.getDestination().containsAnActor() ) {
+                        Actor actor = exit2.getDestination().getActor();
+                        if ( actor.hasCapability(HOSTILE_TO_ENEMY) ) {
+                            behaviours.add(new FollowBehaviour(actor));
+                            behaviours.removeIf(behaviour -> behaviour instanceof WanderBehaviour);
+                            return new RangeAttackAction(actor);
+                        }
                     }
                 }
             }

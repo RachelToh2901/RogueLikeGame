@@ -17,9 +17,8 @@ public class RangeAttackAction extends Action {
     Location there = map.locationOf(target);
 
 
-    int diffInX = here.x() - there.x();
-    int diffInY = here.y() - there.y();
-
+    int diffInX = Math.abs(here.x() - there.x());
+    int diffInY = Math.abs(here.y() - there.y());
     NumberRange xs, ys;
 
     if ( diffInX == 0 ){
