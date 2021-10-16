@@ -26,7 +26,7 @@ public class AnorLondo extends Worldmap{
   public AnorLondo( World world, BonFireManager bonFireManager, MapsManager mapsManager) {
     super("Anor Londo", world, bonFireManager, mapsManager);
 
-    FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery());
+    FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Vendor(), new Cemetery());
 
     List<String> map = Arrays.asList(
         "........+++..................................+++.............+++..........",
@@ -46,7 +46,7 @@ public class AnorLondo extends Worldmap{
         "....................................++++..................................",
         ".................................................++++.....................",
         "............................................+++.......++..................",
-        "+........................................... +++..........................",
+        "+............................................+++..........................",
         "++............##_######################...................................",
         "+++...........#..........._...#.........#.................................",
         "..............#...#....#.......+..#..._.#.................................",
