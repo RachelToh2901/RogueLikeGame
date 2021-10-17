@@ -5,38 +5,45 @@ FIT2099 S2 2021 Assignment
 
 ## Requirement 4: C4 Bomb
 
-Souls can be traded by the Player to buy a new item called C4 Bomb through the Vendor. The price of the C4 Bomb 
-will be 300 souls. The player can place the bomb anywhere on the map(as long as the Player can enter that area).
-Once the Player drops the bomb, it will take 2 turns before the bomb explodes and causes damage to the surrounding 
-area that is within 3 squares away. The damage caused by the bomb will be 50 hit points. The bomb can only be used 
-once and, it will be removed from the map after it has been used.
+Souls can be traded by the Player to buy a new item called C4 Bomb through the Vendor. 
+The price of the C4 Bomb will be 200 souls. The player can place the bomb anywhere on 
+the map(as long as the Player can enter that area), but the bomb will only activate if
+it is dropped on Dirt ground, otherwise it will just deactivate (do nothing). 
+
+Once the Player drops the bomb, it will take 2 turns before the bomb explodes and causes
+damage to actors that are in the surrounding area, including the player himself. The 
+damage caused by the bomb will be 50 hit points. If an actor is still conscious after 
+receiving damage, he will be stunned for a turn.
+
+The bomb can only be activated once, then it will be removed from the map after it has been used.
 
 
-|                     Requirements                           |   Features (HOW) Your Approach / Your Answer   |
-| ---------------------------------------------------------- | ---------------------------------------------- |
-| Must use at least two (2) classes from the engine package. |    We have created a new class called C4Bomb which extends the Item class from the engine package. When the bomb is placed on the Ground, it explodes after 2 turns so we have created a new class called Bombed Ground which extends the Ground class from the engine package.
+
+|                     Requirements                           |   Features (HOW)/ Your Approach / Your Answer   |
+| ---------------------------------------------------------- | ----------------------------------------------- |
+| Must use at least two (2) classes from the engine package. |   Classes like Location and Exit from the engine package are being used for this requirement. (there are more classes from engine package being used) |
 | Must use/re-use at least one (1) existing feature          |   The C4 bomb can be purchased from the Vendor which we have implemented in assignment 2                                             | 
-| Must use existing or create new abstraction/interfaces     |   We have created a new class called RangedAttackBehaviour which implements the Behaviour interface. The methods in this class will allow the C4 bomb to be thrown over a range of 3 x 3                                             |  
-| Must use existing or create new capabilities.              |   We have made use of the STUNNED capability. When an enemy steps on the bombed grounded, the stunned capability is added to their capabilities
-| Must explain why it adheres to the SOLID principles.       |    We have created a new class for the C4 bomb. This abides by the Single Responsibility principle as the class has only one responsibility. This one class contains all the functionality needed to support that responsibility. We have also created a PurchaseC4BombAction class which extends the PurchaseAction class so that the Player can purchase the bomb through the Vendor. This abides by Liskov Substitution Principle as the PurchaseC4BombAction inherits its functions and abilities from its parent class                                            |  
+| Must use existing or create new abstraction/interfaces     |   Purchase of this C4Bomb will be done using PurchaseC4BombAction which extends from the PurchaseAction class which is an abstract class |
+| Must use existing or create new capabilities.              |   We have made use of the STUNNED capability.When an actor receives damage by stepping on the bombed ground and he is still conscious, this actor will be added a capability of  STUNNED status. |
+| Must explain why it adheres to the SOLID principles.       |   We have created a new class for the C4 bomb. This abides by the Single Responsibility principle as the class has only one responsibility. This one class contains all the functionality needed to support that responsibility. We have also created a PurchaseC4BombAction class which extends the PurchaseAction class so that the Player can purchase the bomb through the Vendor. This abides by Liskov Substitution Principle as the PurchaseC4BombAction inherits its functions and abilities from its parent class                                            |  
 
 
 ## Requirement 5:  Invisibility
 
 Souls can be traded by the Player to buy a new item called invisibility cloak which makes the Player invisible 
-to enemies. The price of the invisibility cloak will be 200 Souls. The Player can equip the cloak anytime. If the 
+to enemies. The price of the invisibility cloak will be 500 Souls. The Player can equip the cloak anytime. If the 
 invisible cloak is used, the player will be invisible in the map, enemies will stop attacking the player if they are 
-already attacking, and continue its wandering behaviour. If no enemy is attacking player, enemies will ignore the 
+already attacking, and continue their wandering behaviour. If no enemy is attacking player, enemies will ignore the 
 presence of the player even if player is nearby.
 
 
 
-|                     Requirements                           |   Features (HOW) Your Approach / Your Answer   |
-| ---------------------------------------------------------- | ---------------------------------------------- |
+|                     Requirements                           |   Features (HOW)/ Your Approach / Your Answer   |
+| ---------------------------------------------------------- | ----------------------------------------------- |
 | Must use at least two (2) classes from the engine package. |  We have created 3 new classes- InvisibleCloak, InvisibleAction and PurchaseInvisibleCloak. The Invisible cloak extends the Item class and the InvisibleAction extends the Action class                                              |
 | Must use/re-use at least one (1) existing feature          |  The invisible cloak can be purchased from the Vendor which we have implemented in assignment 2                                              | 
-| Must use existing or create new abstraction/interfaces     |  The InvisibleCloak class extends Item class  which is an abstract class                                              |  
-| Must use existing or create new capabilities.              |  We have created a new capability called INVISIBLE. When the invisible cloak is equipped by the Player, they turn invisible.                                              |  
+| Must use existing or create new abstraction/interfaces     |  Purchase of this C4Bomb will be done using PurchaseC4BombAction which extends from the PurchaseAction class which is an abstract class.                                              |  
+| Must use existing or create new capabilities.              |  We have created a new capability called INVISIBLE. When the player executes InvisibleAction, this INVISIBLE status will be added to the player as a new capability.                                               |
 | Must explain why it adheres to the SOLID principles.       |  We have created a new class for the invisible cloak, this abides by the single responsibility principle as the class has only one responsibility. This one class contains all the functionality needed to support that responsibility. We have also created a PurchaseInvisibleCloak class which extends the PurchaseAction class so that the Player can purchase the Invisible Cloak through the Vendor. This abides by Liskov Substitution Principle as the PurchaseInvisibleCloak class inherits its functions and abilities from its parent class
 |  
 
