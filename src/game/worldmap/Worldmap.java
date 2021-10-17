@@ -6,8 +6,6 @@ import edu.monash.fit2099.engine.World;
 import game.BonFireManager;
 import game.grounds.Bonfire;
 
-import java.util.Locale;
-
 /**
  * Class to create a game world consisting of 2 maps
  */

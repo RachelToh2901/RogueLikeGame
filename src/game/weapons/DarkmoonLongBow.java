@@ -18,7 +18,7 @@ public class DarkmoonLongBow extends WeaponItem{
      */
     public DarkmoonLongBow() {
         super("Darkmoon LongBow",'D',70,"hits",80);
-        super.addCapability(Abilities.LONG_RANGED_WEAPON);
+        this.addCapability(Abilities.LONG_RANGED_WEAPON);
     }
 
     /**
