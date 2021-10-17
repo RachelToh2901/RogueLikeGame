@@ -3,24 +3,28 @@ package game.actions;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.BonFireManager;
 import game.Player;
 import game.grounds.Bonfire;
 
 /**
  * Class that performs the light bonfire action
  */
-public class LitBonfire extends Action {
+public class LitBonfireAction extends Action {
 
   /**
    * Creating instance of Bonfire
    */
   private Bonfire bonfire;
+  private BonFireManager bonFireManager;
   /**
    * Constructor
-   * @param bonfire
+   * @param bonfire a bonfire
+   * @param bonFireManager a bonfireManager
    */
-  public LitBonfire(Bonfire bonfire) {
+  public LitBonfireAction(Bonfire bonfire, BonFireManager bonFireManager) {
     this.bonfire = bonfire;
+    this.bonFireManager = bonFireManager;
   }
 
   /**
@@ -32,6 +36,7 @@ public class LitBonfire extends Action {
   @Override
   public String execute(Actor actor, GameMap map) {
     bonfire.litBonfire();
+    bonFireManager.setLastInteractedBonfire(bonfire);
     return bonfire.getName() + " has been lit.";
   }
 
