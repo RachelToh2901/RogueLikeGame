@@ -2,8 +2,9 @@ package game.grounds;
 
 import edu.monash.fit2099.engine.*;
 import game.BonFireManager;
-import game.actions.LitBonfire;
+import game.actions.LitBonfireAction;
 import game.actions.ResetAction;
+import game.actions.TeleportToBonfireAction;
 
 import java.util.HashMap;
 
@@ -42,11 +43,12 @@ public class Bonfire extends Ground {
             HashMap<Bonfire, Location> bonfireArr = bonFireManager.getTeleportable();
             for ( Bonfire bonfire : bonfireArr.keySet()) {
                 if ( bonfire != this && bonfire.lit ) {
-                    actions.add( new MoveActorAction(bonfireArr.get(bonfire), "to " + bonfire.name));
+//                    actions.add( new MoveActorAction(bonfireArr.get(bonfire), "to " + bonfire.name));
+                    actions.add( new TeleportToBonfireAction(bonfireArr.get(bonfire), bonfire.name, bonfire, bonFireManager));
                 }
             }
         } else  {
-            actions.add(new LitBonfire(this));
+            actions.add(new LitBonfireAction(this, bonFireManager));
         }
 
         return actions;
@@ -64,4 +66,5 @@ public class Bonfire extends Ground {
     public String getName() {
         return name;
     }
+
 }

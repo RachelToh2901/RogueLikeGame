@@ -1,6 +1,5 @@
 package game.worldmap;
 
-import edu.monash.fit2099.demo.mars.Stick;
 import edu.monash.fit2099.engine.*;
 import game.BonFireManager;
 import game.Player;
@@ -70,8 +69,9 @@ public class ProfaneCapital extends Worldmap {
    * @param hitPoints hit point of Player
    */
   public void addPlayer(String name, char displayChar, int hitPoints) {
-    Actor player = new Player(name, displayChar,hitPoints);
-    world.addPlayer(player, this.map.at(38, 12));
+    Actor player = new Player(name, displayChar,hitPoints, bonFireManager);
+    world.addPlayer(player, this.map.at(38, 11));
+
   }
 
   /**
@@ -122,5 +122,6 @@ public class ProfaneCapital extends Worldmap {
     bonfire.litBonfire();
     bonfire.setBonFireManager(bonFireManager, this.map.at(38, 11));
     this.map.at(38, 11).setGround(bonfire);
+    bonFireManager.setLastInteractedBonfire(bonfire);
   }
 }

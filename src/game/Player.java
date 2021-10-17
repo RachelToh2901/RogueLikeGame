@@ -2,7 +2,6 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
-import game.actions.LitBonfire;
 import game.activeskills.ChargeAction;
 import game.enums.Abilities;
 import game.enums.Status;
@@ -12,6 +11,7 @@ import game.items.EstusFlask;
 import game.items.TokenOfSouls;
 import game.weapons.BroadSword;
 import game.weapons.StormRuler;
+
 
 import static game.enums.Status.INVISIBLE;
 import static game.enums.Status.STUNNED;
@@ -25,11 +25,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 * Creating new instance of Menu class
 	 */
 	private final Menu menu = new Menu();
-
-	/**
-	 * Last location of Player
-	 */
-	private Location lastSavedLocation = null;
 
 	/**
 	 * Number of Souls that the Player has
@@ -51,6 +46,8 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	private TokenOfSouls previousTokenOfSouls = null;
 
+	private BonFireManager bonFireManager;
+
 	/**
 	 * Constructor.
 	 *
@@ -58,7 +55,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
-	public Player(String name, char displayChar, int hitPoints) {
+	public Player(String name, char displayChar, int hitPoints, BonFireManager bonFireManager) {
 		super(name, displayChar, 10000);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
@@ -66,6 +63,8 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
 		this.souls = 10000;
+		this.bonFireManager = bonFireManager;
+
 	}
 
 	/**
@@ -89,9 +88,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		if ( lastSavedLocation == null || lastAction instanceof LitBonfire) {
-			setLastSavedLocation(map.locationOf(this));
-		}
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -145,12 +141,11 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public void resetInstance(GameMap map) {
-		if ( isConscious() ) {
-			setLastSavedLocation(map.locationOf(this));
-		} else  {
+		if (!isConscious()) {
 			this.subtractSouls(this.getSouls());
-			map.moveActor(this, lastSavedLocation);
 		}
+		Location spawnLocation = this.bonFireManager.getTeleportable().get(this.bonFireManager.getLastInteractedBonfire());
+		map.moveActor(this, spawnLocation);
 
 		this.hitPoints = maxHitPoints;
 		getEstusFlask().setChargesLeft(3);
@@ -188,16 +183,6 @@ public class Player extends Actor implements Soul, Resettable {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Setter.
-	 * Set value of location
-	 *
-	 * @param location - last location of Player
-	 */
-	public void setLastSavedLocation(Location location) {
-		this.lastSavedLocation = location;
 	}
 
 
@@ -311,4 +296,6 @@ public class Player extends Actor implements Soul, Resettable {
 	public TokenOfSouls getPreviousTokenOfSouls(){
 		return this.previousTokenOfSouls;
 	}
+
+
 }

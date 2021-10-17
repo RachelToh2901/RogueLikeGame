@@ -11,6 +11,7 @@ public class BonFireManager {
    * Creating new hashmap
    */
   private HashMap<Bonfire, Location> bonfireList;
+  private Bonfire lastInteractedBonfire;
 
   /**
    * Constructor
@@ -34,6 +35,14 @@ public class BonFireManager {
    */
   public HashMap<Bonfire, Location> getTeleportable() {
     return bonfireList;
+  }
+
+  public void setLastInteractedBonfire(Bonfire bonfire){
+    this.lastInteractedBonfire = bonfire;
+  }
+
+  public Bonfire getLastInteractedBonfire(){
+    return this.lastInteractedBonfire;
   }
 
 }
