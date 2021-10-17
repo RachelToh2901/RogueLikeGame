@@ -38,7 +38,7 @@ public class AldrichTheDevourer extends Enemies{
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor
      * @param display    the I/O object to which messages may be written
-     * @return DoNothingAction
+     * @return action
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {

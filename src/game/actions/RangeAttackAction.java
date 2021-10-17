@@ -2,14 +2,30 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class for Aldrich the Devourer to attack the attack the Player
+ */
 public class RangeAttackAction extends Action {
 
+  /**
+   * Creating the target that the actor needs to attack
+   */
   private Actor target;
 
+  /**
+   * Constrcutor
+   * @param target the actor to be attacked
+   */
   public RangeAttackAction(Actor target) {
     this.target = target;
   }
 
+  /**
+   * Method to attack the target
+   * @param actor The actor performing the action.
+   * @param map The map the actor is on.
+   * @return a descriptive string of the action performed
+   */
   @Override
   public String execute(Actor actor, GameMap map) {;
 
@@ -49,6 +65,11 @@ public class RangeAttackAction extends Action {
     return actor + " shot an arrow at " + target ;
   }
 
+  /**
+   * Method that returns a descriptive string of the action that has occurred
+   * @param actor The actor performing the action.
+   * @return null
+   */
   @Override
   public String menuDescription(Actor actor) {
     return null;

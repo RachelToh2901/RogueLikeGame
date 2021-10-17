@@ -37,10 +37,18 @@ public class BonFireManager {
     return bonfireList;
   }
 
+  /**
+   * Method to save the last bonfire that the Player interacted with
+   * @param bonfire
+   */
   public void setLastInteractedBonfire(Bonfire bonfire){
     this.lastInteractedBonfire = bonfire;
   }
 
+  /**
+   * Accessor to retrieve the last bonfire that the player interacted with
+   * @return lastInteractedBonfire
+   */
   public Bonfire getLastInteractedBonfire(){
     return this.lastInteractedBonfire;
   }

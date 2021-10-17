@@ -3,8 +3,6 @@ package game.items;
 import edu.monash.fit2099.engine.*;
 import game.actions.InvisibleAction;
 
-import java.util.List;
-
 import static game.enums.Status.INVISIBLE;
 
 /**
@@ -70,6 +68,5 @@ public class InvisibleCloak extends Item {
     public void actorUsing(){
         isUsing = true;
     }
-
 
 }

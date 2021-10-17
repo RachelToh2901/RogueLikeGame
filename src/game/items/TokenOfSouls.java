@@ -1,13 +1,10 @@
 package game.items;
 
-import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.Player;
 import game.actions.RetrieveSoulAction;
-
-import java.util.List;
 
 /**
  * Class for Token of Souls which the Player can interact with to retrieve souls that were lost when the player died
@@ -35,7 +32,6 @@ public class TokenOfSouls extends Item {
         numberOfSouls = ((Player) actor).getSouls();
         allowableActions.add(new RetrieveSoulAction(this));
     }
-
 
     /**
      * Getter

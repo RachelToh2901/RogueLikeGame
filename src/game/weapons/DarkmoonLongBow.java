@@ -47,6 +47,11 @@ public class DarkmoonLongBow extends WeaponItem{
         return "Darkmoon Longbow";
     }
 
+    /**
+     * Method that prevents Aldrich from dropping the Drkmoon Longbow
+     * @param actor an actor that will interact with this item
+     * @return null
+     */
     @Override
     public DropItemAction getDropAction(Actor actor) {
         return null;

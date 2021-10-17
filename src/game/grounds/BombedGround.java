@@ -10,8 +10,19 @@ import static game.enums.Status.STUNNED;
  */
 public class BombedGround extends Ground {
 
+    /**
+     * Number of times that the tick method has been executed
+     */
     private static int tickCount = 0;
+
+    /**
+     * The Player who is playing the game
+     */
     private Actor player;
+
+    /**
+     * The map where the Player is
+     */
     private GameMap map;
 
 

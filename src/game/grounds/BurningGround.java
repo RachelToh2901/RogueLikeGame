@@ -16,7 +16,15 @@ public class BurningGround extends Ground {
      * Number of turns for which Ember Form of Lord of Cinder has been activated
      */
     private int turnExisted = 0;
+
+    /**
+     * Player who is playing the game
+     */
     private Actor player;
+
+    /**
+     * Map where the Player is
+     */
     private GameMap map;
 
     /**

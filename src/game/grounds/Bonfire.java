@@ -13,8 +13,19 @@ import java.util.HashMap;
  */
 public class Bonfire extends Ground {
 
+    /**
+     * Instance of BonfireManager class
+     */
     private BonFireManager bonFireManager;
+
+    /**
+     * Boolean variable to check if Bonfire is lit or not
+     */
     private boolean lit = false;
+
+    /**
+     * Name of Bonfire
+     */
     private String name;
 
     /**
@@ -43,7 +54,6 @@ public class Bonfire extends Ground {
             HashMap<Bonfire, Location> bonfireArr = bonFireManager.getTeleportable();
             for ( Bonfire bonfire : bonfireArr.keySet()) {
                 if ( bonfire != this && bonfire.lit ) {
-//                    actions.add( new MoveActorAction(bonfireArr.get(bonfire), "to " + bonfire.name));
                     actions.add( new TeleportToBonfireAction(bonfireArr.get(bonfire), bonfire.name, bonfire, bonFireManager));
                 }
             }
@@ -54,15 +64,27 @@ public class Bonfire extends Ground {
         return actions;
     }
 
+    /**
+     *
+     * @param bonFireManager Instance of BonfireManager class
+     * @param location location of the bonfire
+     */
     public void setBonFireManager(BonFireManager bonFireManager, Location location) {
         this.bonFireManager = bonFireManager;
         bonFireManager.registerBonfire(this, location);
     }
 
+    /**
+     * Method to light bonfire
+     */
     public void litBonfire() {
         this.lit = true;
     }
 
+    /**
+     * Accessor for name of bonfire
+     * @return name of bonfire
+     */
     public String getName() {
         return name;
     }

@@ -8,12 +8,6 @@ import edu.monash.fit2099.engine.Item;
  * Class for Player to purchase C4 Bomb from Vendor
  */
 public class PurchaseC4BombAction extends PurchaseAction {
-
-    /**
-     * Cost of C4 Bomb
-     */
-    private int soulsCost = 200;
-
     /**
      * Creating new item
      */

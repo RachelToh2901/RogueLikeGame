@@ -1,19 +1,12 @@
 package game.shopactions;
 
-import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.Player;
 
 /**
  * Class for Player to purchase stats(increase maximum hit points by 25) from the Vendor
  */
 public class PurchaseStatAction extends PurchaseAction {
-
-    /**
-     * Number of souls that it costs to increase maximum HP
-     */
-    private int soulsCost = 200;
 
     /**
      * Value of hit points to be increased

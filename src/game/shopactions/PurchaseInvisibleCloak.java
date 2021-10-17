@@ -3,7 +3,6 @@ package game.shopactions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import game.items.InvisibleCloak;
 
 /**
  * Class for Player to purchase Invisible cloak from Vendor

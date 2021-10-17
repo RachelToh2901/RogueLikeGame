@@ -3,8 +3,6 @@ package game.items;
 import edu.monash.fit2099.engine.*;
 import game.actions.DrinkEstusFlaskAction;
 
-import java.util.List;
-
 /**
  * Class for Estus Flask which Player carries throughout the game
  */
@@ -58,14 +56,5 @@ public class EstusFlask extends Item {
     public void drink() {
         chargesLeft -= 1;
     }
-
-    /**
-     * Getter.
-     *
-     * Returns an unmodifiable copy of the actions list so that calling methods won't
-     * be able to change what this Item can do without the Item checking.
-     * @return an unmodifiable list of Actions
-     */
-
 }
 
