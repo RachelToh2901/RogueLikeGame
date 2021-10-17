@@ -67,7 +67,7 @@ public class AnorLondo extends Worldmap{
    */
   @Override
   public void spawnEnemies(){
-    // Spawn Yhorm the Giant ( Boss )
+    // Spawn Aldrich the Devourer
     this.map.at(15, 21).addActor(new AldrichTheDevourer());
   }
 
