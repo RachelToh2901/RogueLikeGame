@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.actions.LitBonfire;
 import game.activeskills.ChargeAction;
 import game.enums.Abilities;
 import game.enums.Status;
@@ -88,7 +89,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		if ( lastSavedLocation == null ) {
+		if ( lastSavedLocation == null || lastAction instanceof LitBonfire) {
 			setLastSavedLocation(map.locationOf(this));
 		}
 		// Handle multi-turn Actions
