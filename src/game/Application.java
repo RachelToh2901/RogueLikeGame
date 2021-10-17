@@ -22,7 +22,7 @@ public class Application {
 		AnorLondo anorLondo = new AnorLondo( world, bonFireManager, mapsManager);
 		mapsManager.spawnFogDoor();
 
-		profaneCapital.addPlayer("Unkindled (Player)", '@', 10000);
+		profaneCapital.addPlayer("Unkindled (Player)", '@', 100);
 
 		world.run();
 

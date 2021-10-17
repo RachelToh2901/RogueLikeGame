@@ -62,7 +62,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.registerInstance();
 		this.addItemToInventory(new EstusFlask());
 		this.addItemToInventory(new BroadSword());
-		this.souls = 10000;
+		this.souls = 0;
 		this.bonFireManager = bonFireManager;
 
 	}
