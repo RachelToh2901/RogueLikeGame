@@ -42,6 +42,6 @@ public class LitBonfire extends Action {
    */
   @Override
   public String menuDescription(Actor actor) {
-    return "lit " + bonfire.getName();
+    return "light " + bonfire.getName();
   }
 }
