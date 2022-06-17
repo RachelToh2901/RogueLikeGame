@@ -38,7 +38,7 @@ presence of the player even if player is nearby.
 
 
 
-|                     Requirements                           |   Features (HOW)/ Your Approach / Your Answer   |
+||                     Requirements                           |   Features (HOW)/ Your Approach / Your Answer   |
 | ---------------------------------------------------------- | ----------------------------------------------- |
 | Must use at least two (2) classes from the engine package. |  We have created 3 new classes- InvisibleCloak, InvisibleAction and PurchaseInvisibleCloak. The Invisible cloak extends the Item class and the InvisibleAction extends the Action class                                              |
 | Must use/re-use at least one (1) existing feature          |  The invisible cloak can be purchased from the Vendor which we have implemented in assignment 2                                              | 
